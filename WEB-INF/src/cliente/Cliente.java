@@ -9,25 +9,26 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import logica.*;
+import logica.IFachada;
 import logica.excepciones.ClienteException;
+import logica.excepciones.ServicioException;
 
 public class Cliente {
 
-	public static void main (String [] args) throws ClienteException { 
-		try{ 
-			
-			//obtengo ip y puerto de un archivo de configuracion
+	public static void main (String [] args) throws ClienteException, ServicioException {
+		try{
+	
 			Properties p = new Properties();
 			String nomArch = "/Users/kathe/Develop/Taller-2/WEB-INF/src/config/config.properties";
 			p.load (new FileInputStream (nomArch));
 			String ip = p.getProperty("ipServidor");
 			String puerto = p.getProperty("puertoServidor");
 			String ruta = "//" + ip + ":" + puerto + "/fachada";
-			
-			//accedo remotamente a la cuenta bancaria publicada en el servidor
+
 			IFachada fachada = (IFachada) Naming.lookup(ruta);
-			fachada.listadoClientes();
+			fachada.nuevoServicio(true, false, 1, 200, "Nuevo");
+			
+			//System.out.println("Cliente fin");
 
 		}
 		catch (MalformedURLException e) {
@@ -43,6 +44,7 @@ public class Cliente {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		} 
 	}
+
 }

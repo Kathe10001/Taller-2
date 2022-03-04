@@ -35,7 +35,11 @@
 				</tr>
 			</c:forEach>					
 	</table>
-
+	
+	 <form action='ListadoServicios' method='POST'>
+      <p> <input type='submit' value='Cargar datos'> </p>
+    </form>
+    
 	<p><a href='Menu.jsp'>Volver al Menú</a></p>
 		
   </body>

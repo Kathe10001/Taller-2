@@ -18,19 +18,20 @@ public class MensajeServlet extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 
-	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
+	@Override
+	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
 	    // obtengo los datos del Request
 	    String mensaje = req.getParameter("mensaje");
 
-	    // obtengo el nombre del autor de la sesión
+	    // obtengo el nombre del autor de la sesiï¿½n
         HttpSession session = req.getSession();
 	    DataPersona datosPer;
 	    synchronized (session)
 	    {
-	        datosPer = (DataPersona) session.getAttribute("datosPer");    
-	    }		    
-	    	    
+	        datosPer = (DataPersona) session.getAttribute("datosPer");
+	    }
+
 	    // guardo el mensaje en el contexto
 	    ServletContext context = super.getServletContext();
 	    synchronized (context)
@@ -40,12 +41,12 @@ public class MensajeServlet extends HttpServlet
 	    	@SuppressWarnings("unchecked")
 			ArrayList<DataMensaje> mensajes = (ArrayList <DataMensaje>) context.getAttribute("mensajes");
 	    	if (mensajes == null)
-	    		mensajes = new ArrayList<DataMensaje>();
-	    	mensajes.add(datosMens);			        
+	    		mensajes = new ArrayList<>();
+	    	mensajes.add(datosMens);
 	    	context.setAttribute("mensajes",mensajes);
-	    }    
-	    
-		// forwardeo a la página de resultados
+	    }
+
+		// forwardeo a la pï¿½gina de resultados
 		RequestDispatcher rd;
 		rd = req.getRequestDispatcher("Resultados.jsp");
 		rd.forward(req, resp);

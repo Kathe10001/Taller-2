@@ -2,7 +2,7 @@ package valueObjects;
 
 public class VOCliente {
 
-	private int cedula;
+	private String cedula;
 
 	private String nombre;
 
@@ -12,8 +12,8 @@ public class VOCliente {
 
 	public VOCliente() {
 	}
-	
-	public VOCliente(int cedula, String nombre, String apellido, String telefono) {
+
+	public VOCliente(String cedula, String nombre, String apellido, String telefono) {
 		super();
 		this.cedula = cedula;
 		this.nombre = nombre;
@@ -21,11 +21,11 @@ public class VOCliente {
 		this.telefono = telefono;
 	}
 
-	public Integer getCedula() {
+	public String getCedula() {
 		return cedula;
 	}
 
-	public void setCedula(Integer cedula) {
+	public void setCedula(String cedula) {
 		this.cedula = cedula;
 	}
 
@@ -52,6 +52,6 @@ public class VOCliente {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-	
-	
+
+
 }

@@ -1,9 +1,9 @@
 package negocio;
 
-import valueObjects.VOCliente;
 import valueObjects.VOServicio;
 
 public class Servicio {
+	
 	private boolean armadoMuebles;
 
     private boolean embalaje;
@@ -13,11 +13,11 @@ public class Servicio {
     private float distanciaKm;
 
     private String codigo;
-    
+
 
     public Servicio() {
 	}
-    
+
 	public Servicio(boolean armadoMuebles, boolean embalaje, float costoXhora, float distanciaKm, String codigo) {
 		super();
 		this.armadoMuebles = armadoMuebles;
@@ -66,7 +66,7 @@ public class Servicio {
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
-    
+
 	public VOServicio toVO() {
 		VOServicio servicio = new VOServicio();
 		servicio.setArmadoMuebles(this.armadoMuebles);

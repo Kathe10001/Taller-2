@@ -5,17 +5,17 @@ import logica.colecciones.Mudanzas;
 import logica.colecciones.Servicios;
 
 public class VOPersistencia {
-	
+
 	private Clientes clientes;
-	
+
 	private Mudanzas mudanzas;
-	
+
 	private Servicios servicios;
-	
+
 	public VOPersistencia() {
-		
+
 	}
-	
+
 	public VOPersistencia(Clientes c, Mudanzas m, Servicios s) {
 		this.clientes = c;
 		this.servicios = s;
@@ -45,7 +45,7 @@ public class VOPersistencia {
 	public void setServicios(Servicios s) {
 		this.servicios = s;
 	}
-	
+
 
 }
 

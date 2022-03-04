@@ -1,10 +1,4 @@
-/.DS_Store
-/cliente/
-/config/
-/grafica/
 /logica/
+/grafica/
+/cliente/
 /negocio/
-/persistencia/
-/servidor/
-/servlets/
-/valueObjects/

@@ -4,12 +4,12 @@ public class Monitor {
 
 	private int lectores;
 	private boolean escribiendo;
-	
+
 	public Monitor() {
 		this.lectores = 0;
 		this.escribiendo = false;
 	}
-	
+
 	public synchronized void comienzoLectura() {
 		while(escribiendo){
 			try {
@@ -20,12 +20,12 @@ public class Monitor {
 		}
 		lectores++;
 	}
-	
+
 	public synchronized void terminoLectura() {
 		lectores--;
 	    notify();
 	}
-	
+
 
 	public synchronized void comienzoEscritura() {
 	    while(lectores > 0 || escribiendo){
@@ -37,10 +37,10 @@ public class Monitor {
 	    }
 	    escribiendo = true;
 	}
-	
+
 	public synchronized void terminoEscritura() {
 		escribiendo = false;
 	    notify();
-	}	
+	}
 
 }

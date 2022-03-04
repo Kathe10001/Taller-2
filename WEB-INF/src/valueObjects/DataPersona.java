@@ -13,7 +13,7 @@ public class DataPersona {
         this.nombre = nombre;
         this.procedencia = procedencia;
     }
-    
+
     public String getNombre()
     {
         return nombre;

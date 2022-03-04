@@ -2,29 +2,28 @@ package negocio;
 
 import java.util.Date;
 
-import valueObjects.VOCliente;
 import valueObjects.VOMudanzaDetallado;
 
 public class Mudanza {
 
 	private Date fechaMudanza;
-	
+
 	private String domicilioOrigen;
-	
+
 	private String domiciloDestino;
-	
+
 	private float duracionTotal;
-	
+
 	private int numContratacion;
-	
+
 	private int horaInicio;
-	
+
 	private boolean finalizacion;
-	
+
 	private Cliente cliente;
 
 	private Servicio servicio;
-	
+
 	public Mudanza(int numContratacion, int horaInicio, Date fechaMudanza, String domicilioOrigen, String domiciloDestino, Cliente cliente, Servicio servicio) {
 		super();
 		this.fechaMudanza = fechaMudanza;
@@ -36,10 +35,10 @@ public class Mudanza {
 		this.horaInicio = horaInicio;
 		this.cliente = cliente;
 		this.servicio = servicio;
-		
+
 	}
-	 
-	
+
+
 	public Date getFechaMudanza() {
 		return fechaMudanza;
 	}
@@ -95,7 +94,7 @@ public class Mudanza {
 	public void setFinalizacion(boolean finalizacion) {
 		this.finalizacion = finalizacion;
 	}
-	
+
 	public VOMudanzaDetallado toVO() {
 
 		VOMudanzaDetallado mudanza = new VOMudanzaDetallado();

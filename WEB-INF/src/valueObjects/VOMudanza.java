@@ -1,19 +1,19 @@
 package valueObjects;
 
 public class VOMudanza {
-	
+
 	 private int numContratacion;
 
 	 private int horaInicio;
 
 	 private boolean finalizacion;
 
-	 
+
 	 public VOMudanza() {
-			
+
 		}
 
-	 
+
 	public VOMudanza(int numContratacion, int horaInicio) {
 		this.numContratacion = numContratacion;
 		this.horaInicio = horaInicio;
@@ -43,6 +43,6 @@ public class VOMudanza {
 	public void setFinalizacion(boolean finalizacion) {
 		this.finalizacion = finalizacion;
 	}
-	
+
 
 }

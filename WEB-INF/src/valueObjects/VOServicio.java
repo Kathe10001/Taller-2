@@ -1,7 +1,7 @@
 package valueObjects;
 
 public class VOServicio {
-	
+
 	private boolean armadoMuebles;
 
     private boolean embalaje;
@@ -11,12 +11,12 @@ public class VOServicio {
     private float distanciaKm;
 
     private String codigo;
-    
+
 
 	public VOServicio() {
 
 	}
-	
+
 	public VOServicio(boolean armadoMuebles, boolean embalaje, float costoXhora, float distanciaKm, String codigo) {
 		super();
 		this.armadoMuebles = armadoMuebles;
@@ -65,7 +65,7 @@ public class VOServicio {
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
-    
-    
+
+
 
 }

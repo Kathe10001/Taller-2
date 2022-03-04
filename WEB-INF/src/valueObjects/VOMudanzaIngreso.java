@@ -9,25 +9,25 @@ public class VOMudanzaIngreso extends VOMudanza {
 	private String domicilioDestino;
 
 	private float duracionTotal;
-	
+
 
 	public VOMudanzaIngreso() {
 	}
-	
+
 	public VOMudanzaIngreso(int numContratacion, int horaInicio, Date fechaMudanza, String domicilioOrigen, String domicilioDestino) {
 		super(numContratacion, horaInicio);
 		this.fechaMudanza = fechaMudanza;
 		this.domicilioOrigen = domicilioOrigen;
 		this.domicilioDestino = domicilioDestino;
 	}
-	
+
 	public VOMudanzaIngreso(int numContratacion, int horaInicio, Date fechaMudanza, String domicilioOrigen, String domicilioDestino, float duracionTotal) {
 		super(numContratacion, horaInicio);
 		this.fechaMudanza = fechaMudanza;
 		this.domicilioOrigen = domicilioOrigen;
 		this.domicilioDestino = domicilioDestino;
 		this.duracionTotal = duracionTotal;
-	
+
 	}
 
 	public Date getFechaMudanza() {
@@ -62,5 +62,5 @@ public class VOMudanzaIngreso extends VOMudanza {
 		this.duracionTotal = duracionTotal;
 	}
 
-	
+
 }

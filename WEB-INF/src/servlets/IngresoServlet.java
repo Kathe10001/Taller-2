@@ -16,7 +16,8 @@ public class IngresoServlet extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
 
-	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
+	@Override
+	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
 	    // obtengo los datos del Request
 	    String nombre = req.getParameter("nombre");
@@ -31,18 +32,18 @@ public class IngresoServlet extends HttpServlet
 			msgError = "El nombre no puede estar vacio";
 	    }
 
-	    // guardo los datos de la persona en la sesión
+	    // guardo los datos de la persona en la sesiï¿½n
 	    if (!error)
-	    {		    
+	    {
 	        HttpSession session = req.getSession();
 		    DataPersona datosPer = new DataPersona(nombre,procedencia);
 		    synchronized (session)
 		    {
-		        session.setAttribute("datosPer",datosPer);    
-		    }		    
-	    }    
-	    
-		// forwardeo a la página apropiada
+		        session.setAttribute("datosPer",datosPer);
+		    }
+	    }
+
+		// forwardeo a la pï¿½gina apropiada
 	    req.setAttribute("msgError", msgError);
 		RequestDispatcher rd;
 		if (!error)

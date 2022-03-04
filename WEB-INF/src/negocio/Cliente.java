@@ -3,8 +3,8 @@ package negocio;
 import valueObjects.VOCliente;
 
 public class Cliente {
-	
-	private int cedula;
+
+	private String cedula;
 
 	private String nombre;
 
@@ -12,7 +12,7 @@ public class Cliente {
 
 	private String telefono;
 
-	public Cliente(int cedula, String nombre, String apellido, String telefono) {
+	public Cliente(String cedula, String nombre, String apellido, String telefono) {
 		super();
 		this.cedula = cedula;
 		this.nombre = nombre;
@@ -20,11 +20,11 @@ public class Cliente {
 		this.telefono = telefono;
 	}
 
-	public int getCedula() {
+	public String getCedula() {
 		return cedula;
 	}
 
-	public void setCedula(int cedula) {
+	public void setCedula(String cedula) {
 		this.cedula = cedula;
 	}
 
@@ -51,7 +51,7 @@ public class Cliente {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-	
+
 	public VOCliente toVO() {
 		VOCliente cliente = new VOCliente();
 		cliente.setApellido(this.apellido);

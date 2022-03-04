@@ -13,11 +13,11 @@ public class VOMudanzaDetallado extends VOMudanzaIngreso {
 	private String telefono;
 
 	private String codigoServicio;
-	
+
 	public VOMudanzaDetallado() {
-	
+
 	}
-	
+
 	public VOMudanzaDetallado(int numContratacion, int horaInicio, Date fechaMudanza, String domicilioOrigen,
 			String domicilioDestino, int cedula, String nombre, String apellido, String telefono, String codigoServicio) {
 		super(numContratacion, horaInicio, fechaMudanza, domicilioOrigen, domicilioDestino);
@@ -27,7 +27,7 @@ public class VOMudanzaDetallado extends VOMudanzaIngreso {
 		this.telefono = telefono;
 		this.codigoServicio = codigoServicio;
 	}
-	
+
 	public VOMudanzaDetallado(int numContratacion, int horaInicio, Date fechaMudanza, String domicilioOrigen,
 			String domicilioDestino, float duracionTotal, int cedula, String nombre, String apellido, String telefono, String codigoServicio) {
 		super(numContratacion, horaInicio, fechaMudanza, domicilioOrigen, domicilioDestino, duracionTotal);
@@ -37,7 +37,7 @@ public class VOMudanzaDetallado extends VOMudanzaIngreso {
 		this.telefono = telefono;
 		this.codigoServicio = codigoServicio;
 	}
-	
+
 
 	public int getCedula() {
 		return cedula;
@@ -78,12 +78,12 @@ public class VOMudanzaDetallado extends VOMudanzaIngreso {
 	public void setCodigoServicio(String codigoServicio) {
 		this.codigoServicio = codigoServicio;
 	}
-	
-	
+
+
 
 
 
 	}
 
-	
-	
+
+
