@@ -1,7 +1,11 @@
 package valueObjects;
 
-public class VOMudanza {
+import java.io.Serializable;
 
+public class VOMudanza implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
 	 private int numContratacion;
 
 	 private int horaInicio;

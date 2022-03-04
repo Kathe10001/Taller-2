@@ -27,8 +27,7 @@ public class Cliente {
 
 			IFachada fachada = (IFachada) Naming.lookup(ruta);
 			fachada.nuevoServicio(true, false, 1, 200, "Nuevo");
-			
-			//System.out.println("Cliente fin");
+			System.out.println(fachada.listadoServicios().size());
 
 		}
 		catch (MalformedURLException e) {

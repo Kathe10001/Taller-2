@@ -1,7 +1,11 @@
 package valueObjects;
+import java.io.Serializable;
 import java.util.Date;
 
-public class VOMudanzaIngreso extends VOMudanza {
+public class VOMudanzaIngreso extends VOMudanza implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
 	private Date fechaMudanza;
 
 	private String domicilioOrigen;
