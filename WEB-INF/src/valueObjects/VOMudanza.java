@@ -9,6 +9,11 @@ public class VOMudanza {
 	 private boolean finalizacion;
 
 	 
+	 public VOMudanza() {
+			
+		}
+
+	 
 	public VOMudanza(int numContratacion, int horaInicio) {
 		this.numContratacion = numContratacion;
 		this.horaInicio = horaInicio;

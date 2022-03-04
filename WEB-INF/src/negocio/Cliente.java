@@ -1,5 +1,7 @@
 package negocio;
 
+import valueObjects.VOCliente;
+
 public class Cliente {
 	
 	private int cedula;
@@ -48,6 +50,15 @@ public class Cliente {
 
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
+	}
+	
+	public VOCliente toVO() {
+		VOCliente cliente = new VOCliente();
+		cliente.setApellido(this.apellido);
+		cliente.setCedula(this.cedula);
+		cliente.setNombre(this.nombre);
+		cliente.setTelefono(this.telefono);
+		return cliente;
 	}
 
 }

@@ -13,6 +13,10 @@ public class VOServicio {
     private String codigo;
     
 
+	public VOServicio() {
+
+	}
+	
 	public VOServicio(boolean armadoMuebles, boolean embalaje, float costoXhora, float distanciaKm, String codigo) {
 		super();
 		this.armadoMuebles = armadoMuebles;

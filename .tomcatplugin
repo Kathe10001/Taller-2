@@ -6,7 +6,7 @@
     <reloadable>true</reloadable>
     <redirectLogger>false</redirectLogger>
     <updateXml>false</updateXml>
-    <warLocation>/Users/kathe/Downloads/EjemploJSP.war</warLocation>
+    <warLocation>/Users/kathe/Downloads/Taller-2.war</warLocation>
     <extraInfo></extraInfo>
     <mavenClasspath>false</mavenClasspath>
     <webPath>/PrimerEjemploJSP</webPath>

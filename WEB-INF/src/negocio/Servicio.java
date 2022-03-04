@@ -1,5 +1,8 @@
 package negocio;
 
+import valueObjects.VOCliente;
+import valueObjects.VOServicio;
+
 public class Servicio {
 	private boolean armadoMuebles;
 
@@ -9,10 +12,13 @@ public class Servicio {
 
     private float distanciaKm;
 
-    private int codigo;
+    private String codigo;
     
 
-	public Servicio(boolean armadoMuebles, boolean embalaje, float costoXhora, float distanciaKm, int codigo) {
+    public Servicio() {
+	}
+    
+	public Servicio(boolean armadoMuebles, boolean embalaje, float costoXhora, float distanciaKm, String codigo) {
 		super();
 		this.armadoMuebles = armadoMuebles;
 		this.embalaje = embalaje;
@@ -53,12 +59,21 @@ public class Servicio {
 		this.distanciaKm = distanciaKm;
 	}
 
-	public int getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
     
+	public VOServicio toVO() {
+		VOServicio servicio = new VOServicio();
+		servicio.setArmadoMuebles(this.armadoMuebles);
+		servicio.setEmbalaje(this.embalaje);
+		servicio.setCostoXhora(this.costoXhora);
+		servicio.setDistanciaKm(this.distanciaKm);
+		servicio.setCodigo(this.codigo);
+		return servicio;
+	}
 }

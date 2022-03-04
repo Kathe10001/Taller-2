@@ -7,7 +7,7 @@ public class DefaultException extends Exception {
 	
 	public DefaultException (String mensaje) { this.mensaje = mensaje; }
 	
-	public String mensaje(){   
+	public String darMensaje(){   
 		return mensaje;  
 	}
 }

@@ -4,15 +4,22 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 
+import negocio.Mudanza;
+import valueObjects.VOCliente;
+import valueObjects.VOMudanza;
 import valueObjects.VOMudanzaDetallado;
 
-public class Mudanzas extends ArrayList<VOMudanzaDetallado> implements Serializable {
+public class Mudanzas implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private ArrayList<VOMudanzaDetallado> mudanzas = new ArrayList<VOMudanzaDetallado>();
+	private ArrayList<Mudanza> mudanzas = new ArrayList<Mudanza>();
 	
 	public Mudanzas() {
-		this.mudanzas = new ArrayList<VOMudanzaDetallado>();
+		this.mudanzas = new ArrayList<Mudanza>();
+	}
+	
+	public Mudanzas(ArrayList<Mudanza> m) {
+		this.mudanzas = m;
 	}
 	
 	public boolean esVacia() {
@@ -23,25 +30,21 @@ public class Mudanzas extends ArrayList<VOMudanzaDetallado> implements Serializa
 		return this.mudanzas.size();
 	}
 	
-	public void insert(VOMudanzaDetallado  mudanza) {
+	public void insert(Mudanza  mudanza) {
 		this.mudanzas.add(mudanza);
 	}
 	
-	public float montoRecaudado(Date fechaInicio, Date fechaFin) {
-		float resultado = 0.3f;
-		return resultado;
-	}
-	
 	public ArrayList<VOMudanzaDetallado> listarMudanzas() {
-		return this.mudanzas;
-		
+		ArrayList<VOMudanzaDetallado> list = new ArrayList<VOMudanzaDetallado>();
+		this.mudanzas.forEach(mudanza -> list.add(mudanza.toVO()));
+		return list;
 	}
 	
-	public VOMudanzaDetallado get(int codigo) {
+	public Mudanza get(int codigo) {
 		return this.mudanzas.get(codigo);
 	}
 	
-	public VOMudanzaDetallado getUltimo() {
+	public Mudanza getUltimo() {
 		if(this.mudanzas.isEmpty()) {
 			return null;
 		}

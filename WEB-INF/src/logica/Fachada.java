@@ -3,7 +3,9 @@ package logica;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,6 +16,9 @@ import logica.excepciones.ClienteException;
 import logica.excepciones.MudanzaException;
 import logica.excepciones.PersistenciaException;
 import logica.excepciones.ServicioException;
+import negocio.Cliente;
+import negocio.Mudanza;
+import negocio.Servicio;
 import persistencia.Persistencia;
 import valueObjects.VOCliente;
 import valueObjects.VOMudanzaDetallado;
@@ -47,9 +52,9 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 	@Override
 	public void nuevoServicio(boolean armadoMuebles, boolean embalaje, float costoXhora, float distanciaKm, String codigoServicio) throws RemoteException, ServicioException {
 		this.monitor.comienzoEscritura();
-		VOServicio servicio = this.servicios.find(codigoServicio);
+		Servicio servicio = this.servicios.find(codigoServicio);
 		if(servicio == null) {
-			VOServicio nuevoServicio = new VOServicio(armadoMuebles, embalaje, costoXhora, distanciaKm, codigoServicio);
+			Servicio nuevoServicio = new Servicio(armadoMuebles, embalaje, costoXhora, distanciaKm, codigoServicio);
 			this.servicios.insert(nuevoServicio);
 		} else {
 			throw new ServicioException("Ya existe un servicio con el código: " + codigoServicio);
@@ -64,11 +69,11 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 	public void altaNuevoCliente(int cedula, String nombre, String apellido, String telefono) throws ClienteException, RemoteException { 
 
 		this.monitor.comienzoEscritura();
-		VOCliente nuevoCliente = new VOCliente(cedula,nombre,apellido,telefono);
+		Cliente nuevoCliente = new Cliente(cedula,nombre,apellido,telefono);
 		if(this.clientes.esVacia()){
 			this.clientes.insert(nuevoCliente);
 		} else {
-			VOCliente cliente = this.clientes.find(cedula);
+			Cliente cliente = this.clientes.find(cedula);
 			if(cliente == null) {
 				this.clientes.insert(nuevoCliente);
 			} else {
@@ -83,10 +88,10 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 	 Este listado debe realizarse ordenado en forma ascendente por n�mero de c�dula
 	 */ 
 	@Override
-	public Clientes listadoClientes() throws RemoteException, ClienteException {
-		Clientes clientes = null;
+	public ArrayList<VOCliente> listadoClientes() throws RemoteException, ClienteException {
+		ArrayList<VOCliente> clientes = null;
 		this.monitor.comienzoLectura();
-		clientes = this.clientes;
+		clientes = this.clientes.listarClientes();
 		if(clientes == null) {
 			throw new ClienteException("No hay clientes");
 		}
@@ -110,30 +115,30 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 
 		this.monitor.comienzoEscritura();
 		
-		VOCliente cliente = this.clientes.find(cedula);
+		Cliente cliente = this.clientes.find(cedula);
 
 		if(cliente == null) {
 			throw new ClienteException("El cliente no existe");
 		}
 
-		VOServicio servicio = this.servicios.find(codigoServicio);
+		Servicio servicio = this.servicios.find(codigoServicio);
 
 		if(servicio == null) {
 			throw new ServicioException("El servicio no existe");
 		}
 
-		VOMudanzaDetallado ultimaMudanza = (VOMudanzaDetallado) this.mudanzas.getUltimo();
+		Mudanza ultimaMudanza = this.mudanzas.getUltimo();
 		if(ultimaMudanza == null) {
-			VOMudanzaDetallado mudanza = new VOMudanzaDetallado(0, horaInicio, fechaMudanza, domicilioOrigen, domicilioDestino, cedula, cliente.getNombre(), cliente.getApellido(), cliente.getTelefono(), codigoServicio);
+			Mudanza mudanza = new Mudanza(0, horaInicio, fechaMudanza, domicilioOrigen, domicilioDestino, cliente, servicio);
 			this.mudanzas.insert(mudanza);
 		} else {
 			if(fechaMudanza.after(ultimaMudanza.getFechaMudanza()) || fechaMudanza.equals(ultimaMudanza.getFechaMudanza())) {
-				Mudanzas mudanzas = this.listadoMudanzasXfecha(fechaMudanza);
+				ArrayList<VOMudanzaDetallado> mudanzas = this.listadoMudanzasXfecha(fechaMudanza);
 				
 				List<VOMudanzaDetallado> resultado = mudanzas.stream().filter(mudanza -> (horaInicio - mudanza.getHoraInicio()) >= 2).collect(Collectors.toList());
 				
 				if(!resultado.isEmpty()) {
-					VOMudanzaDetallado mudanza = new VOMudanzaDetallado(ultimaMudanza.getNumContratacion() + 1, horaInicio, fechaMudanza, domicilioOrigen, domicilioDestino, cedula, cliente.getNombre(), cliente.getApellido(), cliente.getTelefono(), codigoServicio);
+					Mudanza mudanza = new Mudanza(ultimaMudanza.getNumContratacion() + 1, horaInicio, fechaMudanza, domicilioOrigen, domicilioDestino, cliente, servicio);
 					this.mudanzas.insert(mudanza);
 				} else {
 					throw new MudanzaException("No hay mudanzas con al menos 2 hs de diferencia en la hora de inicio");
@@ -156,7 +161,7 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 		this.monitor.comienzoEscritura();
 		float costoFinal = 0f;
 		
-		VOMudanzaDetallado mudanza = this.mudanzas.get(codigoMudanza);
+		Mudanza mudanza = this.mudanzas.get(codigoMudanza);
 		if(mudanza == null) {
 			throw new MudanzaException("No existe una mudanza para el código" + codigoMudanza);
 		} else {
@@ -165,10 +170,9 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 			}
 			mudanza.setDuracionTotal(duracion);
 			mudanza.setFinalizacion(true);
-			String codigoServicio = mudanza.getCodigoServicio();
-			VOServicio servicio = this.servicios.find(codigoServicio);
+			Servicio servicio = mudanza.getServicio();
 			if(servicio == null) {
-				throw new ServicioException("No existe una servicio con el código" + codigoServicio);
+				throw new ServicioException("No existe una servicio con el código" + servicio.getCodigo());
 			} else {
 				costoFinal = mudanza.getDuracionTotal() * servicio.getCostoXhora();
 			}
@@ -183,9 +187,9 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
  	     del servicio contratado y todos los datos del cliente correspondiente
    */
 	@Override
-	public VOMudanzaDetallado detalleMudanza(int codigoMudanza) throws RemoteException, MudanzaException {
+	public Mudanza detalleMudanza(int codigoMudanza) throws RemoteException, MudanzaException {
 		this.monitor.comienzoLectura();
-		VOMudanzaDetallado mudanza = (VOMudanzaDetallado) this.mudanzas.get(codigoMudanza);
+		Mudanza mudanza = this.mudanzas.get(codigoMudanza);
 		if(mudanza == null) {
 			throw new MudanzaException("No hay una mudanza con el código" + codigoMudanza);
 		}
@@ -202,14 +206,14 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 		this.monitor.comienzoLectura();
 		float total = 0 ;
 		int i = 0;
-		VOMudanzaDetallado temp;
-		VOServicio serv;
+		Mudanza temp;
+		Servicio serv;
 		if (fechaInicio.after(fechaFin)) {
 			throw new MudanzaException("La fecha de inicio debe ser anterior a la de fin");
 		} else {
-			for(i=0; i < (this.mudanzas.size()); i++) {
-				temp = (VOMudanzaDetallado) this.mudanzas.get(i);
-				serv = this.servicios.find(temp.getCodigoServicio());
+			for(i=0; i < (this.mudanzas.largo()); i++) {
+				temp = this.mudanzas.get(i);
+				serv = this.servicios.find(temp.getServicio().getCodigo());
 				if (((temp.getFechaMudanza().after(fechaInicio)) || (temp.getFechaMudanza().equals(fechaInicio)))   && ((temp.getFechaMudanza().before(fechaFin) || (temp.getFechaMudanza().equals(fechaFin))))) {
 					total = total + (temp.getDuracionTotal () * serv.getCostoXhora());
 				}	
@@ -267,13 +271,15 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 	 de mudanza
 	 */
 	@Override
-	public Servicios listadoServicios() throws RemoteException, ServicioException {
+	public ArrayList<VOServicio> listadoServicios() throws RemoteException, ServicioException {
 		this.monitor.comienzoLectura();
-		Servicios servicios = null;
-		servicios =  this.servicios;
-		if(servicios == null) {
+		ArrayList<VOServicio> servicios = null;
+		
+		if(this.servicios == null || this.servicios.esVacio()) {
 			throw new ServicioException("No hay servicios");
-		}
+		} 
+		
+		servicios = this.servicios.listarServicios();
 		this.monitor.terminoLectura();
 		return servicios;
 	}
@@ -285,15 +291,19 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 	 contrataci�n, de menor a mayor
 	 */
 	@Override
-	public Mudanzas listadoMudanzasXfecha(Date fecha) throws RemoteException, MudanzaException {
+	public ArrayList<VOMudanzaDetallado> listadoMudanzasXfecha(Date fecha) throws RemoteException, MudanzaException {
+		
+		ArrayList<VOMudanzaDetallado> resultado = null;
+		
 		this.monitor.comienzoLectura();
 		if(this.mudanzas.esVacia()) {
 			throw new MudanzaException("No hay datos");
 		}
-		List<VOMudanzaDetallado> resultado = this.mudanzas.stream()
+		resultado = (ArrayList<VOMudanzaDetallado>) this.mudanzas.listarMudanzas().stream()
 		.filter(mudanza -> mudanza.getFechaMudanza().equals(fecha))
 		.collect(Collectors.toList());
 		this.monitor.terminoLectura();
-		return (Mudanzas) resultado;	
+		return resultado;	
 	}
+	
 }

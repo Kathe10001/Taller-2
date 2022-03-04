@@ -5,31 +5,31 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
     version="2.4">
 
-  <description> Mensajeador web de ejemplo </description>
-  <display-name> Mensajeador web de ejemplo </display-name>
-
+  <description> Taller 2 </description>
+  <display-name> Taller 2 </display-name>
+  
   <servlet>
-    <servlet-name>Ingreso</servlet-name>
-    <servlet-class>servlets.IngresoServlet</servlet-class>
+    <servlet-name>ListadoMudanzasXfecha</servlet-name>
+    <servlet-class>servlets.ListadoMudanzasXfechaServlet</servlet-class>
   </servlet>
  
   <servlet-mapping>
-    <servlet-name>Ingreso</servlet-name>
-    <url-pattern>/Ingreso</url-pattern>
+    <servlet-name>ListadoMudanzasXfecha</servlet-name>
+    <url-pattern>/ListadoMudanzasXfecha</url-pattern>
   </servlet-mapping>
-
-  <servlet>
-    <servlet-name>Mensaje</servlet-name>
-    <servlet-class>servlets.MensajeServlet</servlet-class>
+  
+    <servlet>
+    <servlet-name>ListadoServicios</servlet-name>
+    <servlet-class>servlets.ListadoServiciosServlet</servlet-class>
   </servlet>
  
   <servlet-mapping>
-    <servlet-name>Mensaje</servlet-name>
-    <url-pattern>/Mensaje</url-pattern>
+    <servlet-name>ListadoServicios</servlet-name>
+    <url-pattern>/ListadoServicios</url-pattern>
   </servlet-mapping>
 
   <welcome-file-list>
-	<welcome-file>/Ingreso.jsp</welcome-file>
+	<welcome-file>/Menu.jsp</welcome-file>
   </welcome-file-list>
 
 </web-app>

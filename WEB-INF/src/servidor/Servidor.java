@@ -21,7 +21,7 @@ public class Servidor {
 		try { 			
 			//obtengo ip y puerto de un archivo de configuracion 
 			Properties p = new Properties();
-			String nomArch = "config/config.properties";
+			String nomArch = "/Users/kathe/Develop/Taller-2/WEB-INF/src/config/config.properties";
 			p.load (new FileInputStream (nomArch));
 			String ip = p.getProperty("ipServidor");
 			String puerto = p.getProperty("puertoServidor");
@@ -31,7 +31,7 @@ public class Servidor {
 			LocateRegistry.createRegistry(port);
 			
 			//publico el objeto remoto en dicha ip y puerto
-			String ruta = "//" + ip + ":" + puerto + "/cuenta";
+			String ruta = "//" + ip + ":" + puerto + "/fachada";
 			Fachada fachada = new Fachada();
 			System.out.println("Antes de publicar");
 			Naming.rebind(ruta, fachada);

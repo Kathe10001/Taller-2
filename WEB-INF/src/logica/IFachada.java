@@ -2,7 +2,9 @@ package logica;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 import logica.colecciones.Clientes;
 import logica.colecciones.Mudanzas;
@@ -11,7 +13,12 @@ import logica.excepciones.ClienteException;
 import logica.excepciones.MudanzaException;
 import logica.excepciones.PersistenciaException;
 import logica.excepciones.ServicioException;
+import negocio.Mudanza;
+import negocio.Servicio;
+import valueObjects.VOCliente;
+import valueObjects.VOMudanza;
 import valueObjects.VOMudanzaDetallado;
+import valueObjects.VOServicio;
 
 public interface IFachada extends Remote{
 
@@ -29,7 +36,7 @@ public interface IFachada extends Remote{
 	 tel�fono de contacto de todos los clientes registrados en el sistema. 
 	 Este listado debe realizarse ordenado en forma ascendente por n�mero de c�dula
 	 */
-	Clientes listadoClientes() throws RemoteException, ClienteException;
+	ArrayList<VOCliente> listadoClientes() throws RemoteException, ClienteException;
 
 	/* 4 - Contrataci�n de nuevo servicio de mudanza: Dados el c�digo de un servicio de mudanza 
 	  y la c�dula de un cliente, registrar la contrataci�n. 
@@ -55,7 +62,7 @@ public interface IFachada extends Remote{
 	 	    de mudanza, listar en detalle todos sus datos, incluyendo adem�s el c�digo alfanum�rico
 	 	     del servicio contratado y todos los datos del cliente correspondiente
 	   */
-	VOMudanzaDetallado detalleMudanza(int codigoMudanza) throws RemoteException, MudanzaException;
+	Mudanza detalleMudanza(int codigoMudanza) throws RemoteException, MudanzaException;
 
 	/*7 - Monto recaudado por rango de fechas: 
 	 	Dadas dos fechas, calcular el monto total recaudado por concepto de contrataciones de 
@@ -86,13 +93,13 @@ public interface IFachada extends Remote{
 	 por la empresa. Este listado se realizar� ordenado alfanum�ricamente por c�digo de servicio 
 	 de mudanza
 	 */
-	Servicios listadoServicios() throws RemoteException, ServicioException;
+	ArrayList<VOServicio> listadoServicios() throws RemoteException, ServicioException;
 
 	/*11 - Listado de contrataciones realizadas por fecha: Dada una fecha, listar n�mero, 
 	 hora de inicio y estado (finalizada o no finalizada) de todas las contrataciones de servicios
 	 de mudanza registradas para dicha fecha. Este listado se realizar� ordenado por n�mero de
 	 contrataci�n, de menor a mayor
 	 */
-	Mudanzas listadoMudanzasXfecha(Date fecha) throws RemoteException, MudanzaException;
+	ArrayList<VOMudanzaDetallado> listadoMudanzasXfecha(Date fecha) throws RemoteException, MudanzaException;
 
 }

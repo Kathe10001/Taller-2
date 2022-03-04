@@ -14,6 +14,10 @@ public class VOMudanzaDetallado extends VOMudanzaIngreso {
 
 	private String codigoServicio;
 	
+	public VOMudanzaDetallado() {
+	
+	}
+	
 	public VOMudanzaDetallado(int numContratacion, int horaInicio, Date fechaMudanza, String domicilioOrigen,
 			String domicilioDestino, int cedula, String nombre, String apellido, String telefono, String codigoServicio) {
 		super(numContratacion, horaInicio, fechaMudanza, domicilioOrigen, domicilioDestino);

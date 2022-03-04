@@ -11,6 +11,9 @@ public class VOMudanzaIngreso extends VOMudanza {
 	private float duracionTotal;
 	
 
+	public VOMudanzaIngreso() {
+	}
+	
 	public VOMudanzaIngreso(int numContratacion, int horaInicio, Date fechaMudanza, String domicilioOrigen, String domicilioDestino) {
 		super(numContratacion, horaInicio);
 		this.fechaMudanza = fechaMudanza;

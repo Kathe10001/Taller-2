@@ -1,40 +1,43 @@
 package logica.colecciones;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.TreeMap;
 
+import negocio.Cliente;
+import negocio.Servicio;
 import valueObjects.VOCliente;
 
 public class Clientes implements Serializable {
 	
 
 	private static final long serialVersionUID = 1L;
-	private TreeMap <Integer,VOCliente> clientes;
+	private TreeMap <Integer, Cliente> clientes;
 	
 	
 	public Clientes() {
-		this.clientes = new TreeMap <Integer,VOCliente>();
+		this.clientes = new TreeMap <Integer,Cliente>();
 	}
 	
 	public boolean esVacia() {
 		return this.clientes.isEmpty();
 	}
 	
-	@SuppressWarnings("unlikely-arg-type")
 	public boolean member(String cedula) {
 		return this.clientes.containsKey(cedula);
 	}
 	
-	public void insert(VOCliente  cliente) {
+	public void insert(Cliente cliente) {
 		this.clientes.put(cliente.getCedula(), cliente);
 	}
 	
-	public VOCliente find(int  cedula) {
+	public Cliente find(int  cedula) {
 		return this.clientes.get(cedula);
 	}
 	
-	public TreeMap <Integer,VOCliente> listarClientes() {
-		return this.clientes;
-		
+	public ArrayList<VOCliente> listarClientes() {
+		ArrayList<VOCliente> list = new ArrayList<VOCliente>();
+		this.clientes.values().forEach(cliente -> list.add(cliente.toVO()));
+		return list;
 	}
 }

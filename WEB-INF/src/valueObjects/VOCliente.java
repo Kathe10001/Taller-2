@@ -10,6 +10,9 @@ public class VOCliente {
 
 	private String telefono;
 
+	public VOCliente() {
+	}
+	
 	public VOCliente(int cedula, String nombre, String apellido, String telefono) {
 		super();
 		this.cedula = cedula;

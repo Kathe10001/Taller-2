@@ -14,6 +14,6 @@
 		</tr>
 	</table>
 	<p><b> ${msgError} </b></p>
-	<p><a href='Ingreso.jsp'>Volver al ingreso</a></p>		
+	<p><a href='Menu.jsp'>Volver al Menú</a></p>		
   </body>
 </html>

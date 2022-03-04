@@ -19,11 +19,11 @@ public class Cliente {
 			
 			//obtengo ip y puerto de un archivo de configuracion
 			Properties p = new Properties();
-			String nomArch = "config/config.properties";
+			String nomArch = "/Users/kathe/Develop/Taller-2/WEB-INF/src/config/config.properties";
 			p.load (new FileInputStream (nomArch));
 			String ip = p.getProperty("ipServidor");
 			String puerto = p.getProperty("puertoServidor");
-			String ruta = "//" + ip + ":" + puerto + "/cuenta";
+			String ruta = "//" + ip + ":" + puerto + "/fachada";
 			
 			//accedo remotamente a la cuenta bancaria publicada en el servidor
 			IFachada fachada = (IFachada) Naming.lookup(ruta);
