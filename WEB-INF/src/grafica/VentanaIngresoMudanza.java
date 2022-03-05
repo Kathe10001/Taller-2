@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class VentanaIngresoServicio extends JFrame {
+public class VentanaIngresoMudanza extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -32,7 +32,7 @@ public class VentanaIngresoServicio extends JFrame {
 			@Override
 			public void run() {
 				try {
-					VentanaIngresoServicio frame = new VentanaIngresoServicio();
+					VentanaIngresoMudanza frame = new VentanaIngresoMudanza();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,7 +44,7 @@ public class VentanaIngresoServicio extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VentanaIngresoServicio() {
+	public VentanaIngresoMudanza() {
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(120, 100, 452, 334);
@@ -99,7 +99,7 @@ public class VentanaIngresoServicio extends JFrame {
 		btnCancelar.setBounds(65, 255, 117, 29);
 		contentPane.add(btnCancelar);
 
-		JLabel lblIngreseLosDatos = new JLabel("Ingrese los datos de un nuevo Servicio");
+		JLabel lblIngreseLosDatos = new JLabel("Ingrese los datos de la nueva mudanza");
 		lblIngreseLosDatos.setForeground(new Color(51, 51, 0));
 		lblIngreseLosDatos.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
 		lblIngreseLosDatos.setBounds(10, 3, 416, 19);

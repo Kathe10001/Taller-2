@@ -85,7 +85,7 @@ public class VentanaListadoContratacionMudanza extends JFrame {
 		lblIngreseLosDatos.setBounds(104, 11, 227, 28);
 		contentPane.add(lblIngreseLosDatos);
 
-		JLabel lblCodigoServicio = new JLabel("Codigo del Servicio");
+		JLabel lblCodigoServicio = new JLabel("Id de mudanza");
 		lblCodigoServicio.setBounds(11, 71, 117, 16);
 		contentPane.add(lblCodigoServicio);
 
