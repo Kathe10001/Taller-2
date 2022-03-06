@@ -105,6 +105,11 @@ public class Mudanza {
 		mudanza.setNumContratacion(this.numContratacion);
 		mudanza.setHoraInicio(this.horaInicio);
 		mudanza.setFinalizacion(this.finalizacion);
+		mudanza.setCedula(this.cliente.getCedula());
+		mudanza.setNombre(this.cliente.getNombre());
+		mudanza.setApellido(this.cliente.getApellido());
+		mudanza.setTelefono(this.cliente.getTelefono());
+		mudanza.setCodigoServicio(this.servicio.getCodigo());
 		return mudanza;
 	}
 

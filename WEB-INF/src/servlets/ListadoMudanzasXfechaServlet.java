@@ -57,13 +57,13 @@ public class ListadoMudanzasXfechaServlet extends HttpServlet {
 			String ruta = "//" + ip + ":" + puerto + "/fachada";
 
 			IFachada fachada = (IFachada) Naming.lookup(ruta);
-			System.out.print(strFecha);
-			fecha = new SimpleDateFormat("dd-MM-yyyy").parse(strFecha);
+			
+			fecha = new SimpleDateFormat("yyyy-MM-dd").parse(strFecha);
 			
 			mudanzas = fachada.listadoMudanzasXfecha(fecha);
-			System.out.print(fecha);
+	
 			if (mudanzas.isEmpty()) {
-				msgError = "No hay datos de mudanzas para la fecha: " + fecha;
+				msgError = "No hay datos de mudanzas para la fecha: " + new SimpleDateFormat("dd-MM-yyyy").format(fecha);
 			} else {
 				error = false;
 			}
@@ -77,21 +77,21 @@ public class ListadoMudanzasXfechaServlet extends HttpServlet {
 			msgError = e.getMessage();
 		}
 
-	    if (!error){
+		if (!error){
 
 	        HttpSession session = req.getSession();
 		    synchronized (session) {
-		        session.setAttribute("mundanzas", mudanzas);
+		        session.setAttribute("mudanzas", mudanzas);
 		    }
 	    }
 
-
 	    req.setAttribute("msgError", msgError);
 		RequestDispatcher rd;
-		if (!error)
-			rd = req.getRequestDispatcher("ListadoMudanzasXfechaResultados.jsp");
-		else
+		if (!error) {
+			rd = req.getRequestDispatcher("ListadoMudanzasXfecha.jsp");
+		} else {
 			rd = req.getRequestDispatcher("Error.jsp");
+		}
 		rd.forward(req, resp);
 	}
 }

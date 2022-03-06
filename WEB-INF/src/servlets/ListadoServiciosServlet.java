@@ -66,7 +66,6 @@ public class ListadoServiciosServlet extends HttpServlet {
 
 	        HttpSession session = req.getSession();
 		    synchronized (session) {
-		    	System.out.println(servicios.isEmpty());
 		        session.setAttribute("servicios", servicios);
 		    }
 	    }

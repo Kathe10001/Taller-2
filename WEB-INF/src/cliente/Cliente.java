@@ -30,11 +30,8 @@ public class Cliente {
 		
 			IFachada fachada = (IFachada) Naming.lookup(ruta);
 			fachada.nuevoServicio(true, false, 1, 200, "Nuevo");
-			//fachada.altaNuevoCliente("3", "A", "B", "dasd");
 			fachada.altaNuevoCliente("1", "A", "B", "dasd");
 			Date fecha = new Date();
-			SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-			dateFormat.format(fecha);
 			fachada.altaMudanza(1, fecha, "dasd", "asdsad", "1", "Nuevo");
 		
 

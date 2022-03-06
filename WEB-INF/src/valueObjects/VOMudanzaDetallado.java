@@ -7,7 +7,7 @@ public class VOMudanzaDetallado extends VOMudanzaIngreso implements Serializable
 
 	private static final long serialVersionUID = 1L;
 
-	private int cedula;
+	private String cedula;
 
 	private String nombre;
 
@@ -22,7 +22,7 @@ public class VOMudanzaDetallado extends VOMudanzaIngreso implements Serializable
 	}
 
 	public VOMudanzaDetallado(int numContratacion, int horaInicio, Date fechaMudanza, String domicilioOrigen,
-			String domicilioDestino, int cedula, String nombre, String apellido, String telefono, String codigoServicio) {
+			String domicilioDestino, String cedula, String nombre, String apellido, String telefono, String codigoServicio) {
 		super(numContratacion, horaInicio, fechaMudanza, domicilioOrigen, domicilioDestino);
 		this.cedula = cedula;
 		this.nombre = nombre;
@@ -32,7 +32,7 @@ public class VOMudanzaDetallado extends VOMudanzaIngreso implements Serializable
 	}
 
 	public VOMudanzaDetallado(int numContratacion, int horaInicio, Date fechaMudanza, String domicilioOrigen,
-			String domicilioDestino, float duracionTotal, int cedula, String nombre, String apellido, String telefono, String codigoServicio) {
+			String domicilioDestino, float duracionTotal, String cedula, String nombre, String apellido, String telefono, String codigoServicio) {
 		super(numContratacion, horaInicio, fechaMudanza, domicilioOrigen, domicilioDestino, duracionTotal);
 		this.cedula = cedula;
 		this.nombre = nombre;
@@ -42,11 +42,11 @@ public class VOMudanzaDetallado extends VOMudanzaIngreso implements Serializable
 	}
 
 
-	public int getCedula() {
+	public String getCedula() {
 		return cedula;
 	}
 
-	public void setCedula(int cedula) {
+	public void setCedula(String cedula) {
 		this.cedula = cedula;
 	}
 

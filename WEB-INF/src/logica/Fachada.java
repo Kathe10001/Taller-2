@@ -3,6 +3,7 @@ package logica;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -302,8 +303,8 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 		}
 		resultado = (ArrayList<VOMudanzaDetallado>) this.mudanzas.listarMudanzas().stream()
 		.filter(mudanza -> {
-			System.out.print(mudanza.getFechaMudanza());
-			return mudanza.getFechaMudanza().equals(fecha);	
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");			
+			return sdf.format(mudanza.getFechaMudanza()).equals(sdf.format(fecha));
 		})
 		.collect(Collectors.toList());
 		this.monitor.terminoLectura();
