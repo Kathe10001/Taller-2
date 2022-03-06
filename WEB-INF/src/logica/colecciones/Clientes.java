@@ -11,7 +11,7 @@ public class Clientes implements Serializable {
 
 
 	private static final long serialVersionUID = 1L;
-	private TreeMap <String, Cliente> clientes;
+	private TreeMap <String, Cliente> clientes = new TreeMap<String, Cliente>();
 
 
 	public Clientes() {

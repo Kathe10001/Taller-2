@@ -40,11 +40,13 @@ public class ListadoMudanzasXfechaServlet extends HttpServlet {
 
 	    ArrayList<VOMudanzaDetallado> mudanzas = null;
 
+	    Date fecha = null;
+	    
 	    if ((strFecha == null) || strFecha.trim().equals("")) {
 			msgError = "La fecha no puede estar vacía";
 	    }
 
-	    Date fecha = null;
+	    
 		try {
 
 			Properties p = new Properties();
@@ -55,24 +57,23 @@ public class ListadoMudanzasXfechaServlet extends HttpServlet {
 			String ruta = "//" + ip + ":" + puerto + "/fachada";
 
 			IFachada fachada = (IFachada) Naming.lookup(ruta);
-
-			fecha = new SimpleDateFormat("dd-mm-yyyy").parse(strFecha);
-
+			System.out.print(strFecha);
+			fecha = new SimpleDateFormat("dd-MM-yyyy").parse(strFecha);
+			
 			mudanzas = fachada.listadoMudanzasXfecha(fecha);
 
 			if (mudanzas.isEmpty()) {
-				msgError = "No hay datos de mudanzas";
+				msgError = "No hay datos de mudanzas para la fecha: " + fecha;
 			} else {
 				error = false;
 			}
-		} catch (ParseException e) {
-			msgError = "Error de parseo";
-
 		} catch (MudanzaException e) {
 			msgError = e.darMensaje();
 		} catch (NotBoundException e) {
 			msgError = e.getMessage();
 		} catch (RemoteException e) {
+			msgError = e.getMessage();
+		} catch (ParseException e) {
 			msgError = e.getMessage();
 		}
 
@@ -85,11 +86,11 @@ public class ListadoMudanzasXfechaServlet extends HttpServlet {
 	    }
 
 
+	    req.setAttribute("msgError", msgError);
 		RequestDispatcher rd;
 		if (!error)
 			rd = req.getRequestDispatcher("ListadoMudanzasXfechaResultados.jsp");
 		else
-			req.setAttribute("msgError", msgError);
 			rd = req.getRequestDispatcher("Error.jsp");
 		rd.forward(req, resp);
 	}

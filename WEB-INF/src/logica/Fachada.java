@@ -28,6 +28,12 @@ import valueObjects.VOServicio;
 
 public class Fachada extends UnicastRemoteObject implements IFachada {
 
+	private Monitor monitor;
+	private Clientes clientes;
+	private Mudanzas mudanzas;
+	private Servicios servicios;
+	private Persistencia persistencia;
+	
 	public Fachada() throws RemoteException {
 		super();
 		this.monitor = new Monitor();
@@ -37,12 +43,6 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 	}
 
 	private static final long serialVersionUID = 1L;
-
-	private Monitor monitor;
-	private Clientes clientes;
-	private Mudanzas mudanzas;
-	private Servicios servicios;
-	private Persistencia persistencia;
 
 	/*
 	 * 1 - Alta de nuevo servicio de mudanza: Se registrar�n en el
@@ -113,8 +113,8 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 			String domicilioDestino, String cedula, String codigoServicio) throws ClienteException, ServicioException, MudanzaException, RemoteException {
 
 		this.monitor.comienzoEscritura();
-
-		if(this.clientes.member(cedula)) {
+	
+		if(!this.clientes.member(cedula)) {
 			throw new ClienteException("El cliente no existe");
 		}
 
@@ -301,7 +301,10 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 			throw new MudanzaException("No hay datos");
 		}
 		resultado = (ArrayList<VOMudanzaDetallado>) this.mudanzas.listarMudanzas().stream()
-		.filter(mudanza -> mudanza.getFechaMudanza().equals(fecha))
+		.filter(mudanza -> {
+			System.out.print(mudanza.getFechaMudanza());
+			return mudanza.getFechaMudanza().equals(fecha);	
+		})
 		.collect(Collectors.toList());
 		this.monitor.terminoLectura();
 		return resultado;

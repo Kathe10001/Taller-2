@@ -16,13 +16,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import logica.IFachada;
-import logica.excepciones.ServicioException;
-import valueObjects.VOServicio;
+import logica.excepciones.ClienteException;
+import valueObjects.VOCliente;
 
 
-public class ListadoServiciosServlet extends HttpServlet {
+public class ListadoClientesServlet extends HttpServlet {
 
-	public ListadoServiciosServlet() throws RemoteException {
+	public ListadoClientesServlet() throws RemoteException {
 	}
 
 	private static final long serialVersionUID = 1L;
@@ -33,7 +33,7 @@ public class ListadoServiciosServlet extends HttpServlet {
 	    boolean error = true;
 	    String msgError = "Hubo un error, inténtelo más tarde";
 
-	    ArrayList<VOServicio> servicios = null;
+	    ArrayList<VOCliente> clientes = null;
 
 		try {
 
@@ -45,14 +45,14 @@ public class ListadoServiciosServlet extends HttpServlet {
 			String ruta = "//" + ip + ":" + puerto + "/fachada";
 
 			IFachada fachada = (IFachada) Naming.lookup(ruta);
-			servicios = fachada.listadoServicios();
-			if (servicios != null && servicios.isEmpty()) {
-				msgError = "No hay datos de servicios";
+			clientes = fachada.listadoClientes();
+			if (clientes != null && clientes.isEmpty()) {
+				msgError = "No hay datos de los clientes";
 			} else {
 				error = false;
 			}
 
-		} catch (ServicioException e) {
+		} catch (ClienteException e) {
 			msgError = e.darMensaje();
 		} catch (NotBoundException e) {
 			msgError = e.getMessage();
@@ -66,15 +66,15 @@ public class ListadoServiciosServlet extends HttpServlet {
 
 	        HttpSession session = req.getSession();
 		    synchronized (session) {
-		    	System.out.println(servicios.isEmpty());
-		        session.setAttribute("servicios", servicios);
+		    	System.out.println(clientes.isEmpty());
+		        session.setAttribute("clientes", clientes);
 		    }
 	    }
 
 	    req.setAttribute("msgError", msgError);
 		RequestDispatcher rd;
 		if (!error) {
-			rd = req.getRequestDispatcher("ListadoServicios.jsp");
+			rd = req.getRequestDispatcher("ListadoClientes.jsp");
 		} else {
 			rd = req.getRequestDispatcher("Error.jsp");
 		}

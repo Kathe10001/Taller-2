@@ -7,15 +7,18 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Properties;
 
 import logica.IFachada;
 import logica.excepciones.ClienteException;
+import logica.excepciones.MudanzaException;
 import logica.excepciones.ServicioException;
 
 public class Cliente {
 
-	public static void main (String [] args) throws ClienteException, ServicioException {
+	public static void main (String [] args) throws ClienteException, ServicioException, MudanzaException {
 		try{
 	
 			Properties p = new Properties();
@@ -24,10 +27,16 @@ public class Cliente {
 			String ip = p.getProperty("ipServidor");
 			String puerto = p.getProperty("puertoServidor");
 			String ruta = "//" + ip + ":" + puerto + "/fachada";
-
+		
 			IFachada fachada = (IFachada) Naming.lookup(ruta);
 			fachada.nuevoServicio(true, false, 1, 200, "Nuevo");
-			System.out.println(fachada.listadoServicios().size());
+			//fachada.altaNuevoCliente("3", "A", "B", "dasd");
+			fachada.altaNuevoCliente("1", "A", "B", "dasd");
+			Date fecha = new Date();
+			SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+			dateFormat.format(fecha);
+			fachada.altaMudanza(1, fecha, "dasd", "asdsad", "1", "Nuevo");
+		
 
 		}
 		catch (MalformedURLException e) {
