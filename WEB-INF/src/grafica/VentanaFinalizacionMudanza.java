@@ -59,7 +59,7 @@ public class VentanaFinalizacionMudanza extends JFrame {
 		btnAceptar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Se ha guardado correctamente, el costo de la mudanza es: $...");
+				JOptionPane.showMessageDialog(null, "El costo de la mudanza es: $...");
 			}
 		});
 		btnAceptar.setBounds(275, 228, 117, 29);
@@ -84,7 +84,7 @@ public class VentanaFinalizacionMudanza extends JFrame {
 		lblIngreseLosDatos.setBounds(34, 11, 358, 28);
 		contentPane.add(lblIngreseLosDatos);
 
-		JLabel lblCodigoServicio = new JLabel("Codigo del Servicio");
+		JLabel lblCodigoServicio = new JLabel("Id de la mudanza");
 		lblCodigoServicio.setBounds(11, 71, 117, 16);
 		contentPane.add(lblCodigoServicio);
 

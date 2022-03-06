@@ -76,7 +76,7 @@ public class VentanaIngresoCliente extends JFrame {
 		btnAceptar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Mensaje");
+				JOptionPane.showMessageDialog(null, "El cliente se ha registrado correctamente");
 			}
 		});
 		btnAceptar.setBounds(278, 226, 117, 29);
@@ -88,6 +88,7 @@ public class VentanaIngresoCliente extends JFrame {
 		btnCancelar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "Ha cancelado la operacion");
 			}
 		});
 		btnCancelar.setBounds(70, 226, 117, 29);
