@@ -61,7 +61,7 @@ public class ListadoMudanzasXfechaServlet extends HttpServlet {
 			fecha = new SimpleDateFormat("dd-MM-yyyy").parse(strFecha);
 			
 			mudanzas = fachada.listadoMudanzasXfecha(fecha);
-
+			System.out.print(fecha);
 			if (mudanzas.isEmpty()) {
 				msgError = "No hay datos de mudanzas para la fecha: " + fecha;
 			} else {
