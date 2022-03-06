@@ -1,6 +1,5 @@
 package servlets;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -9,7 +8,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Properties;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,6 +18,7 @@ import javax.servlet.http.HttpSession;
 
 import logica.IFachada;
 import logica.excepciones.MudanzaException;
+import persistencia.Propiedades;
 import valueObjects.VOMudanzaDetallado;
 
 
@@ -49,11 +48,10 @@ public class ListadoMudanzasXfechaServlet extends HttpServlet {
 	    
 		try {
 
-			Properties p = new Properties();
-			String nomArch = "/Users/kathe/Develop/Taller-2/WEB-INF/src/config/config.properties";
-			p.load (new FileInputStream (nomArch));
-			String ip = p.getProperty("ipServidor");
-			String puerto = p.getProperty("puertoServidor");
+			Propiedades p = new Propiedades();
+			String ip = p.getIpServidor();
+			String puerto = p.getPuertoServidor();
+			
 			String ruta = "//" + ip + ":" + puerto + "/fachada";
 
 			IFachada fachada = (IFachada) Naming.lookup(ruta);

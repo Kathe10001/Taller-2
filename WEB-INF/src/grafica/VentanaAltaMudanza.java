@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class VentanaIngresoMudanza extends JFrame {
+public class VentanaAltaMudanza extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -32,7 +32,7 @@ public class VentanaIngresoMudanza extends JFrame {
 			@Override
 			public void run() {
 				try {
-					VentanaIngresoMudanza frame = new VentanaIngresoMudanza();
+					VentanaAltaMudanza frame = new VentanaAltaMudanza();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,7 +44,7 @@ public class VentanaIngresoMudanza extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VentanaIngresoMudanza() {
+	public VentanaAltaMudanza() {
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(120, 100, 452, 334);

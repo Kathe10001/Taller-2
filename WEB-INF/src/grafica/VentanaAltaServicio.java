@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-public class VentanaNuevoServicio extends JFrame {
+public class VentanaAltaServicio extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -31,7 +31,7 @@ public class VentanaNuevoServicio extends JFrame {
 			@Override
 			public void run() {
 				try {
-					VentanaNuevoServicio frame = new VentanaNuevoServicio();
+					VentanaAltaServicio frame = new VentanaAltaServicio();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,7 +43,7 @@ public class VentanaNuevoServicio extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VentanaNuevoServicio() {
+	public VentanaAltaServicio() {
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(120, 100, 452, 312);

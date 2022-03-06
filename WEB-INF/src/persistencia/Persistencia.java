@@ -13,8 +13,8 @@ public class Persistencia {
 	public void respaldar (VOPersistencia persistencia) throws IOException{
 
 		try {
-			// Abro el archivo y creo un flujo de comunicaci�n hacia �l
-			FileOutputStream file = new FileOutputStream("respaldo.dat"); //debemos crear el archivo?
+			Propiedades propiedades = new Propiedades();
+			FileOutputStream file = new FileOutputStream(propiedades.getArchivoRespaldo());
 			ObjectOutputStream object = new ObjectOutputStream(file);
 			// Escribo el VO con las colecciones en el archivo a trav�s del flujo
 			object.writeObject(persistencia);
@@ -29,8 +29,8 @@ public class Persistencia {
 	//Metodo recuperar
 	public VOPersistencia recuperar () throws Exception {
 		try {
-			// Abro el archivo y creo un flujo de comunicaci�n hacia �l
-			FileInputStream file = new FileInputStream("respaldo.dat");
+			Propiedades propiedades = new Propiedades();
+			FileInputStream file = new FileInputStream(propiedades.getArchivoRespaldo());
 			ObjectInputStream object = new ObjectInputStream(file);
 			// Leo el VO con las colecciones desde el archivo a trav�s del flujo
 			VOPersistencia persistencia = (VOPersistencia) object.readObject();

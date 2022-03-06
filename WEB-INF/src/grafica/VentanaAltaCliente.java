@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class VentanaIngresoCliente extends JFrame {
+public class VentanaAltaCliente extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -30,7 +30,7 @@ public class VentanaIngresoCliente extends JFrame {
 			@Override
 			public void run() {
 				try {
-					VentanaIngresoCliente frame = new VentanaIngresoCliente();
+					VentanaAltaCliente frame = new VentanaAltaCliente();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,12 +42,11 @@ public class VentanaIngresoCliente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VentanaIngresoCliente() {
+	public VentanaAltaCliente() {
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(120, 100, 452, 334);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.LIGHT_GRAY);
 		contentPane.setBorder(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -71,8 +70,6 @@ public class VentanaIngresoCliente extends JFrame {
 		contentPane.add(tfApellido);
 
 		JButton btnAceptar = new JButton("Aceptar");
-		btnAceptar.setForeground(Color.WHITE);
-		btnAceptar.setBackground(Color.GREEN);
 		btnAceptar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -83,7 +80,6 @@ public class VentanaIngresoCliente extends JFrame {
 		contentPane.add(btnAceptar);
 
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setForeground(Color.WHITE);
 		btnCancelar.setBackground(Color.RED);
 		btnCancelar.addActionListener(new ActionListener() {
 			@Override

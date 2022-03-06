@@ -187,14 +187,14 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
  	     del servicio contratado y todos los datos del cliente correspondiente
    */
 	@Override
-	public Mudanza detalleMudanza(int codigoMudanza) throws RemoteException, MudanzaException {
+	public VOMudanzaDetallado detalleMudanza(int codigoMudanza) throws RemoteException, MudanzaException {
 		this.monitor.comienzoLectura();
 		Mudanza mudanza = this.mudanzas.get(codigoMudanza);
 		if(mudanza == null) {
 			throw new MudanzaException("No hay una mudanza con el código" + codigoMudanza);
 		}
 		this.monitor.terminoLectura();
-		return mudanza;
+		return mudanza.toVO();
 	}
 
 	/*7 - Monto recaudado por rango de fechas:

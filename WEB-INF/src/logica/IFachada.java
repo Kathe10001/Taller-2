@@ -56,7 +56,7 @@ public interface IFachada extends Remote{
 	 	    de mudanza, listar en detalle todos sus datos, incluyendo adem�s el c�digo alfanum�rico
 	 	     del servicio contratado y todos los datos del cliente correspondiente
 	   */
-	Mudanza detalleMudanza(int codigoMudanza) throws RemoteException, MudanzaException;
+	VOMudanzaDetallado detalleMudanza(int codigoMudanza) throws RemoteException, MudanzaException;
 
 	/*7 - Monto recaudado por rango de fechas:
 	 	Dadas dos fechas, calcular el monto total recaudado por concepto de contrataciones de
