@@ -42,7 +42,7 @@ public class GraficaPrincipal extends JFrame {
 	public GraficaPrincipal() {
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(120, 100, 452, 486);
+		setBounds(120, 100, 452, 536);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.activeCaptionBorder);
 		contentPane.setBorder(null);
@@ -136,5 +136,27 @@ public class GraficaPrincipal extends JFrame {
 		btnAltaDeNuevo.setBackground(Color.ORANGE);
 		btnAltaDeNuevo.setBounds(40, 64, 356, 29);
 		contentPane.add(btnAltaDeNuevo);
+		
+		JButton btnGuardar = new JButton("GUARDAR");
+		btnGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnGuardar.setForeground(Color.WHITE);
+		btnGuardar.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnGuardar.setBackground(Color.GREEN);
+		btnGuardar.setBounds(40, 445, 135, 29);
+		contentPane.add(btnGuardar);
+		
+		JButton btnRestaurar = new JButton("RESTAURAR");
+		btnRestaurar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnRestaurar.setForeground(Color.WHITE);
+		btnRestaurar.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnRestaurar.setBackground(Color.BLUE);
+		btnRestaurar.setBounds(261, 445, 135, 29);
+		contentPane.add(btnRestaurar);
 	}
 }
