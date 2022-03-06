@@ -1,4 +1,4 @@
-package Controladores;
+package controladores;
 
 import grafica.VentanaNuevoServicio;
 import logica.IFachada;
@@ -12,21 +12,21 @@ public class ControladorNuevoServicio
 	
 	public ControladorNuevoServicio (VentanaNuevoServicio ven)
 	{
-	/* aquí me guardo la referencia a mi ventana y además hago el lookup
+	/* aquï¿½ me guardo la referencia a mi ventana y ademï¿½s hago el lookup
 	para acceder remotamente a la fachada */
 	}
 	...
 	public void altaPersona (String nombre, String apellido)
 	{
 	try
-	{ /* desde aquí accedo a la Fachada y hago los chequeos
+	{ /* desde aquï¿½ accedo a la Fachada y hago los chequeos
 	necesarios, luego decido si emito al usuario un mensaje de
-	éxito o uno de error */
+	ï¿½xito o uno de error */
 	}
 	catch (Excepciones varias)
 	{
-	/* aquí atrapo las posibles excepciones que me puede lanzar
-	la capa lógica y decido qué mensaje de error mostrar */
+	/* aquï¿½ atrapo las posibles excepciones que me puede lanzar
+	la capa lï¿½gica y decido quï¿½ mensaje de error mostrar */
 	}
 	}
 	}
