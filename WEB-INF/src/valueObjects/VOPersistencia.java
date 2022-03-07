@@ -17,6 +17,7 @@ public class VOPersistencia {
 	}
 
 	public VOPersistencia(Clientes c, Mudanzas m, Servicios s) {
+		super();
 		this.clientes = c;
 		this.servicios = s;
 		this.mudanzas = m;

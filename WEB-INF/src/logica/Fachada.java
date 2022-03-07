@@ -261,7 +261,7 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 		} catch (Exception e) {
 			throw new PersistenciaException("No se pudo restaurar");
 		}
-		this.monitor.comienzoLectura();
+		this.monitor.terminoLectura();
 	}
 
 	/*10 - Listado de servicios de mudanza ofrecidos: Obtener un listado conteniendo c�digo,

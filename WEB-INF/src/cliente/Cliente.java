@@ -28,7 +28,7 @@ public class Cliente {
 			Date fecha = new Date();
 			fachada.altaMudanza(1, fecha, "dasd", "asdsad", "1", "Nuevo");
 			fachada.guardarCambios();
-			fachada.restaurarInformacion();
+			//fachada.restaurarInformacion();
 	
 
 		}

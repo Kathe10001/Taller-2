@@ -11,7 +11,7 @@ public class Persistencia {
 
 	//Metodo respaldare
 	public void respaldar (VOPersistencia persistencia) throws IOException{
-
+		
 		try {
 			Propiedades propiedades = new Propiedades();
 			FileOutputStream file = new FileOutputStream(propiedades.getArchivoRespaldo());
