@@ -130,7 +130,6 @@ public class VentanaAltaServicio extends JFrame {
 		contentPane.add(btnGuardar);
 
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setForeground(new Color(255, 255, 255));
 		btnCancelar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
