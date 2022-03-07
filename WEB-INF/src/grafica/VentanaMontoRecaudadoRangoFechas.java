@@ -49,7 +49,7 @@ public class VentanaMontoRecaudadoRangoFechas extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblFechaInicio = new JLabel("Fecha de Inicio");
+		JLabel lblFechaInicio = new JLabel("Fecha de inicio");
 		lblFechaInicio.setBounds(11, 81, 93, 16);
 		contentPane.add(lblFechaInicio);
 
@@ -59,39 +59,32 @@ public class VentanaMontoRecaudadoRangoFechas extends JFrame {
 		contentPane.add(txtFechaInicio);
 
 		JButton btnAceptar = new JButton("Aceptar");
-		btnAceptar.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnAceptar.setForeground(new Color(255, 255, 255));
-		btnAceptar.setBackground(new Color(0, 204, 51));
-
 		btnAceptar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "El Monto recaudado es: $...");
+				JOptionPane.showMessageDialog(null, "El monto recaudado es $");
+				new VentanaMenu().setVisible(true);
 			}
 		});
 		btnAceptar.setBounds(272, 161, 117, 29);
 		contentPane.add(btnAceptar);
 
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnCancelar.setForeground(new Color(255, 255, 255));
-		btnCancelar.setBackground(new Color(204, 51, 51));
 		btnCancelar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Ha cancelado la operacion");
+				JOptionPane.showMessageDialog(null, "Se ha cancelado la operacion");
+				new VentanaMenu().setVisible(true);
 			}
 		});
 		btnCancelar.setBounds(63, 161, 117, 29);
 		contentPane.add(btnCancelar);
 
-		JLabel lblIngreseLosDatos = new JLabel("Ingrese Fecha Inicio y Fecha Fin para saber el monto recaudado");
-		lblIngreseLosDatos.setForeground(new Color(51, 51, 0));
-		lblIngreseLosDatos.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
+		JLabel lblIngreseLosDatos = new JLabel("Ingrese fecha de inicio y fecha de fin");
 		lblIngreseLosDatos.setBounds(10, 3, 416, 45);
 		contentPane.add(lblIngreseLosDatos);
 
-		JLabel lblFechaFin = new JLabel("Fecha de Finalizacion");
+		JLabel lblFechaFin = new JLabel("Fecha de finalizacion");
 		lblFechaFin.setBounds(11, 112, 130, 16);
 		contentPane.add(lblFechaFin);
 

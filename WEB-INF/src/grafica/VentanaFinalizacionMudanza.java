@@ -3,9 +3,9 @@ package grafica;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,12 +14,20 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import controladores.ControladorAltaCliente;
+import controladores.ControladorFinalizacionMudanza;
+import controladores.ControladorMenu;
+import logica.excepciones.ClienteException;
+
 public class VentanaFinalizacionMudanza extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	private ControladorFinalizacionMudanza controlador = new ControladorFinalizacionMudanza(this);
 	private JPanel contentPane;
-	private JTextField txtCodigoServicio;
-	private JTextField txtDuracion;
+	private JTextField tfNombre;
+	private JTextField tfApellido;
+	private JTextField tfCedula;
+	private JTextField tfTelefono;
 
 	/**
 	 * Launch the application.
@@ -44,62 +52,82 @@ public class VentanaFinalizacionMudanza extends JFrame {
 	public VentanaFinalizacionMudanza() {
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(120, 100, 452, 312);
+		setBounds(120, 100, 452, 334);
 		contentPane = new JPanel();
-		contentPane.setBackground(SystemColor.activeCaptionBorder);
 		contentPane.setBorder(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JButton btnAceptar = new JButton("Guardar");
-		btnAceptar.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnAceptar.setForeground(new Color(255, 255, 255));
-		btnAceptar.setBackground(new Color(0, 204, 51));
+		JLabel lblIngreseUnNuevo = new JLabel("Alta de clientes");
+		lblIngreseUnNuevo.setBounds(143, 19, 221, 26);
+		contentPane.add(lblIngreseUnNuevo);
+		
+		JLabel lblNombre = new JLabel("Nombre");
+		lblNombre.setBounds(40, 63, 61, 16);
+		contentPane.add(lblNombre);
 
+		tfNombre = new JTextField();
+		tfNombre.setBounds(102, 58, 254, 26);
+		contentPane.add(tfNombre);
+		tfNombre.setColumns(10);
+		
+		JLabel lblApellido = new JLabel("Apellido");
+		lblApellido.setBounds(40, 95, 61, 16);
+		contentPane.add(lblApellido);
+
+		tfApellido = new JTextField();
+		tfApellido.setColumns(10);
+		tfApellido.setBounds(102, 90, 254, 26);
+		contentPane.add(tfApellido);
+
+		JLabel lblCedula = new JLabel("Cédula");
+		lblCedula.setBounds(40, 131, 61, 16);
+		contentPane.add(lblCedula);
+
+		tfCedula = new JTextField();
+		tfCedula.setColumns(10);
+		tfCedula.setBounds(102, 126, 254, 26);
+		contentPane.add(tfCedula);
+
+		JLabel lblTelefono = new JLabel("Télefono");
+		lblTelefono.setBounds(40, 170, 61, 16);
+		contentPane.add(lblTelefono);
+		
+		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "El costo de la mudanza es: $...");
+			public void actionPerformed(ActionEvent event) {
+				try {
+			
+					controlador.f(lblCedula.getText(), lblNombre.getText(), lblApellido.getText(), lblTelefono.getText());
+					JOptionPane.showMessageDialog(null, "Se ha dado de alta correctamente");
+					new VentanaMenu().setVisible(true);
+				} catch (ClienteException e) {
+					JOptionPane.showMessageDialog(null, e.darMensaje());
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, e.getMessage());
+				}
+				
 			}
 		});
-		btnAceptar.setBounds(275, 228, 117, 29);
+		btnAceptar.setBounds(278, 226, 117, 29);
 		contentPane.add(btnAceptar);
 
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnCancelar.setForeground(new Color(255, 255, 255));
-		btnCancelar.setBackground(new Color(204, 51, 51));
 		btnCancelar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Ha cancelado la operacion");
+				JOptionPane.showMessageDialog(null, "Se ha cancelado la operación");
+				new VentanaMenu().setVisible(true);
 			}
 		});
-		btnCancelar.setBounds(66, 228, 117, 29);
+		btnCancelar.setBounds(70, 226, 117, 29);
 		contentPane.add(btnCancelar);
 
-		JLabel lblIngreseLosDatos =  new JLabel("Seleccione Finalizacion de Mudanza");
-		lblIngreseLosDatos.setForeground(new Color(51, 51, 0));
-		lblIngreseLosDatos.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
-		lblIngreseLosDatos.setBounds(34, 11, 358, 28);
-		contentPane.add(lblIngreseLosDatos);
-
-		JLabel lblCodigoServicio = new JLabel("Id de la mudanza");
-		lblCodigoServicio.setBounds(11, 71, 117, 16);
-		contentPane.add(lblCodigoServicio);
-
-		txtCodigoServicio = new JTextField();
-		txtCodigoServicio.setColumns(10);
-		txtCodigoServicio.setBounds(127, 66, 254, 26);
-		contentPane.add(txtCodigoServicio);
-
-		txtDuracion = new JTextField();
-		txtDuracion.setColumns(10);
-		txtDuracion.setBounds(127, 109, 254, 26);
-		contentPane.add(txtDuracion);
-
-		JLabel lblDuracion = new JLabel("Duracion");
-		lblDuracion.setBounds(11, 114, 117, 16);
-		contentPane.add(lblDuracion);
+		tfTelefono = new JTextField();
+		tfTelefono.setColumns(10);
+		tfTelefono.setBounds(102, 165, 254, 26);
+		contentPane.add(tfTelefono);
 	}
 }

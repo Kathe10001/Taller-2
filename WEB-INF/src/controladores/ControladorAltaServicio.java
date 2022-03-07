@@ -40,8 +40,12 @@ public class ControladorAltaServicio extends HttpServlet {
 		}
 	}
 	
-	public void nuevoServicio(boolean armadoMuebles, boolean embalaje, float costoXhora, float distanciaKm,
+	public void nuevoServicio(boolean armadoMuebles, boolean embalaje, String costoXhoraStr, String distanciaKmStr,
 			String codigoServicio) throws RemoteException, ServicioException {
+		
+		float costoXhora = Float.parseFloat(costoXhoraStr);  
+		float distanciaKm = Float.parseFloat(distanciaKmStr);  
+
 		fachada.nuevoServicio(armadoMuebles, embalaje, costoXhora, distanciaKm, codigoServicio);
 		
 	}

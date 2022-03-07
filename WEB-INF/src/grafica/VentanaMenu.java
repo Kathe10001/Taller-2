@@ -2,6 +2,7 @@ package grafica;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,6 +16,7 @@ import javax.swing.JPanel;
 
 import controladores.ControladorMenu;
 import logica.excepciones.PersistenciaException;
+import javax.swing.UIManager;
 
 public class VentanaMenu extends JFrame {
 
@@ -49,8 +51,8 @@ public class VentanaMenu extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblIngreseLosDatos =  new JLabel("Menu Principal ");
-		lblIngreseLosDatos.setBounds(127, 11, 147, 28);
+		JLabel lblIngreseLosDatos =  new JLabel("Menú principal ");
+		lblIngreseLosDatos.setBounds(172, 24, 147, 28);
 		contentPane.add(lblIngreseLosDatos);
 		
 		JButton btnAltaCliente = new JButton("Alta de cliente");
@@ -70,7 +72,7 @@ public class VentanaMenu extends JFrame {
 				new VentanaAltaMudanza().setVisible(true);
 			}
 		});
-		btnAltaMudanza.setBounds(40, 184, 356, 29);
+		btnAltaMudanza.setBounds(40, 145, 356, 29);
 		contentPane.add(btnAltaMudanza);
 		
 		JButton btnAltaServicio = new JButton("Alta de servicio");
@@ -83,24 +85,24 @@ public class VentanaMenu extends JFrame {
 		btnAltaServicio.setBounds(40, 64, 356, 29);
 		contentPane.add(btnAltaServicio);
 		
-		JButton btnFinalizacionMudanza = new JButton("FinalizaciOn de mudanza");
+		JButton btnFinalizacionMudanza = new JButton("Finalización de mudanza");
 		btnFinalizacionMudanza.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new VentanaFinalizacionMudanza().setVisible(true);
 			}
 		});
-		btnFinalizacionMudanza.setBounds(40, 224, 356, 29);
+		btnFinalizacionMudanza.setBounds(40, 186, 356, 29);
 		contentPane.add(btnFinalizacionMudanza);
 		
-		JButton btnDetalleMudanza = new JButton("Detalle de una Mudanza");
+		JButton btnDetalleMudanza = new JButton("Detalle de mudanza");
 		btnDetalleMudanza.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new VentanaDetalleMudanza().setVisible(true);
 			}
 		});
-		btnDetalleMudanza.setBounds(40, 264, 356, 29);
+		btnDetalleMudanza.setBounds(40, 227, 356, 29);
 		contentPane.add(btnDetalleMudanza);
 		
 		JButton btnMontoRecaudadoPor = new JButton("Monto recaudado por rango de fechas");
@@ -110,10 +112,10 @@ public class VentanaMenu extends JFrame {
 				new VentanaMontoRecaudadoRangoFechas().setVisible(true);
 			}
 		});
-		btnMontoRecaudadoPor.setBounds(40, 304, 356, 29);
+		btnMontoRecaudadoPor.setBounds(40, 268, 356, 29);
 		contentPane.add(btnMontoRecaudadoPor);
 		
-		JButton btnGuardar = new JButton("GUARDAR");
+		JButton btnGuardar = new JButton("Guardar");
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				try {
@@ -127,10 +129,10 @@ public class VentanaMenu extends JFrame {
 			}
 		});
 
-		btnGuardar.setBounds(40, 445, 135, 29);
+		btnGuardar.setBounds(40, 330, 135, 29);
 		contentPane.add(btnGuardar);
 		
-		JButton btnRestaurar = new JButton("RESTAURAR");
+		JButton btnRestaurar = new JButton("Restaurar");
 		btnRestaurar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				try {
@@ -144,7 +146,7 @@ public class VentanaMenu extends JFrame {
 			}
 		});
 
-		btnRestaurar.setBounds(261, 445, 135, 29);
+		btnRestaurar.setBounds(257, 330, 135, 29);
 		contentPane.add(btnRestaurar);
 	}
 }

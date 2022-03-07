@@ -21,12 +21,12 @@ import logica.excepciones.ClienteException;
 public class VentanaAltaCliente extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private ControladorAltaCliente controladorAltaCliente = new ControladorAltaCliente(this);
+	private ControladorAltaCliente controlador = new ControladorAltaCliente(this);
 	private JPanel contentPane;
 	private JTextField tfNombre;
 	private JTextField tfApellido;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField tfCedula;
+	private JTextField tfTelefono;
 
 	/**
 	 * Launch the application.
@@ -57,9 +57,8 @@ public class VentanaAltaCliente extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblIngreseUnNuevo = new JLabel("Ingrese un nuevo Cliente");
-		lblIngreseUnNuevo.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-		lblIngreseUnNuevo.setBounds(94, 21, 221, 26);
+		JLabel lblIngreseUnNuevo = new JLabel("Alta de clientes");
+		lblIngreseUnNuevo.setBounds(143, 19, 221, 26);
 		contentPane.add(lblIngreseUnNuevo);
 		
 		JLabel lblNombre = new JLabel("Nombre");
@@ -80,26 +79,30 @@ public class VentanaAltaCliente extends JFrame {
 		tfApellido.setBounds(102, 90, 254, 26);
 		contentPane.add(tfApellido);
 
-		JLabel lblCedula = new JLabel("Cedula");
+		JLabel lblCedula = new JLabel("Cédula");
 		lblCedula.setBounds(40, 131, 61, 16);
 		contentPane.add(lblCedula);
 
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(102, 126, 254, 26);
-		contentPane.add(textField);
+		tfCedula = new JTextField();
+		tfCedula.setColumns(10);
+		tfCedula.setBounds(102, 126, 254, 26);
+		contentPane.add(tfCedula);
 
-		JLabel lblTelefono = new JLabel("Telefono");
+		JLabel lblTelefono = new JLabel("Télefono");
 		lblTelefono.setBounds(40, 170, 61, 16);
 		contentPane.add(lblTelefono);
+
+		tfTelefono = new JTextField();
+		tfTelefono.setColumns(10);
+		tfTelefono.setBounds(102, 165, 254, 26);
+		contentPane.add(tfTelefono);
 		
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				try {
-			
-					controladorAltaCliente.altaCliente(lblCedula.getText(), lblNombre.getText(), lblApellido.getText(), lblTelefono.getText());
+					controlador.altaCliente(tfCedula.getText(), tfNombre.getText(), tfApellido.getText(), tfTelefono.getText());
 					JOptionPane.showMessageDialog(null, "Se ha dado de alta correctamente");
 					new VentanaMenu().setVisible(true);
 				} catch (ClienteException e) {
@@ -124,10 +127,5 @@ public class VentanaAltaCliente extends JFrame {
 		});
 		btnCancelar.setBounds(70, 226, 117, 29);
 		contentPane.add(btnCancelar);
-
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(102, 165, 254, 26);
-		contentPane.add(textField_1);
 	}
 }

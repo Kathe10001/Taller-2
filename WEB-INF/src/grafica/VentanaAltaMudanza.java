@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
+import java.text.ParseException;
 import java.util.Date;
 
 import javax.swing.JButton;
@@ -15,21 +16,23 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import controladores.ControladorAltaMudanza;
-
+import logica.excepciones.ClienteException;
+import logica.excepciones.MudanzaException;
 //import controladores.ControladorMenu;
 import logica.excepciones.PersistenciaException;
+import logica.excepciones.ServicioException;
 
 public class VentanaAltaMudanza extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField txtFechaMudanza;
-	private JTextField txtHoraInicio;
-	private JTextField txtDomicilioDestino;
-	private JTextField txtDomicilioInicio;
-	private JTextField txtCodigoServicio;
-	private JTextField txtCedulaCliente;
-	private ControladorAltaMudanza AltaMudanza = new ControladorAltaMudanza(this);
+	private JTextField tfFechaMudanza;
+	private JTextField tfHoraInicio;
+	private JTextField tfDomicilioDestino;
+	private JTextField tfDomicilioInicio;
+	private JTextField tfCodigoServicio;
+	private JTextField tfCedulaCliente;
+	private ControladorAltaMudanza controlador = new ControladorAltaMudanza(this);
 
 	/**
 	 * Launch the application.
@@ -59,90 +62,100 @@ public class VentanaAltaMudanza extends JFrame {
 		contentPane.setBorder(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		JLabel lblIngreseLosDatos = new JLabel("Alta de mudanza");
+		lblIngreseLosDatos.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		lblIngreseLosDatos.setBounds(176, 14, 142, 19);
+		contentPane.add(lblIngreseLosDatos);
 
-		JLabel lblFechaMudanza = new JLabel("Fecha de Mudanza");
-		lblFechaMudanza.setBounds(11, 50, 106, 16);
+		JLabel lblFechaMudanza = new JLabel("Fecha de mudanza");
+		lblFechaMudanza.setBounds(11, 50, 132, 16);
 		contentPane.add(lblFechaMudanza);
 
-		JLabel lblHoraInicio = new JLabel("Hora de Inicio");
+		JLabel lblHoraInicio = new JLabel("Hora de inicio");
 		lblHoraInicio.setBounds(11, 81, 93, 16);
 		contentPane.add(lblHoraInicio);
 
-		txtFechaMudanza = new JTextField();
-		txtFechaMudanza.setBounds(127, 45, 254, 26);
-		contentPane.add(txtFechaMudanza);
-		txtFechaMudanza.setColumns(10);
+		tfFechaMudanza = new JTextField();
+		tfFechaMudanza.setBounds(175, 45, 206, 26);
+		contentPane.add(tfFechaMudanza);
+		tfFechaMudanza.setColumns(10);
 
-		txtHoraInicio = new JTextField();
-		txtHoraInicio.setColumns(10);
-		txtHoraInicio.setBounds(127, 76, 254, 26);
-		contentPane.add(txtHoraInicio);
+		tfHoraInicio = new JTextField();
+		tfHoraInicio.setColumns(10);
+		tfHoraInicio.setBounds(175, 76, 206, 26);
+		contentPane.add(tfHoraInicio);
 
+		JLabel lblDomicilioInicio = new JLabel("Domicilio de inicio");
+		lblDomicilioInicio.setBounds(11, 112, 132, 16);
+		contentPane.add(lblDomicilioInicio);
+
+		tfDomicilioDestino = new JTextField();
+		tfDomicilioDestino.setColumns(10);
+		tfDomicilioDestino.setBounds(175, 140, 206, 26);
+		contentPane.add(tfDomicilioDestino);
+
+		JLabel lblDomicilioDestino = new JLabel("Domicilio de destino");
+		lblDomicilioDestino.setBounds(10, 145, 133, 16);
+		contentPane.add(lblDomicilioDestino);
+
+		tfDomicilioInicio = new JTextField();
+		tfDomicilioInicio.setColumns(10);
+		tfDomicilioInicio.setBounds(175, 108, 206, 26);
+		contentPane.add(tfDomicilioInicio);
+
+		tfCodigoServicio = new JTextField();
+		tfCodigoServicio.setColumns(10);
+		tfCodigoServicio.setBounds(175, 172, 206, 26);
+		contentPane.add(tfCodigoServicio);
+
+		JLabel lblCodigoServicio = new JLabel("Código del dervicio");
+		lblCodigoServicio.setBounds(11, 177, 132, 16);
+		contentPane.add(lblCodigoServicio);
+
+		tfCedulaCliente = new JTextField();
+		tfCedulaCliente.setColumns(10);
+		tfCedulaCliente.setBounds(175, 204, 206, 26);
+		contentPane.add(tfCedulaCliente);
+
+		JLabel lblCedulaCliente = new JLabel("Cédula del cliente");
+		lblCedulaCliente.setBounds(11, 209, 132, 16);
+		contentPane.add(lblCedulaCliente);
+		
 		JButton btnAceptar = new JButton("Aceptar");
-		btnAceptar.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnAceptar.setForeground(new Color(255, 255, 255));
-		btnAceptar.setBackground(new Color(0, 204, 51));
-
 		btnAceptar.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Se ha ingresado correctamente la mudanza");
+			public void actionPerformed(ActionEvent event) {
+				try {
+					controlador.altaMudanza(tfHoraInicio.getText(), tfFechaMudanza.getText(), tfDomicilioInicio.getText(), tfDomicilioDestino.getText(), tfCedulaCliente.getText(), tfCodigoServicio.getText());
+					JOptionPane.showMessageDialog(null, "Se ha dado de alta correctamente");
+					new VentanaMenu().setVisible(true);
+				} catch (ClienteException e) {
+					JOptionPane.showMessageDialog(null, e.darMensaje());
+				} catch (ServicioException e) {
+					JOptionPane.showMessageDialog(null, e.darMensaje());
+				} catch (MudanzaException e) {
+					JOptionPane.showMessageDialog(null, e.darMensaje());
+				} catch (RemoteException e) {
+					JOptionPane.showMessageDialog(null, e.getMessage());
+				} catch (ParseException e) {
+					JOptionPane.showMessageDialog(null, e.getMessage());
+				}
 			}
 		});
 		btnAceptar.setBounds(274, 255, 117, 29);
 		contentPane.add(btnAceptar);
 
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnCancelar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Ha cancelado la operacion");
+				JOptionPane.showMessageDialog(null, "Se ha cancelado la operacion");
+				new VentanaMenu().setVisible(true);
 			}
 		});
 		btnCancelar.setBounds(65, 255, 117, 29);
 		contentPane.add(btnCancelar);
-
-		JLabel lblIngreseLosDatos = new JLabel("Ingrese los datos de la nueva mudanza");
-		lblIngreseLosDatos.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
-		lblIngreseLosDatos.setBounds(10, 3, 416, 19);
-		contentPane.add(lblIngreseLosDatos);
-
-		JLabel lblDomicilioInicio = new JLabel("Domicilio de Inicio");
-		lblDomicilioInicio.setBounds(11, 112, 106, 16);
-		contentPane.add(lblDomicilioInicio);
-
-		txtDomicilioDestino = new JTextField();
-		txtDomicilioDestino.setColumns(10);
-		txtDomicilioDestino.setBounds(127, 140, 254, 26);
-		contentPane.add(txtDomicilioDestino);
-
-		JLabel lblDomicilioDestino = new JLabel("Domicilio de Destino");
-		lblDomicilioDestino.setBounds(10, 145, 118, 16);
-		contentPane.add(lblDomicilioDestino);
-
-		txtDomicilioInicio = new JTextField();
-		txtDomicilioInicio.setColumns(10);
-		txtDomicilioInicio.setBounds(127, 108, 254, 26);
-		contentPane.add(txtDomicilioInicio);
-
-		txtCodigoServicio = new JTextField();
-		txtCodigoServicio.setColumns(10);
-		txtCodigoServicio.setBounds(127, 172, 254, 26);
-		contentPane.add(txtCodigoServicio);
-
-		JLabel lblCodigoServicio = new JLabel("Codigo del Servicio");
-		lblCodigoServicio.setBounds(11, 177, 117, 16);
-		contentPane.add(lblCodigoServicio);
-
-		txtCedulaCliente = new JTextField();
-		txtCedulaCliente.setColumns(10);
-		txtCedulaCliente.setBounds(127, 204, 254, 26);
-		contentPane.add(txtCedulaCliente);
-
-		JLabel lblCedulaCliente = new JLabel("Cedula del Cliente");
-		lblCedulaCliente.setBounds(11, 209, 106, 16);
-		contentPane.add(lblCedulaCliente);
 	}
 	
 }

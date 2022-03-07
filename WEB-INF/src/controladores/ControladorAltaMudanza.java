@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.http.HttpServlet;
@@ -43,8 +45,11 @@ public class ControladorAltaMudanza extends HttpServlet {
 		}
 	}
 	
-	public void altaMudanza(int horaInicio, Date fechaMudanza, String domicilioOrigen, String domicilioDestino, String cedula,
-			String codigoServicio) throws ClienteException, ServicioException, MudanzaException, RemoteException {
+	public void altaMudanza(String horaInicioStr, String fechaMudanzaStr, String domicilioOrigen, String domicilioDestino, String cedula,
+			String codigoServicio) throws ClienteException, ServicioException, MudanzaException, RemoteException, ParseException {
+		
+		int horaInicio = Integer.parseInt(horaInicioStr);
+		Date fechaMudanza = new SimpleDateFormat("yyyy-MM-dd").parse(horaInicioStr);
 		fachada.altaMudanza(horaInicio, fechaMudanza, domicilioOrigen, domicilioDestino, cedula, codigoServicio);
 	}
 }
