@@ -93,7 +93,7 @@ public class VentanaMenu extends JFrame {
 		btnFinalizacionMudanza.setBounds(40, 224, 356, 29);
 		contentPane.add(btnFinalizacionMudanza);
 		
-		/*JButton btnDetalleMudanza = new JButton("Detalle de una Mudanza");
+		JButton btnDetalleMudanza = new JButton("Detalle de una Mudanza");
 		btnDetalleMudanza.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -101,7 +101,7 @@ public class VentanaMenu extends JFrame {
 			}
 		});
 		btnDetalleMudanza.setBounds(40, 264, 356, 29);
-		contentPane.add(btnDetalleMudanza);*/
+		contentPane.add(btnDetalleMudanza);
 		
 		JButton btnMontoRecaudadoPor = new JButton("Monto recaudado por rango de fechas");
 		btnMontoRecaudadoPor.addActionListener(new ActionListener() {

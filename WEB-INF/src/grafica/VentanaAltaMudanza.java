@@ -49,7 +49,6 @@ public class VentanaAltaMudanza extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(120, 100, 452, 334);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.LIGHT_GRAY);
 		contentPane.setBorder(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -88,8 +87,6 @@ public class VentanaAltaMudanza extends JFrame {
 
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnCancelar.setForeground(new Color(255, 255, 255));
-		btnCancelar.setBackground(new Color(204, 51, 51));
 		btnCancelar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -100,7 +97,6 @@ public class VentanaAltaMudanza extends JFrame {
 		contentPane.add(btnCancelar);
 
 		JLabel lblIngreseLosDatos = new JLabel("Ingrese los datos de la nueva mudanza");
-		lblIngreseLosDatos.setForeground(new Color(51, 51, 0));
 		lblIngreseLosDatos.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
 		lblIngreseLosDatos.setBounds(10, 3, 416, 19);
 		contentPane.add(lblIngreseLosDatos);

@@ -45,7 +45,6 @@ public class VentanaMontoRecaudadoRangoFechas extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(120, 100, 452, 238);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.LIGHT_GRAY);
 		contentPane.setBorder(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);

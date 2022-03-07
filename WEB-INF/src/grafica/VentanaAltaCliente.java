@@ -80,7 +80,6 @@ public class VentanaAltaCliente extends JFrame {
 		contentPane.add(btnAceptar);
 
 		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBackground(Color.RED);
 		btnCancelar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
