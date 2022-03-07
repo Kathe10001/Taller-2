@@ -8,10 +8,8 @@ import java.rmi.RemoteException;
 import javax.servlet.http.HttpServlet;
 
 import grafica.VentanaAltaCliente;
-import grafica.VentanaMenu;
 import logica.IFachada;
 import logica.excepciones.ClienteException;
-import logica.excepciones.PersistenciaException;
 import persistencia.Propiedades;
 
 public class ControladorAltaCliente extends HttpServlet {

@@ -8,13 +8,10 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServlet;
 
-import grafica.VentanaAltaCliente;
 import grafica.VentanaAltaMudanza;
-import grafica.VentanaMenu;
 import logica.IFachada;
 import logica.excepciones.ClienteException;
 import logica.excepciones.MudanzaException;
-import logica.excepciones.PersistenciaException;
 import logica.excepciones.ServicioException;
 import persistencia.Propiedades;
 
@@ -50,8 +47,4 @@ public class ControladorAltaMudanza extends HttpServlet {
 			String codigoServicio) throws ClienteException, ServicioException, MudanzaException, RemoteException {
 		fachada.altaMudanza(horaInicio, fechaMudanza, domicilioOrigen, domicilioDestino, cedula, codigoServicio);
 	}
-
 }
-
-
-

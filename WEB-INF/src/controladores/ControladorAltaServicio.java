@@ -30,7 +30,7 @@ public class ControladorAltaServicio extends HttpServlet {
 			Propiedades propiedades = new Propiedades();
 		
 			fachada = (IFachada) Naming.lookup(propiedades.getRutaFachada());
-		
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -45,10 +45,5 @@ public class ControladorAltaServicio extends HttpServlet {
 		fachada.nuevoServicio(armadoMuebles, embalaje, costoXhora, distanciaKm, codigoServicio);
 		
 	}
-
 }
-
-
-
-
 

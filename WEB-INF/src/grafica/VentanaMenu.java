@@ -83,7 +83,7 @@ public class VentanaMenu extends JFrame {
 		btnAltaServicio.setBounds(40, 64, 356, 29);
 		contentPane.add(btnAltaServicio);
 		
-		JButton btnFinalizacionMudanza = new JButton("Finalización de mudanza");
+		JButton btnFinalizacionMudanza = new JButton("FinalizaciOn de mudanza");
 		btnFinalizacionMudanza.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
