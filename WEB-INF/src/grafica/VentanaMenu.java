@@ -51,7 +51,7 @@ public class VentanaMenu extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblIngreseLosDatos =  new JLabel("Menú principal ");
+		JLabel lblIngreseLosDatos =  new JLabel("Menu principal ");
 		lblIngreseLosDatos.setBounds(172, 24, 147, 28);
 		contentPane.add(lblIngreseLosDatos);
 		
@@ -85,7 +85,7 @@ public class VentanaMenu extends JFrame {
 		btnAltaServicio.setBounds(40, 64, 356, 29);
 		contentPane.add(btnAltaServicio);
 		
-		JButton btnFinalizacionMudanza = new JButton("Finalización de mudanza");
+		JButton btnFinalizacionMudanza = new JButton("Finalizacion de mudanza");
 		btnFinalizacionMudanza.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

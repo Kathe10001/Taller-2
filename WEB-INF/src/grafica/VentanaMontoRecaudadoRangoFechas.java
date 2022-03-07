@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,6 +15,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import controladores.ControladorMontoRecaudadoRangoFechas;
+import logica.excepciones.MudanzaException;
 
 public class VentanaMontoRecaudadoRangoFechas extends JFrame {
 
@@ -19,6 +24,7 @@ public class VentanaMontoRecaudadoRangoFechas extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtFechaInicio;
 	private JTextField txtFechaFin;
+	private ControladorMontoRecaudadoRangoFechas controlador = new ControladorMontoRecaudadoRangoFechas(this);
 
 	/**
 	 * Launch the application.
@@ -58,10 +64,30 @@ public class VentanaMontoRecaudadoRangoFechas extends JFrame {
 		txtFechaInicio.setBounds(151, 76, 254, 26);
 		contentPane.add(txtFechaInicio);
 
+		JLabel lblIngreseLosDatos = new JLabel("Ingrese fecha de inicio y fecha de fin");
+		lblIngreseLosDatos.setBounds(10, 3, 416, 45);
+		contentPane.add(lblIngreseLosDatos);
+
+		JLabel lblFechaFin = new JLabel("Fecha de finalizacion");
+		lblFechaFin.setBounds(11, 112, 130, 16);
+		contentPane.add(lblFechaFin);
+
+		txtFechaFin = new JTextField();
+		txtFechaFin.setColumns(10);
+		txtFechaFin.setBounds(151, 113, 254, 26);
+		contentPane.add(txtFechaFin);
+		
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				try {
+					controlador.montoRecaudado(txtFechaInicio.getText(), txtFechaFin.getText());
+				} catch (RemoteException | MudanzaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				////VER COMO PASAR EL MONTO QUE  CALCULA monto.Recaudado
 				JOptionPane.showMessageDialog(null, "El monto recaudado es $");
 				new VentanaMenu().setVisible(true);
 			}
@@ -80,17 +106,5 @@ public class VentanaMontoRecaudadoRangoFechas extends JFrame {
 		btnCancelar.setBounds(63, 161, 117, 29);
 		contentPane.add(btnCancelar);
 
-		JLabel lblIngreseLosDatos = new JLabel("Ingrese fecha de inicio y fecha de fin");
-		lblIngreseLosDatos.setBounds(10, 3, 416, 45);
-		contentPane.add(lblIngreseLosDatos);
-
-		JLabel lblFechaFin = new JLabel("Fecha de finalizacion");
-		lblFechaFin.setBounds(11, 112, 130, 16);
-		contentPane.add(lblFechaFin);
-
-		txtFechaFin = new JTextField();
-		txtFechaFin.setColumns(10);
-		txtFechaFin.setBounds(151, 113, 254, 26);
-		contentPane.add(txtFechaFin);
 	}
 }

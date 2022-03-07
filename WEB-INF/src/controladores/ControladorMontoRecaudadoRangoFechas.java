@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.http.HttpServlet;
@@ -13,6 +15,7 @@ import grafica.VentanaMontoRecaudadoRangoFechas;
 import logica.IFachada;
 import logica.excepciones.ClienteException;
 import logica.excepciones.MudanzaException;
+import logica.excepciones.ServicioException;
 import persistencia.Propiedades;
 
 public class ControladorMontoRecaudadoRangoFechas extends HttpServlet {
@@ -31,7 +34,7 @@ public class ControladorMontoRecaudadoRangoFechas extends HttpServlet {
 		try {
 		
 			Propiedades propiedades = new Propiedades();
-		
+			
 			fachada = (IFachada) Naming.lookup(propiedades.getRutaFachada());
 		
 		} catch (IOException e) {
@@ -41,9 +44,18 @@ public class ControladorMontoRecaudadoRangoFechas extends HttpServlet {
 		}
 	}
 	
-	public void montoRecaudado(Date fechaInicio, Date fechaFin) throws RemoteException, MudanzaException {
+	public void montoRecaudado(String fechaInicioStr, String fechaFinStr) throws RemoteException, MudanzaException {
+		try {
+		Date fechaInicio = new SimpleDateFormat("yyyy-MM-dd").parse(fechaInicioStr);
+		Date fechaFin = new SimpleDateFormat("yyyy-MM-dd").parse(fechaFinStr);
 		fachada.montoRecaudado(fechaInicio, fechaFin);
-		
+		} catch (MudanzaException e) {
+			JOptionPane.showMessageDialog(null, e.darMensaje());
+		} catch (RemoteException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		} catch (ParseException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
 	}
 
 }

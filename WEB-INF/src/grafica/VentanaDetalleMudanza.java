@@ -67,7 +67,7 @@ public class VentanaDetalleMudanza extends JFrame {
 		btnCancelar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Se ha cancelado la operación");
+				JOptionPane.showMessageDialog(null, "Se ha cancelado la operacion");
 				new VentanaMenu().setVisible(true);
 			}
 		});
@@ -78,7 +78,7 @@ public class VentanaDetalleMudanza extends JFrame {
 		lblIngreseLosDatos.setBounds(152, 17, 240, 28);
 		contentPane.add(lblIngreseLosDatos);
 
-		JLabel lblCodigoMudanza = new JLabel("Número de mudanza");
+		JLabel lblCodigoMudanza = new JLabel("Numero de mudanza");
 		lblCodigoMudanza.setBounds(11, 71, 154, 16);
 		contentPane.add(lblCodigoMudanza);
 
@@ -103,11 +103,11 @@ public class VentanaDetalleMudanza extends JFrame {
 		lblDomicilioDestino.setBounds(10, 198, 138, 16);
 		contentPane.add(lblDomicilioDestino);
 		
-		JLabel lblCodigoServicio = new JLabel("Código del servicio");
+		JLabel lblCodigoServicio = new JLabel("Codigo del servicio");
 		lblCodigoServicio.setBounds(11, 230, 138, 16);
 		contentPane.add(lblCodigoServicio);
 		
-		JLabel lblCedulaCliente = new JLabel("Cédula del cliente");
+		JLabel lblCedulaCliente = new JLabel("Cedula del cliente");
 		lblCedulaCliente.setBounds(11, 262, 138, 16);
 		contentPane.add(lblCedulaCliente);
 		
@@ -119,7 +119,7 @@ public class VentanaDetalleMudanza extends JFrame {
 		lblApellidoCliente.setBounds(11, 326, 138, 16);
 		contentPane.add(lblApellidoCliente);
 		
-		JLabel lblTelefonoCliente = new JLabel("Télefono del cliente");
+		JLabel lblTelefonoCliente = new JLabel("Telefono del cliente");
 		lblTelefonoCliente.setBounds(11, 358, 129, 16);
 		contentPane.add(lblTelefonoCliente);
 		

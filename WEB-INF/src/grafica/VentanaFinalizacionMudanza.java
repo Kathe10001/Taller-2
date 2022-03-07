@@ -80,7 +80,7 @@ public class VentanaFinalizacionMudanza extends JFrame {
 		tfApellido.setBounds(102, 90, 254, 26);
 		contentPane.add(tfApellido);
 
-		JLabel lblCedula = new JLabel("Cédula");
+		JLabel lblCedula = new JLabel("Cedula");
 		lblCedula.setBounds(40, 131, 61, 16);
 		contentPane.add(lblCedula);
 
@@ -89,7 +89,7 @@ public class VentanaFinalizacionMudanza extends JFrame {
 		tfCedula.setBounds(102, 126, 254, 26);
 		contentPane.add(tfCedula);
 
-		JLabel lblTelefono = new JLabel("Télefono");
+		JLabel lblTelefono = new JLabel("Telefono");
 		lblTelefono.setBounds(40, 170, 61, 16);
 		contentPane.add(lblTelefono);
 		
@@ -107,7 +107,7 @@ public class VentanaFinalizacionMudanza extends JFrame {
 		btnCancelar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Se ha cancelado la operación");
+				JOptionPane.showMessageDialog(null, "Se ha cancelado la operacion");
 				new VentanaMenu().setVisible(true);
 			}
 		});
