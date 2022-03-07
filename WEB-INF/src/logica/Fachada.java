@@ -41,6 +41,7 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 		this.clientes = new Clientes();
 		this.mudanzas = new Mudanzas();
 		this.servicios = new Servicios();
+		this.persistencia = new Persistencia(); 
 	}
 
 	private static final long serialVersionUID = 1L;
@@ -261,7 +262,7 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 		} catch (Exception e) {
 			throw new PersistenciaException("No se pudo restaurar");
 		}
-		this.monitor.comienzoLectura();
+		this.monitor.terminoLectura();
 	}
 
 	/*10 - Listado de servicios de mudanza ofrecidos: Obtener un listado conteniendo c�digo,

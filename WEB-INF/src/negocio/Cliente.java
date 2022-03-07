@@ -1,8 +1,12 @@
 package negocio;
 
+import java.io.Serializable;
+
 import valueObjects.VOCliente;
 
-public class Cliente {
+public class Cliente implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private String cedula;
 

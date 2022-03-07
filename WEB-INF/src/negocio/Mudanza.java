@@ -1,10 +1,13 @@
 package negocio;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import valueObjects.VOMudanzaDetallado;
 
-public class Mudanza {
+public class Mudanza implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	private Date fechaMudanza;
 
