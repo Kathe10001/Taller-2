@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,6 +14,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import controladores.ControladorAltaMudanza;
+
+//import controladores.ControladorMenu;
+import logica.excepciones.PersistenciaException;
 
 public class VentanaAltaMudanza extends JFrame {
 
@@ -23,6 +29,7 @@ public class VentanaAltaMudanza extends JFrame {
 	private JTextField txtDomicilioInicio;
 	private JTextField txtCodigoServicio;
 	private JTextField txtCedulaCliente;
+	private ControladorAltaMudanza AltaMudanza = new ControladorAltaMudanza(this);
 
 	/**
 	 * Launch the application.
@@ -137,4 +144,5 @@ public class VentanaAltaMudanza extends JFrame {
 		lblCedulaCliente.setBounds(11, 209, 106, 16);
 		contentPane.add(lblCedulaCliente);
 	}
+	
 }

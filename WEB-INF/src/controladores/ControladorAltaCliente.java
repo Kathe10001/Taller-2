@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 
 import grafica.VentanaMenu;
 import logica.IFachada;
+import logica.excepciones.ClienteException;
 import logica.excepciones.PersistenciaException;
 import persistencia.Propiedades;
 
@@ -39,14 +40,10 @@ public class ControladorAltaCliente extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
+	public void altaNuevoCliente (String cedula, String nombre, String apellido, String telefono) throws PersistenciaException, RemoteException, ClienteException {
+		fachada.altaNuevoCliente(cedula,nombre,apellido,telefono);
+	}
 
-	public void restaurarInformacion () throws PersistenciaException, RemoteException {
-		fachada.restaurarInformacion();
-	}
-	
-	public void guardarCambios () throws PersistenciaException, RemoteException {
-		fachada.guardarCambios();
-	}
 }
 
 
