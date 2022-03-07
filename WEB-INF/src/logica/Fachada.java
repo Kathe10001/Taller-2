@@ -133,7 +133,7 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 			Mudanza mudanza = new Mudanza(0, horaInicio, fechaMudanza, domicilioOrigen, domicilioDestino, cliente, servicio);
 			this.mudanzas.insert(mudanza);
 		} else {
-			if(fechaMudanza.after(ultimaMudanza.getFechaMudanza()) || fechaMudanza.equals(ultimaMudanza.getFechaMudanza())) {
+			if(this.posterior(fechaMudanza, ultimaMudanza.getFechaMudanza())) {
 				ArrayList<VOMudanzaDetallado> mudanzas = this.listadoMudanzasXfecha(fechaMudanza);
 
 				List<VOMudanzaDetallado> resultado = mudanzas.stream().filter(mudanza -> (horaInicio - mudanza.getHoraInicio()) >= 2).collect(Collectors.toList());
@@ -205,20 +205,19 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 	@Override
 	public float montoRecaudado(Date fechaInicio, Date fechaFin) throws RemoteException, MudanzaException {
 		this.monitor.comienzoLectura();
-		float total = 0 ;
-		int i = 0;
-		Mudanza temp;
-		Servicio serv;
-		if (fechaInicio.after(fechaFin)) {
+		float total = 0f;
+		
+		if (!this.anterior(fechaInicio, fechaFin)) {
 			throw new MudanzaException("La fecha de inicio debe ser anterior a la de fin");
 		} else {
-			for(i=0; i < (this.mudanzas.largo()); i++) {
-				temp = this.mudanzas.get(i);
-				serv = this.servicios.find(temp.getServicio().getCodigo());
-				if (((temp.getFechaMudanza().after(fechaInicio)) || (temp.getFechaMudanza().equals(fechaInicio)))   && ((temp.getFechaMudanza().before(fechaFin) || (temp.getFechaMudanza().equals(fechaFin))))) {
-					total = total + (temp.getDuracionTotal () * serv.getCostoXhora());
-				}
-			}
+		
+			total = (float) this.mudanzas.getMudanzas().stream()
+			.filter(mudanza -> this.posterior(mudanza.getFechaMudanza(), fechaInicio) && this.anterior(mudanza.getFechaMudanza(), fechaFin))
+			.mapToDouble(mudanza -> {	
+				Servicio servicio = this.servicios.find(mudanza.getServicio().getCodigo());
+				return mudanza.getDuracionTotal() * servicio.getCostoXhora();
+			}).sum();		
+			
 		}
 		this.monitor.terminoLectura();
 		return total;
@@ -310,6 +309,15 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 		.collect(Collectors.toList());
 		this.monitor.terminoLectura();
 		return resultado;
+	}
+	
+	private boolean anterior(Date fechaAComparar, Date fecha) {
+		return (fechaAComparar.compareTo(fecha) == -1) || (fechaAComparar.compareTo(fecha) == 0);
+		
+	}
+	
+	private boolean posterior(Date fechaAComparar, Date fecha) {			
+		return (fechaAComparar.compareTo(fecha) == 1)|| (fechaAComparar.compareTo(fecha) == 0);
 	}
 
 }

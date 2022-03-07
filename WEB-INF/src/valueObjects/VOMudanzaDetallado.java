@@ -83,10 +83,23 @@ public class VOMudanzaDetallado extends VOMudanzaIngreso implements Serializable
 	}
 
 
-
-
-
+	public String toString() {
+		return "cedula: " + this.getCedula() + "\n" +
+				"nombre: " + this.getNombre() + "\n" +
+				"apellido: " + this.getApellido() + "\n" +
+				"telefono: " + this.getTelefono() + "\n" +
+				"codigoServicio: " + this.getCodigoServicio() + "\n" +
+				"fechaMudanza: " + this.getFechaMudanza() + "\n" +
+				"domicilioOrigen: " + this.getDomicilioOrigen() + "\n" +
+				"domicilioDestino: " + this.getDomicilioDestino() + "\n" +
+				"duracionTotal: " + this.getDuracionTotal() + "\n" +
+				"numContratacion: " + this.getNumContratacion() + "\n" +
+				"horaInicio: " + this.getHoraInicio() + "\n" +
+				"finalización: " + this.isFinalizacion();
 	}
+
+
+}
 
 
 

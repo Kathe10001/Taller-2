@@ -19,6 +19,10 @@ public class Mudanzas implements Serializable {
 		this.mudanzas = m;
 	}
 
+	public ArrayList<Mudanza> getMudanzas(){
+		return this.mudanzas;
+	}
+	
 	public boolean esVacia() {
 		return this.mudanzas.isEmpty();
 	}
