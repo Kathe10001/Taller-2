@@ -6,8 +6,10 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import javax.servlet.http.HttpServlet;
+import javax.swing.JOptionPane;
 
 import grafica.VentanaFinalizacionMudanza;
+import grafica.VentanaMenu;
 import logica.IFachada;
 import logica.excepciones.ClienteException;
 import logica.excepciones.MudanzaException;
@@ -34,17 +36,24 @@ public class ControladorFinalizacionMudanza extends HttpServlet {
 			fachada = (IFachada) Naming.lookup(propiedades.getRutaFachada());
 		
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		} catch (NotBoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 	}
 	
-	public void altaCliente(int codigoMudanza, float duracion) throws RemoteException, MudanzaException, ServicioException {
-		fachada.finalizacionMudanza(codigoMudanza, duracion);
-		
+	public void finalizacionMudanza(int codigoMudanza, float duracion) {		
+		try {
+			fachada.finalizacionMudanza(codigoMudanza, duracion);
+			JOptionPane.showMessageDialog(null, "Se ha dado de alta correctamente");
+			new VentanaMenu().setVisible(true);
+		} catch (RemoteException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		} catch (MudanzaException e) {
+			JOptionPane.showMessageDialog(null, e.darMensaje());
+		} catch (ServicioException e) {
+			JOptionPane.showMessageDialog(null, e.darMensaje());
+		}
 	}
 
 }

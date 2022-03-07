@@ -36,9 +36,8 @@ public class ListadoServiciosServlet extends HttpServlet {
 
 		try {
 
-			Propiedades p = new Propiedades();
-			String ip = p.getIpServidor();
-			String puerto = p.getPuertoServidor();
+			String ip = super.getInitParameter("ipServidor");
+			String puerto = super.getInitParameter("puertoServidor");
 			
 			String ruta = "//" + ip + ":" + puerto + "/fachada";
 

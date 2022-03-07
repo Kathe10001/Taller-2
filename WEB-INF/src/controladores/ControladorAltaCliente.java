@@ -6,8 +6,10 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import javax.servlet.http.HttpServlet;
+import javax.swing.JOptionPane;
 
 import grafica.VentanaAltaCliente;
+import grafica.VentanaMenu;
 import logica.IFachada;
 import logica.excepciones.ClienteException;
 import persistencia.Propiedades;
@@ -32,16 +34,23 @@ public class ControladorAltaCliente extends HttpServlet {
 			fachada = (IFachada) Naming.lookup(propiedades.getRutaFachada());
 		
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		} catch (NotBoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 	}
 	
-	public void altaCliente(String cedula, String nombre, String apellido, String telefono) throws ClienteException, RemoteException {
-		fachada.altaNuevoCliente(cedula, nombre, apellido, telefono);
+	public void altaCliente(String cedula, String nombre, String apellido, String telefono) {
+		try {
+			fachada.altaNuevoCliente(cedula, nombre, apellido, telefono);
+			JOptionPane.showMessageDialog(null, "Se ha dado de alta correctamente");
+			new VentanaMenu().setVisible(true);
+		} catch (ClienteException e) {
+			JOptionPane.showMessageDialog(null, e.darMensaje());
+		} catch (RemoteException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
+		
 		
 	}
 

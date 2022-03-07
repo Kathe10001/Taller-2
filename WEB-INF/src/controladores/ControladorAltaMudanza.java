@@ -9,8 +9,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.http.HttpServlet;
+import javax.swing.JOptionPane;
 
 import grafica.VentanaAltaMudanza;
+import grafica.VentanaMenu;
 import logica.IFachada;
 import logica.excepciones.ClienteException;
 import logica.excepciones.MudanzaException;
@@ -37,19 +39,31 @@ public class ControladorAltaMudanza extends HttpServlet {
 			fachada = (IFachada) Naming.lookup(propiedades.getRutaFachada());
 		
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		} catch (NotBoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 	}
 	
 	public void altaMudanza(String horaInicioStr, String fechaMudanzaStr, String domicilioOrigen, String domicilioDestino, String cedula,
-			String codigoServicio) throws ClienteException, ServicioException, MudanzaException, RemoteException, ParseException {
+			String codigoServicio) {
 		
-		int horaInicio = Integer.parseInt(horaInicioStr);
-		Date fechaMudanza = new SimpleDateFormat("yyyy-MM-dd").parse(horaInicioStr);
-		fachada.altaMudanza(horaInicio, fechaMudanza, domicilioOrigen, domicilioDestino, cedula, codigoServicio);
+		try {
+			int horaInicio = Integer.parseInt(horaInicioStr);
+			Date fechaMudanza = new SimpleDateFormat("yyyy-MM-dd").parse(horaInicioStr);
+			fachada.altaMudanza(horaInicio, fechaMudanza, domicilioOrigen, domicilioDestino, cedula, codigoServicio);
+			JOptionPane.showMessageDialog(null, "Se ha dado de alta correctamente");
+			new VentanaMenu().setVisible(true);
+		} catch (ClienteException e) {
+			JOptionPane.showMessageDialog(null, e.darMensaje());
+		} catch (ServicioException e) {
+			JOptionPane.showMessageDialog(null, e.darMensaje());
+		} catch (MudanzaException e) {
+			JOptionPane.showMessageDialog(null, e.darMensaje());
+		} catch (RemoteException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		} catch (ParseException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
 	}
 }

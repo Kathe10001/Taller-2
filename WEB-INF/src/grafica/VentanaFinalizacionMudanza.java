@@ -97,18 +97,7 @@ public class VentanaFinalizacionMudanza extends JFrame {
 		btnAceptar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				try {
-			
-					controlador.f(lblCedula.getText(), lblNombre.getText(), lblApellido.getText(), lblTelefono.getText());
-					JOptionPane.showMessageDialog(null, "Se ha dado de alta correctamente");
-					new VentanaMenu().setVisible(true);
-				} catch (ClienteException e) {
-					JOptionPane.showMessageDialog(null, e.darMensaje());
-				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
-					JOptionPane.showMessageDialog(null, e.getMessage());
-				}
-				
+				//controlador.finalizacionMudanza(lblCedula.getText(), lblNombre.getText(), lblApellido.getText(), lblTelefono.getText());
 			}
 		});
 		btnAceptar.setBounds(278, 226, 117, 29);

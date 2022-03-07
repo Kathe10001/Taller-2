@@ -7,6 +7,7 @@ import java.rmi.RemoteException;
 import java.util.Date;
 
 import javax.servlet.http.HttpServlet;
+import javax.swing.JOptionPane;
 
 import grafica.VentanaMontoRecaudadoRangoFechas;
 import logica.IFachada;
@@ -34,11 +35,9 @@ public class ControladorMontoRecaudadoRangoFechas extends HttpServlet {
 			fachada = (IFachada) Naming.lookup(propiedades.getRutaFachada());
 		
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		} catch (NotBoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 	}
 	

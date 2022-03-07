@@ -126,21 +126,7 @@ public class VentanaAltaMudanza extends JFrame {
 		btnAceptar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				try {
-					controlador.altaMudanza(tfHoraInicio.getText(), tfFechaMudanza.getText(), tfDomicilioInicio.getText(), tfDomicilioDestino.getText(), tfCedulaCliente.getText(), tfCodigoServicio.getText());
-					JOptionPane.showMessageDialog(null, "Se ha dado de alta correctamente");
-					new VentanaMenu().setVisible(true);
-				} catch (ClienteException e) {
-					JOptionPane.showMessageDialog(null, e.darMensaje());
-				} catch (ServicioException e) {
-					JOptionPane.showMessageDialog(null, e.darMensaje());
-				} catch (MudanzaException e) {
-					JOptionPane.showMessageDialog(null, e.darMensaje());
-				} catch (RemoteException e) {
-					JOptionPane.showMessageDialog(null, e.getMessage());
-				} catch (ParseException e) {
-					JOptionPane.showMessageDialog(null, e.getMessage());
-				}
+				controlador.altaMudanza(tfHoraInicio.getText(), tfFechaMudanza.getText(), tfDomicilioInicio.getText(), tfDomicilioDestino.getText(), tfCedulaCliente.getText(), tfCodigoServicio.getText());
 			}
 		});
 		btnAceptar.setBounds(274, 255, 117, 29);

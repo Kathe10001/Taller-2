@@ -6,8 +6,10 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import javax.servlet.http.HttpServlet;
+import javax.swing.JOptionPane;
 
 import grafica.VentanaAltaServicio;
+import grafica.VentanaMenu;
 import logica.IFachada;
 import logica.excepciones.ServicioException;
 import persistencia.Propiedades;
@@ -32,21 +34,26 @@ public class ControladorAltaServicio extends HttpServlet {
 			fachada = (IFachada) Naming.lookup(propiedades.getRutaFachada());
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		} catch (NotBoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 	}
 	
-	public void nuevoServicio(boolean armadoMuebles, boolean embalaje, String costoXhoraStr, String distanciaKmStr,
-			String codigoServicio) throws RemoteException, ServicioException {
+	public void nuevoServicio(boolean armadoMuebles, boolean embalaje, String costoXhoraStr, String distanciaKmStr, String codigoServicio) {
 		
-		float costoXhora = Float.parseFloat(costoXhoraStr);  
-		float distanciaKm = Float.parseFloat(distanciaKmStr);  
-
-		fachada.nuevoServicio(armadoMuebles, embalaje, costoXhora, distanciaKm, codigoServicio);
+		 
+		try {
+			float costoXhora = Float.parseFloat(costoXhoraStr);  
+			float distanciaKm = Float.parseFloat(distanciaKmStr); 
+			fachada.nuevoServicio(armadoMuebles, embalaje, costoXhora, distanciaKm, codigoServicio);
+			JOptionPane.showMessageDialog(null, "Se ha guardado correctamente");
+			new VentanaMenu().setVisible(true);
+		} catch (RemoteException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		} catch (ServicioException e) {
+			JOptionPane.showMessageDialog(null, e.darMensaje());
+		}
 		
 	}
 }

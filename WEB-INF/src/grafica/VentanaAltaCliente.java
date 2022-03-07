@@ -101,17 +101,7 @@ public class VentanaAltaCliente extends JFrame {
 		btnAceptar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				try {
-					controlador.altaCliente(tfCedula.getText(), tfNombre.getText(), tfApellido.getText(), tfTelefono.getText());
-					JOptionPane.showMessageDialog(null, "Se ha dado de alta correctamente");
-					new VentanaMenu().setVisible(true);
-				} catch (ClienteException e) {
-					JOptionPane.showMessageDialog(null, e.darMensaje());
-				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
-					JOptionPane.showMessageDialog(null, e.getMessage());
-				}
-				
+				controlador.altaCliente(tfCedula.getText(), tfNombre.getText(), tfApellido.getText(), tfTelefono.getText());		
 			}
 		});
 		btnAceptar.setBounds(278, 226, 117, 29);

@@ -122,15 +122,8 @@ public class VentanaAltaServicio extends JFrame {
 		btnGuardar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {			
-				try {
-					controlador.nuevoServicio(rdArmadoSi.isSelected(), rdEmbalajeSi.isSelected(), tfCostoHora.getText(), tfDistanciaKm.getText(), tfCodigoServicio.getText());
-					JOptionPane.showMessageDialog(null, "Se ha guardado correctamente");
-					new VentanaMenu().setVisible(true);
-				} catch (RemoteException e) {
-					JOptionPane.showMessageDialog(null, e.getMessage());
-				} catch (ServicioException e) {
-					JOptionPane.showMessageDialog(null, e.darMensaje());
-				}
+				controlador.nuevoServicio(rdArmadoSi.isSelected(), rdEmbalajeSi.isSelected(), tfCostoHora.getText(), tfDistanciaKm.getText(), tfCodigoServicio.getText());
+					
 			}
 		});
 		btnGuardar.setBounds(275, 228, 117, 29);
