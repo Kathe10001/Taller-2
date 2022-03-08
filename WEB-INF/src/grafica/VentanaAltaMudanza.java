@@ -1,6 +1,5 @@
 package grafica;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -55,7 +54,6 @@ public class VentanaAltaMudanza extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaAltaMudanza() {
-		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(120, 100, 452, 334);
 		contentPane = new JPanel();

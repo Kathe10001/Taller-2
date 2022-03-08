@@ -1,8 +1,6 @@
 package grafica;
 
-import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -41,7 +39,6 @@ public class VentanaDetalleMudanza extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaDetalleMudanza() {
-		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(120, 100, 452, 484);
 		contentPane = new JPanel();
@@ -51,8 +48,6 @@ public class VentanaDetalleMudanza extends JFrame {
 		contentPane.setLayout(null);
 
 		JButton btnAceptar = new JButton("Buscar");
-		btnAceptar.setBackground(new Color(0, 204, 51));
-
 		btnAceptar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

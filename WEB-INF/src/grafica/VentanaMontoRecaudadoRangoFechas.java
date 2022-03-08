@@ -1,13 +1,9 @@
 package grafica;
 
-import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -47,7 +43,6 @@ public class VentanaMontoRecaudadoRangoFechas extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaMontoRecaudadoRangoFechas() {
-		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(120, 100, 452, 238);
 		contentPane = new JPanel();

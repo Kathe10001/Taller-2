@@ -2,11 +2,9 @@ package grafica;
 
 import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.rmi.RemoteException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,9 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import controladores.ControladorAltaMudanza;
 import controladores.ControladorAltaServicio;
-import logica.excepciones.ServicioException;
 
 public class VentanaAltaServicio extends JFrame {
 
@@ -50,7 +46,6 @@ public class VentanaAltaServicio extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaAltaServicio() {
-		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(120, 100, 452, 312);
 		contentPane = new JPanel();

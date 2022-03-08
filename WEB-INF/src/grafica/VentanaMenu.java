@@ -1,6 +1,5 @@
 package grafica;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
@@ -16,7 +15,6 @@ import javax.swing.JPanel;
 
 import controladores.ControladorMenu;
 import logica.excepciones.PersistenciaException;
-import javax.swing.UIManager;
 
 public class VentanaMenu extends JFrame {
 
@@ -41,8 +39,6 @@ public class VentanaMenu extends JFrame {
 
 
 	public VentanaMenu() {
-				
-		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(120, 100, 452, 536);
 		contentPane = new JPanel();
@@ -105,15 +101,42 @@ public class VentanaMenu extends JFrame {
 		btnDetalleMudanza.setBounds(40, 227, 356, 29);
 		contentPane.add(btnDetalleMudanza);
 		
-		JButton btnMontoRecaudadoPor = new JButton("Monto recaudado por rango de fechas");
-		btnMontoRecaudadoPor.addActionListener(new ActionListener() {
+		JButton btnMontoRecaudadoPorRangoFechas = new JButton("Monto recaudado por rango de fechas");
+		btnMontoRecaudadoPorRangoFechas.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new VentanaMontoRecaudadoRangoFechas().setVisible(true);
 			}
 		});
-		btnMontoRecaudadoPor.setBounds(40, 268, 356, 29);
-		contentPane.add(btnMontoRecaudadoPor);
+		btnMontoRecaudadoPorRangoFechas.setBounds(40, 268, 356, 29);
+		contentPane.add(btnMontoRecaudadoPorRangoFechas);
+		
+		JButton btnListadoClientes = new JButton("Listado de clientes");
+		btnListadoClientes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new VentanaListadoClientes().setVisible(true);
+			}
+		});
+		btnListadoClientes.setBounds(40, 309, 356, 29);
+		contentPane.add(btnListadoClientes);
+		
+		JButton btnListadoServicios = new JButton("Listado de servicios");
+		btnListadoClientes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new VentanaListadoServicios().setVisible(true);
+			}
+		});
+		btnListadoServicios.setBounds(40, 350, 356, 29);
+		contentPane.add(btnListadoServicios);
+		
+		JButton btnMudanzaPorFecha = new JButton("Listado de mudanzas por fecha");
+		btnListadoClientes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new VentanaListadoMudanzasPorFecha().setVisible(true);
+			}
+		});
+		btnMudanzaPorFecha.setBounds(40, 391, 356, 29);
+		contentPane.add(btnMudanzaPorFecha);
 		
 		JButton btnGuardar = new JButton("Guardar");
 		btnGuardar.addActionListener(new ActionListener() {
@@ -128,8 +151,7 @@ public class VentanaMenu extends JFrame {
 				}
 			}
 		});
-
-		btnGuardar.setBounds(40, 330, 135, 29);
+		btnGuardar.setBounds(40, 456, 135, 29);
 		contentPane.add(btnGuardar);
 		
 		JButton btnRestaurar = new JButton("Restaurar");
@@ -145,8 +167,7 @@ public class VentanaMenu extends JFrame {
 				}
 			}
 		});
-
-		btnRestaurar.setBounds(257, 330, 135, 29);
+		btnRestaurar.setBounds(261, 456, 135, 29);
 		contentPane.add(btnRestaurar);
 	}
 }

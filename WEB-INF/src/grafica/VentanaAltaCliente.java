@@ -1,11 +1,8 @@
 package grafica;
 
-import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.rmi.RemoteException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,8 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import controladores.ControladorAltaCliente;
-import controladores.ControladorMenu;
-import logica.excepciones.ClienteException;
 
 public class VentanaAltaCliente extends JFrame {
 
@@ -49,7 +44,6 @@ public class VentanaAltaCliente extends JFrame {
 	 * Create the frame.
 	 */
 	public VentanaAltaCliente() {
-		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(120, 100, 452, 334);
 		contentPane = new JPanel();
