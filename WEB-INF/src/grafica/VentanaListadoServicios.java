@@ -91,11 +91,14 @@ public class VentanaListadoServicios extends JFrame {
 		tfTelefono.setBounds(102, 165, 254, 26);
 		contentPane.add(tfTelefono);
 		
+		VentanaListadoServicios ventana = this;
+		
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				controlador.listadoServicios();		
+				controlador.listadoServicios();
+				ventana.dispose();
 			}
 		});
 		btnAceptar.setBounds(278, 226, 117, 29);
@@ -105,8 +108,7 @@ public class VentanaListadoServicios extends JFrame {
 		btnCancelar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Se ha cancelado la operación");
-				new VentanaMenu().setVisible(true);
+				ventana.dispose();
 			}
 		});
 		btnCancelar.setBounds(70, 226, 117, 29);

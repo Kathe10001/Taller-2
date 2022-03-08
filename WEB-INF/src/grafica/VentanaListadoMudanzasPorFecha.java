@@ -92,11 +92,14 @@ public class VentanaListadoMudanzasPorFecha extends JFrame {
 		tfTelefono.setBounds(102, 165, 254, 26);
 		contentPane.add(tfTelefono);
 		
+		VentanaListadoMudanzasPorFecha ventana = this;
+		
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				controlador.listadoMudanzasPorFecha("");		
+				controlador.listadoMudanzasPorFecha("");
+				ventana.dispose();
 			}
 		});
 		btnAceptar.setBounds(278, 226, 117, 29);
@@ -107,7 +110,7 @@ public class VentanaListadoMudanzasPorFecha extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, "Se ha cancelado la operación");
-				new VentanaMenu().setVisible(true);
+				ventana.dispose();
 			}
 		});
 		btnCancelar.setBounds(70, 226, 117, 29);

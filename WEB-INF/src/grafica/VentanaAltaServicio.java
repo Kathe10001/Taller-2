@@ -1,6 +1,5 @@
 package grafica;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
@@ -9,7 +8,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -113,12 +111,14 @@ public class VentanaAltaServicio extends JFrame {
 		tfCodigoServicio.setBounds(162, 182, 105, 20);
 		contentPane.add(tfCodigoServicio);
 		
+		VentanaAltaServicio ventana = this;
+		
 		JButton btnGuardar = new JButton("Guardar");
 		btnGuardar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {			
 				controlador.nuevoServicio(rdArmadoSi.isSelected(), rdEmbalajeSi.isSelected(), tfCostoHora.getText(), tfDistanciaKm.getText(), tfCodigoServicio.getText());
-					
+				ventana.dispose();
 			}
 		});
 		btnGuardar.setBounds(275, 228, 117, 29);
@@ -128,8 +128,7 @@ public class VentanaAltaServicio extends JFrame {
 		btnCancelar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Ha cancelado la operacion");
-				new VentanaMenu().setVisible(true);
+				ventana.dispose();
 			}
 		});
 		btnCancelar.setBounds(66, 228, 117, 29);

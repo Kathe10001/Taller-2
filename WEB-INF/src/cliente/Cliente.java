@@ -26,10 +26,11 @@ public class Cliente {
 	
 			Propiedades propiedades = new Propiedades();
 			IFachada fachada = (IFachada) Naming.lookup(propiedades.getRutaFachada());
-			fachada.nuevoServicio(true, false, 2, 200, "Nuevo");
+			//fachada.nuevoServicio(true, false, 2, 200, "Nuevo");
 			fachada.altaNuevoCliente("1", "A", "B", "dasd");
-			
-			Date desde = new Date();
+			fachada.altaNuevoCliente("1", "A", "B", "dasd");
+			fachada.listadoClientes().forEach(c -> System.out.print(c.getCedula()));
+			/*Date desde = new Date();
 			Date fecha = new Date();
 			fachada.altaMudanza(1, fecha, "dasd", "asdsad", "1", "Nuevo");
 			fachada.guardarCambios();
@@ -47,7 +48,7 @@ public class Cliente {
 	        Date hasta = calendar.getTime();        
 			float costo = fachada.montoRecaudado(desde, hasta);
 			
-			System.out.println("costo" + costo);
+			System.out.println("costo" + costo);*/
 
 		}
 		catch (MalformedURLException e) {

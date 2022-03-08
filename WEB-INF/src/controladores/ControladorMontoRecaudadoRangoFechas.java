@@ -38,9 +38,9 @@ public class ControladorMontoRecaudadoRangoFechas extends HttpServlet {
 			fachada = (IFachada) Naming.lookup(propiedades.getRutaFachada());
 		
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (NotBoundException e) {
-			JOptionPane.showMessageDialog(null, e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
@@ -50,11 +50,14 @@ public class ControladorMontoRecaudadoRangoFechas extends HttpServlet {
 		Date fechaFin = new SimpleDateFormat("yyyy-MM-dd").parse(fechaFinStr);
 		fachada.montoRecaudado(fechaInicio, fechaFin);
 		} catch (MudanzaException e) {
-			JOptionPane.showMessageDialog(null, e.darMensaje());
+			JOptionPane.showMessageDialog(null, e.darMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (RemoteException e) {
-			JOptionPane.showMessageDialog(null, e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (ParseException e) {
-			JOptionPane.showMessageDialog(null, e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+		} catch (Exception e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 

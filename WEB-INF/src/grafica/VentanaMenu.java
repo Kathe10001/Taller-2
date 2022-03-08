@@ -121,7 +121,7 @@ public class VentanaMenu extends JFrame {
 		contentPane.add(btnListadoClientes);
 		
 		JButton btnListadoServicios = new JButton("Listado de servicios");
-		btnListadoClientes.addActionListener(new ActionListener() {
+		btnListadoServicios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new VentanaListadoServicios().setVisible(true);
 			}
@@ -130,7 +130,7 @@ public class VentanaMenu extends JFrame {
 		contentPane.add(btnListadoServicios);
 		
 		JButton btnMudanzaPorFecha = new JButton("Listado de mudanzas por fecha");
-		btnListadoClientes.addActionListener(new ActionListener() {
+		btnMudanzaPorFecha.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new VentanaListadoMudanzasPorFecha().setVisible(true);
 			}
@@ -141,14 +141,7 @@ public class VentanaMenu extends JFrame {
 		JButton btnGuardar = new JButton("Guardar");
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
-				try {
-					controladorMenu.guardarCambios();
-					JOptionPane.showMessageDialog(null, "Se guardaron los datos");
-				} catch (PersistenciaException e) {
-					JOptionPane.showMessageDialog(null, e.darMensaje());
-				} catch (RemoteException e) {
-					JOptionPane.showMessageDialog(null, e.getMessage());
-				}
+				controladorMenu.guardarCambios();
 			}
 		});
 		btnGuardar.setBounds(40, 456, 135, 29);
@@ -157,14 +150,7 @@ public class VentanaMenu extends JFrame {
 		JButton btnRestaurar = new JButton("Restaurar");
 		btnRestaurar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
-				try {
-					controladorMenu.restaurarInformacion();
-					JOptionPane.showMessageDialog(null, "Se restauraron los datos");
-				} catch (PersistenciaException e) {
-					JOptionPane.showMessageDialog(null, e.darMensaje());
-				} catch (RemoteException e) {
-					JOptionPane.showMessageDialog(null, e.getMessage());
-				}
+				controladorMenu.restaurarInformacion();
 			}
 		});
 		btnRestaurar.setBounds(261, 456, 135, 29);

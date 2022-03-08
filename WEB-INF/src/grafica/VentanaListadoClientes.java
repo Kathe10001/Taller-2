@@ -50,6 +50,8 @@ public class VentanaListadoClientes extends JFrame {
 		lblIngreseUnNuevo.setBounds(143, 19, 221, 26);
 		contentPane.add(lblIngreseUnNuevo);
 		
+		VentanaListadoClientes ventana = this;
+		
 		JButton btnCargarDatos = new JButton("Cargar datos");
 		btnCargarDatos.addActionListener(new ActionListener() {
 			@Override
@@ -64,8 +66,7 @@ public class VentanaListadoClientes extends JFrame {
 		btnCancelar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Se ha cancelado la operación");
-				new VentanaMenu().setVisible(true);
+				ventana.dispose();
 			}
 		});
 		btnCancelar.setBounds(70, 226, 117, 29);

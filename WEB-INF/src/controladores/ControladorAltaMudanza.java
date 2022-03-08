@@ -39,9 +39,9 @@ public class ControladorAltaMudanza extends HttpServlet {
 			fachada = (IFachada) Naming.lookup(propiedades.getRutaFachada());
 		
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (NotBoundException e) {
-			JOptionPane.showMessageDialog(null, e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
@@ -50,20 +50,23 @@ public class ControladorAltaMudanza extends HttpServlet {
 		
 		try {
 			int horaInicio = Integer.parseInt(horaInicioStr);
-			Date fechaMudanza = new SimpleDateFormat("yyyy-MM-dd").parse(horaInicioStr);
+			Date fechaMudanza = new SimpleDateFormat("dd-MM-yyyy").parse(fechaMudanzaStr);
 			fachada.altaMudanza(horaInicio, fechaMudanza, domicilioOrigen, domicilioDestino, cedula, codigoServicio);
 			JOptionPane.showMessageDialog(null, "Se ha dado de alta correctamente");
-			new VentanaMenu().setVisible(true);
+		
 		} catch (ClienteException e) {
-			JOptionPane.showMessageDialog(null, e.darMensaje());
+			JOptionPane.showMessageDialog(null, e.darMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (ServicioException e) {
-			JOptionPane.showMessageDialog(null, e.darMensaje());
+			JOptionPane.showMessageDialog(null, e.darMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (MudanzaException e) {
-			JOptionPane.showMessageDialog(null, e.darMensaje());
+			JOptionPane.showMessageDialog(null, e.darMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (RemoteException e) {
-			JOptionPane.showMessageDialog(null, e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (ParseException e) {
-			JOptionPane.showMessageDialog(null, e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+		} catch (Exception e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

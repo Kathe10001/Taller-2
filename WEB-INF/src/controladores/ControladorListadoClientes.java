@@ -13,6 +13,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import grafica.VentanaListadoClientes;
+import grafica.VentanaMenu;
 import logica.IFachada;
 import logica.excepciones.ClienteException;
 import persistencia.Propiedades;
@@ -38,44 +39,45 @@ public class ControladorListadoClientes extends HttpServlet {
 			fachada = (IFachada) Naming.lookup(propiedades.getRutaFachada());
 		
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (NotBoundException e) {
-			JOptionPane.showMessageDialog(null, e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
 	public void listadoClientes() {	
 		try {
-			ArrayList<VOCliente> clientes = fachada.listadoClientes();
-			
-			String[] columnas = {"Cedula","Nombre" ,"Apellido", "Telefono"};
-			String[][] datos = null;
-			DefaultTableModel model= new DefaultTableModel(datos, columnas);
-			JTable tabla = new JTable(model);
-			tabla.setEnabled(false);
-			
-			JScrollPane scrollPane = new JScrollPane();
-			scrollPane.setBounds(0, 0, 434, 262);
-			ventana.getContentPane().add(scrollPane);
-			
-			System.out.print("ACA");
-			if(clientes != null && !clientes.isEmpty()) {
+				ArrayList<VOCliente> clientes = fachada.listadoClientes();
 				
-	
-				for (int i = 0; i < clientes.size(); i++) {
-					System.out.print(clientes.get(i).getCedula());
-					Object[] row = {clientes.get(i).getCedula(), clientes.get(i).getApellido(),clientes.get(i).getNombre(), clientes.get(i).getTelefono()};
-					DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
-					modelo.addRow(row);
-				}			
-			}
-			
-			scrollPane.setViewportView(tabla);
-			
+				String[] columnas = {"Cedula","Nombre" ,"Apellido", "Telefono"};
+				String[][] datos = null;
+				DefaultTableModel model= new DefaultTableModel(datos, columnas);
+				JTable tabla = new JTable(model);
+				tabla.setEnabled(false);
+				
+				JScrollPane scrollPane = new JScrollPane();
+				scrollPane.setBounds(25, 55, 400, 150);
+				ventana.getContentPane().add(scrollPane);
+				
+				if(clientes != null && !clientes.isEmpty()) {
+					
+		
+					for (int i = 0; i < clientes.size(); i++) {
+						Object[] row = {clientes.get(i).getCedula(), clientes.get(i).getApellido(),clientes.get(i).getNombre(), clientes.get(i).getTelefono()};
+						DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+						modelo.addRow(row);
+					}			
+				}
+				
+				scrollPane.setViewportView(tabla);
+				
 		} catch (RemoteException e) {
-			JOptionPane.showMessageDialog(null, e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (ClienteException e) {
-			JOptionPane.showMessageDialog(null, e.darMensaje());
+			JOptionPane.showMessageDialog(null, e.darMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
+		} catch (Exception e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 

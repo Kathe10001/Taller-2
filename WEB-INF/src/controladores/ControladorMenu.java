@@ -6,6 +6,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import javax.servlet.http.HttpServlet;
+import javax.swing.JOptionPane;
 
 import grafica.VentanaMenu;
 import logica.IFachada;
@@ -32,20 +33,35 @@ public class ControladorMenu extends HttpServlet {
 			fachada = (IFachada) Naming.lookup(propiedades.getRutaFachada());
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (NotBoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
-	public void restaurarInformacion () throws PersistenciaException, RemoteException {
-		fachada.restaurarInformacion();
+	public void restaurarInformacion () {
+		try {
+			fachada.restaurarInformacion();
+			JOptionPane.showMessageDialog(null, "Se restauraron los datos");
+		} catch (PersistenciaException e) {
+			JOptionPane.showMessageDialog(null, e.darMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
+		} catch (RemoteException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 	
-	public void guardarCambios () throws PersistenciaException, RemoteException {
-		fachada.guardarCambios();
+	public void guardarCambios () {
+		try {
+			fachada.guardarCambios();
+			JOptionPane.showMessageDialog(null, "Se guardaron los datos");
+		} catch (PersistenciaException e) {
+			JOptionPane.showMessageDialog(null, e.darMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
+		} catch (RemoteException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+		} catch (Exception e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 }
 

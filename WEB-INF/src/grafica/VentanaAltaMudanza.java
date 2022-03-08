@@ -66,16 +66,16 @@ public class VentanaAltaMudanza extends JFrame {
 		lblIngreseLosDatos.setBounds(176, 14, 142, 19);
 		contentPane.add(lblIngreseLosDatos);
 
-		JLabel lblFechaMudanza = new JLabel("Fecha de mudanza");
-		lblFechaMudanza.setBounds(11, 50, 132, 16);
+		JLabel lblFechaMudanza = new JLabel("Fecha de mudanza dd-mm-yyyy");
+		lblFechaMudanza.setBounds(11, 50, 216, 16);
 		contentPane.add(lblFechaMudanza);
-
+		
 		JLabel lblHoraInicio = new JLabel("Hora de inicio");
 		lblHoraInicio.setBounds(11, 81, 93, 16);
 		contentPane.add(lblHoraInicio);
 
 		tfFechaMudanza = new JTextField();
-		tfFechaMudanza.setBounds(175, 45, 206, 26);
+		tfFechaMudanza.setBounds(239, 45, 142, 26);
 		contentPane.add(tfFechaMudanza);
 		tfFechaMudanza.setColumns(10);
 
@@ -120,11 +120,14 @@ public class VentanaAltaMudanza extends JFrame {
 		lblCedulaCliente.setBounds(11, 209, 132, 16);
 		contentPane.add(lblCedulaCliente);
 		
+		VentanaAltaMudanza ventana = this;
+		
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				controlador.altaMudanza(tfHoraInicio.getText(), tfFechaMudanza.getText(), tfDomicilioInicio.getText(), tfDomicilioDestino.getText(), tfCedulaCliente.getText(), tfCodigoServicio.getText());
+				ventana.dispose();
 			}
 		});
 		btnAceptar.setBounds(274, 255, 117, 29);
@@ -134,8 +137,7 @@ public class VentanaAltaMudanza extends JFrame {
 		btnCancelar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Se ha cancelado la operacion");
-				new VentanaMenu().setVisible(true);
+				ventana.dispose();
 			}
 		});
 		btnCancelar.setBounds(65, 255, 117, 29);

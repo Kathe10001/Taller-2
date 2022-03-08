@@ -1,5 +1,6 @@
 package grafica;
 
+import java.awt.Container;
 import java.awt.EventQueue;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
@@ -12,12 +13,26 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import controladores.ControladorAltaServicio;
+import controladores.ControladorDetalleMudanza;
+import valueObjects.VOMudanzaDetallado;
+
 public class VentanaDetalleMudanza extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField txtCodigoServicio;
-
+	private JTextField txtCodigoMudanza;
+	private ControladorDetalleMudanza controlador = new ControladorDetalleMudanza(this);
+	private JLabel lblHoraInicioRes;
+	private JLabel lblFechaMudanzaRes;
+	private JLabel lblDomicilioInicioRes;
+	private JLabel lblDomicilioDestinoRes;
+	private JLabel lblCodigoServicioRes;
+	private JLabel lblCedulaClienteRes;
+	private JLabel lblNombreClienteRes;
+	private JLabel lblApellidoClienteRes;
+	private JLabel lblTelefonoClienteRes;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -47,28 +62,6 @@ public class VentanaDetalleMudanza extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JButton btnAceptar = new JButton("Buscar");
-		btnAceptar.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "El costo de la mudanza es: $...");
-				new VentanaMenu().setVisible(true);
-			}
-		});
-		btnAceptar.setBounds(277, 405, 117, 29);
-		contentPane.add(btnAceptar);
-
-		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Se ha cancelado la operacion");
-				new VentanaMenu().setVisible(true);
-			}
-		});
-		btnCancelar.setBounds(68, 405, 117, 29);
-		contentPane.add(btnCancelar);
-
 		JLabel lblIngreseLosDatos =  new JLabel("Detalle de mudanza");
 		lblIngreseLosDatos.setBounds(152, 17, 240, 28);
 		contentPane.add(lblIngreseLosDatos);
@@ -77,10 +70,10 @@ public class VentanaDetalleMudanza extends JFrame {
 		lblCodigoMudanza.setBounds(11, 71, 154, 16);
 		contentPane.add(lblCodigoMudanza);
 
-		txtCodigoServicio = new JTextField();
-		txtCodigoServicio.setColumns(10);
-		txtCodigoServicio.setBounds(190, 71, 202, 26);
-		contentPane.add(txtCodigoServicio);
+		txtCodigoMudanza = new JTextField();
+		txtCodigoMudanza.setColumns(10);
+		txtCodigoMudanza.setBounds(190, 71, 202, 26);
+		contentPane.add(txtCodigoMudanza);
 		
 		JLabel lblFechaMudanza = new JLabel("Fecha de mudanza");
 		lblFechaMudanza.setBounds(11, 103, 154, 16);
@@ -118,40 +111,77 @@ public class VentanaDetalleMudanza extends JFrame {
 		lblTelefonoCliente.setBounds(11, 358, 129, 16);
 		contentPane.add(lblTelefonoCliente);
 		
-		JLabel lblFechaMudanzaRes = new JLabel("-");
+		lblFechaMudanzaRes = new JLabel("-");
 		lblFechaMudanzaRes.setBounds(190, 103, 154, 16);
 		contentPane.add(lblFechaMudanzaRes);
 		
-		JLabel lblHoraInicioRes = new JLabel("-");
+		lblHoraInicioRes = new JLabel("-");
 		lblHoraInicioRes.setBounds(190, 134, 154, 16);
 		contentPane.add(lblHoraInicioRes);
 		
-		JLabel lblDomicilioInicioRes = new JLabel("-");
+		lblDomicilioInicioRes = new JLabel("-");
 		lblDomicilioInicioRes.setBounds(190, 165, 154, 16);
 		contentPane.add(lblDomicilioInicioRes);
 		
-		JLabel lblDomicilioDestinoRes = new JLabel("-");
+		lblDomicilioDestinoRes = new JLabel("-");
 		lblDomicilioDestinoRes.setBounds(190, 198, 154, 16);
 		contentPane.add(lblDomicilioDestinoRes);
 		
-		JLabel lblCodigoServicioRes = new JLabel("-");
+		lblCodigoServicioRes = new JLabel("-");
 		lblCodigoServicioRes.setBounds(190, 230, 154, 16);
 		contentPane.add(lblCodigoServicioRes);
 		
-		JLabel lblCedulaClienteRes = new JLabel("-");
+		lblCedulaClienteRes = new JLabel("-");
 		lblCedulaClienteRes.setBounds(190, 262, 154, 16);
 		contentPane.add(lblCedulaClienteRes);
 		
-		JLabel lblNombreClienteRes = new JLabel("-");
+		lblNombreClienteRes = new JLabel("-");
 		lblNombreClienteRes.setBounds(190, 294, 154, 16);
 		contentPane.add(lblNombreClienteRes);
 		
-		JLabel lblApellidoClienteRes = new JLabel("-");
+		lblApellidoClienteRes = new JLabel("-");
 		lblApellidoClienteRes.setBounds(190, 326, 154, 16);
 		contentPane.add(lblApellidoClienteRes);
 		
-		JLabel lblTelefonoClienteRes = new JLabel("-");
+		lblTelefonoClienteRes = new JLabel("-");
 		lblTelefonoClienteRes.setBounds(190, 358, 154, 16);
 		contentPane.add(lblTelefonoClienteRes);
+		
+		VentanaDetalleMudanza ventana = this;
+		
+		JButton btnAceptar = new JButton("Buscar");
+		btnAceptar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controlador.detalleMudanza(txtCodigoMudanza.getText());
+			}
+		});
+		btnAceptar.setBounds(277, 405, 117, 29);
+		contentPane.add(btnAceptar);
+
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ventana.dispose();
+			}
+		});
+		btnCancelar.setBounds(68, 405, 117, 29);
+		contentPane.add(btnCancelar);
+	
+	}
+	
+	public void mostrarDetalle(VOMudanzaDetallado detalleMudanza) {
+		
+		lblFechaMudanzaRes.setText(detalleMudanza.getFechaMudanza().toString());
+		lblHoraInicioRes.setText(String.valueOf(detalleMudanza.getHoraInicio()));
+		lblDomicilioInicioRes.setText(detalleMudanza.getDomicilioOrigen());
+		lblDomicilioDestinoRes.setText(detalleMudanza.getDomicilioDestino());
+		lblCodigoServicioRes.setText(detalleMudanza.getCodigoServicio());
+		lblCedulaClienteRes.setText(detalleMudanza.getCedula());
+		lblNombreClienteRes.setText(detalleMudanza.getNombre());
+		lblApellidoClienteRes.setText(detalleMudanza.getApellido());
+		lblTelefonoClienteRes.setText(detalleMudanza.getTelefono());
+	
 	}
 }

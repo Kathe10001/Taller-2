@@ -34,9 +34,9 @@ public class ControladorAltaServicio extends HttpServlet {
 			fachada = (IFachada) Naming.lookup(propiedades.getRutaFachada());
 
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (NotBoundException e) {
-			JOptionPane.showMessageDialog(null, e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
@@ -48,11 +48,14 @@ public class ControladorAltaServicio extends HttpServlet {
 			float distanciaKm = Float.parseFloat(distanciaKmStr); 
 			fachada.nuevoServicio(armadoMuebles, embalaje, costoXhora, distanciaKm, codigoServicio);
 			JOptionPane.showMessageDialog(null, "Se ha guardado correctamente");
-			new VentanaMenu().setVisible(true);
+			
 		} catch (RemoteException e) {
-			JOptionPane.showMessageDialog(null, e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (ServicioException e) {
-			JOptionPane.showMessageDialog(null, e.darMensaje());
+			JOptionPane.showMessageDialog(null, e.darMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
+		} catch (Exception e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 		
 	}

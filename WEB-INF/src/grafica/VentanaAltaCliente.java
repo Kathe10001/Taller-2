@@ -91,11 +91,14 @@ public class VentanaAltaCliente extends JFrame {
 		tfTelefono.setBounds(102, 165, 254, 26);
 		contentPane.add(tfTelefono);
 		
+		VentanaAltaCliente ventana = this;
+		
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				controlador.altaCliente(tfCedula.getText(), tfNombre.getText(), tfApellido.getText(), tfTelefono.getText());		
+				controlador.altaCliente(tfCedula.getText(), tfNombre.getText(), tfApellido.getText(), tfTelefono.getText());
+				ventana.dispose();
 			}
 		});
 		btnAceptar.setBounds(278, 226, 117, 29);
@@ -105,8 +108,7 @@ public class VentanaAltaCliente extends JFrame {
 		btnCancelar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Se ha cancelado la operación");
-				new VentanaMenu().setVisible(true);
+				ventana.dispose();
 			}
 		});
 		btnCancelar.setBounds(70, 226, 117, 29);

@@ -72,6 +72,8 @@ public class VentanaMontoRecaudadoRangoFechas extends JFrame {
 		txtFechaFin.setBounds(151, 113, 254, 26);
 		contentPane.add(txtFechaFin);
 		
+		VentanaMontoRecaudadoRangoFechas ventana = this;
+		
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
 			@Override
@@ -84,7 +86,7 @@ public class VentanaMontoRecaudadoRangoFechas extends JFrame {
 				}
 				////VER COMO PASAR EL MONTO QUE  CALCULA monto.Recaudado
 				JOptionPane.showMessageDialog(null, "El monto recaudado es $");
-				new VentanaMenu().setVisible(true);
+				ventana.dispose();
 			}
 		});
 		btnAceptar.setBounds(272, 161, 117, 29);
@@ -95,7 +97,7 @@ public class VentanaMontoRecaudadoRangoFechas extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, "Se ha cancelado la operacion");
-				new VentanaMenu().setVisible(true);
+				ventana.dispose();
 			}
 		});
 		btnCancelar.setBounds(63, 161, 117, 29);
