@@ -83,7 +83,7 @@ public class VentanaFinalizacionMudanza extends JFrame {
 		btnFinalizar.setBounds(261, 226, 145, 29);
 		contentPane.add(btnFinalizar);
 		
-		JButton btnCancelar = new JButton("Cancelar");
+		JButton btnCancelar = new JButton("Cerrar");
 		btnCancelar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

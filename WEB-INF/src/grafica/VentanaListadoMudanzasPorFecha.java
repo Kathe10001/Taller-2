@@ -72,7 +72,7 @@ public class VentanaListadoMudanzasPorFecha extends JFrame {
 		btnCargarDatos.setBounds(278, 226, 117, 29);
 		contentPane.add(btnCargarDatos);
 
-		JButton btnCancelar = new JButton("Cancelar");
+		JButton btnCancelar = new JButton("Cerrar");
 		btnCancelar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

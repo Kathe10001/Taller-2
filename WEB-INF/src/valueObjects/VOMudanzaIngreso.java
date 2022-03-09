@@ -18,14 +18,14 @@ public class VOMudanzaIngreso extends VOMudanza implements Serializable {
 	public VOMudanzaIngreso() {
 	}
 
-	public VOMudanzaIngreso(int numContratacion, int horaInicio, Date fechaMudanza, String domicilioOrigen, String domicilioDestino) {
+	public VOMudanzaIngreso(int numContratacion, Date horaInicio, Date fechaMudanza, String domicilioOrigen, String domicilioDestino) {
 		super(numContratacion, horaInicio);
 		this.fechaMudanza = fechaMudanza;
 		this.domicilioOrigen = domicilioOrigen;
 		this.domicilioDestino = domicilioDestino;
 	}
 
-	public VOMudanzaIngreso(int numContratacion, int horaInicio, Date fechaMudanza, String domicilioOrigen, String domicilioDestino, float duracionTotal) {
+	public VOMudanzaIngreso(int numContratacion, Date horaInicio, Date fechaMudanza, String domicilioOrigen, String domicilioDestino, float duracionTotal) {
 		super(numContratacion, horaInicio);
 		this.fechaMudanza = fechaMudanza;
 		this.domicilioOrigen = domicilioOrigen;

@@ -19,7 +19,7 @@ public class Mudanza implements Serializable{
 
 	private int numContratacion;
 
-	private int horaInicio;
+	private Date horaInicio;
 
 	private boolean finalizacion;
 
@@ -27,7 +27,7 @@ public class Mudanza implements Serializable{
 
 	private Servicio servicio;
 
-	public Mudanza(int numContratacion, int horaInicio, Date fechaMudanza, String domicilioOrigen, String domiciloDestino, Cliente cliente, Servicio servicio) {
+	public Mudanza(int numContratacion, Date horaInicio, Date fechaMudanza, String domicilioOrigen, String domiciloDestino, Cliente cliente, Servicio servicio) {
 		super();
 		this.fechaMudanza = fechaMudanza;
 		this.domicilioOrigen = domicilioOrigen;
@@ -35,7 +35,6 @@ public class Mudanza implements Serializable{
 		this.numContratacion = numContratacion;
 		this.horaInicio = horaInicio;
 		this.numContratacion = numContratacion;
-		this.horaInicio = horaInicio;
 		this.cliente = cliente;
 		this.servicio = servicio;
 
@@ -82,11 +81,11 @@ public class Mudanza implements Serializable{
 		this.numContratacion = numContratacion;
 	}
 
-	public int getHoraInicio() {
+	public Date getHoraInicio() {
 		return horaInicio;
 	}
 
-	public void setHoraInicio(int horaInicio) {
+	public void setHoraInicio(Date horaInicio) {
 		this.horaInicio = horaInicio;
 	}
 

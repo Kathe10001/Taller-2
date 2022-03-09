@@ -21,7 +21,7 @@ public class VOMudanzaDetallado extends VOMudanzaIngreso implements Serializable
 
 	}
 
-	public VOMudanzaDetallado(int numContratacion, int horaInicio, Date fechaMudanza, String domicilioOrigen,
+	public VOMudanzaDetallado(int numContratacion, Date horaInicio, Date fechaMudanza, String domicilioOrigen,
 			String domicilioDestino, String cedula, String nombre, String apellido, String telefono, String codigoServicio) {
 		super(numContratacion, horaInicio, fechaMudanza, domicilioOrigen, domicilioDestino);
 		this.cedula = cedula;
@@ -31,7 +31,7 @@ public class VOMudanzaDetallado extends VOMudanzaIngreso implements Serializable
 		this.codigoServicio = codigoServicio;
 	}
 
-	public VOMudanzaDetallado(int numContratacion, int horaInicio, Date fechaMudanza, String domicilioOrigen,
+	public VOMudanzaDetallado(int numContratacion, Date horaInicio, Date fechaMudanza, String domicilioOrigen,
 			String domicilioDestino, float duracionTotal, String cedula, String nombre, String apellido, String telefono, String codigoServicio) {
 		super(numContratacion, horaInicio, fechaMudanza, domicilioOrigen, domicilioDestino, duracionTotal);
 		this.cedula = cedula;

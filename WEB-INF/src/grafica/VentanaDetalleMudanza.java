@@ -183,7 +183,7 @@ public class VentanaDetalleMudanza extends JFrame {
 		btnAceptar.setBounds(277, 405, 117, 29);
 		contentPane.add(btnAceptar);
 
-		JButton btnCancelar = new JButton("Cancelar");
+		JButton btnCancelar = new JButton("Cerrar");
 		btnCancelar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -197,13 +197,16 @@ public class VentanaDetalleMudanza extends JFrame {
 	
 	public void mostrarDetalle(VOMudanzaDetallado detalleMudanza) {
 		 DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");  
+		 DateFormat timeFormat = new SimpleDateFormat("hh:mm");
+		 
 	     String strDate = dateFormat.format(detalleMudanza.getFechaMudanza()); 
+	     String strHora = timeFormat.format(detalleMudanza.getHoraInicio()); 
          String duracionTotal = String.valueOf(detalleMudanza.getDuracionTotal());
          String numeroContratacion = String.valueOf(detalleMudanza.getNumContratacion());
          String finalizacion = detalleMudanza.isFinalizacion() ? "Finalizada" : "No finalizada";
 	     
 		lblFechaMudanzaRes.setText(strDate);
-		lblHoraInicioRes.setText(String.valueOf(detalleMudanza.getHoraInicio()));
+		lblHoraInicioRes.setText(strHora);
 		lblDomicilioInicioRes.setText(detalleMudanza.getDomicilioOrigen());
 		lblDomicilioDestinoRes.setText(detalleMudanza.getDomicilioDestino());
 		lblDuracionTotalRes.setText(duracionTotal);

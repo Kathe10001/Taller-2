@@ -1,6 +1,7 @@
 package valueObjects;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class VOMudanza implements Serializable {
 
@@ -8,7 +9,7 @@ public class VOMudanza implements Serializable {
 	
 	 private int numContratacion;
 
-	 private int horaInicio;
+	 private Date horaInicio;
 
 	 private boolean finalizacion;
 
@@ -18,7 +19,7 @@ public class VOMudanza implements Serializable {
 		}
 
 
-	public VOMudanza(int numContratacion, int horaInicio) {
+	public VOMudanza(int numContratacion, Date horaInicio) {
 		this.numContratacion = numContratacion;
 		this.horaInicio = horaInicio;
 		this.finalizacion = false;
@@ -32,11 +33,11 @@ public class VOMudanza implements Serializable {
 		this.numContratacion = numContratacion;
 	}
 
-	public int getHoraInicio() {
+	public Date getHoraInicio() {
 		return horaInicio;
 	}
 
-	public void setHoraInicio(int horaInicio) {
+	public void setHoraInicio(Date horaInicio) {
 		this.horaInicio = horaInicio;
 	}
 

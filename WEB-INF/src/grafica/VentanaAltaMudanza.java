@@ -58,8 +58,8 @@ public class VentanaAltaMudanza extends JFrame {
 		lblFechaMudanza.setBounds(11, 50, 216, 16);
 		contentPane.add(lblFechaMudanza);
 		
-		JLabel lblHoraInicio = new JLabel("Hora de inicio 24hs mmss");
-		lblHoraInicio.setBounds(11, 81, 93, 16);
+		JLabel lblHoraInicio = new JLabel("Hora de inicio hh:mm");
+		lblHoraInicio.setBounds(11, 81, 152, 16);
 		contentPane.add(lblHoraInicio);
 
 		tfFechaMudanza = new JTextField();
@@ -120,7 +120,7 @@ public class VentanaAltaMudanza extends JFrame {
 		btnAceptar.setBounds(274, 255, 117, 29);
 		contentPane.add(btnAceptar);
 
-		JButton btnCancelar = new JButton("Cancelar");
+		JButton btnCancelar = new JButton("Cerrar");
 		btnCancelar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

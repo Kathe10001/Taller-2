@@ -41,7 +41,7 @@ public interface IFachada extends Remote{
 	  Se debe verificar  que haya al menos dos horas de separaci�n entre la hora de inicio
 	  de la nueva  contrataci�n y de las otras contrataciones registradas en esa fecha.
 	*/
-	void altaMudanza(int horaInicio, Date fechaMudanza, String domicilioOrigen, String domicilioDestino, String cedula,
+	void altaMudanza(Date horaInicio, Date fechaMudanza, String domicilioOrigen, String domicilioDestino, String cedula,
 			String codigoServicio) throws ClienteException, ServicioException, MudanzaException, RemoteException;
 
 	/*5 - Finalizaci�n de nuevo servicio de mudanza: Dado el n�mero que identifica a una

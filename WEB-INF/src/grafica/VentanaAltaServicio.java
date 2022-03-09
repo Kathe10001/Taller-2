@@ -123,7 +123,7 @@ public class VentanaAltaServicio extends JFrame {
 		btnGuardar.setBounds(275, 228, 117, 29);
 		contentPane.add(btnGuardar);
 
-		JButton btnCancelar = new JButton("Cancelar");
+		JButton btnCancelar = new JButton("Cerrar");
 		btnCancelar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

@@ -114,7 +114,7 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 	  de la nueva  contrataci�n y de las otras contrataciones registradas en esa fecha.
 	*/
 	@Override
-	public void altaMudanza(int horaInicio, Date fechaMudanza, String domicilioOrigen,
+	public void altaMudanza(Date horaInicio, Date fechaMudanza, String domicilioOrigen,
 			String domicilioDestino, String cedula, String codigoServicio) throws ClienteException, ServicioException, MudanzaException, RemoteException {
 
 		this.monitor.comienzoEscritura();
@@ -149,14 +149,21 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 					
 				} else {
 					List<VOMudanzaDetallado> resultado = mudanzas.stream()
-							.filter(m -> (horaInicio - m.getHoraInicio()) >= 2)
+							.filter(m -> {
+								
+								long diferencia = horaInicio.getTime() - m.getHoraInicio().getTime();
+								
+								long diferenciaHoras = diferencia / (60 * 60 * 1000) % 24;
+								
+								return diferenciaHoras < 2;
+										})
 							.collect(Collectors.toList());
 					
-					if(!resultado.isEmpty()) {				
+					if(resultado.isEmpty()) {				
 						this.mudanzas.insert(mudanza);
 					} else {
 						this.monitor.terminoEscritura();
-						throw new MudanzaException("TIene que haber al menos 2 hs de diferencia con respecto a la ultima mudanza del dia");
+						throw new MudanzaException("TIene que haber al menos 2 hs de diferencia con respecto las demas mudanzas para la fecha ingresada");
 					}
 				}
 
