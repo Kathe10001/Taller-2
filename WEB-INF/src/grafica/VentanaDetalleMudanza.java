@@ -200,7 +200,7 @@ public class VentanaDetalleMudanza extends JFrame {
 	     String strDate = dateFormat.format(detalleMudanza.getFechaMudanza()); 
          String duracionTotal = String.valueOf(detalleMudanza.getDuracionTotal());
          String numeroContratacion = String.valueOf(detalleMudanza.getNumContratacion());
-         String finalizacion = String.valueOf(detalleMudanza.isFinalizacion());
+         String finalizacion = detalleMudanza.isFinalizacion() ? "Finalizada" : "No finalizada";
 	     
 		lblFechaMudanzaRes.setText(strDate);
 		lblHoraInicioRes.setText(String.valueOf(detalleMudanza.getHoraInicio()));

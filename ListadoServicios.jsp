@@ -30,8 +30,8 @@
 					<td> ${i.codigo} </td>
 					<td> ${i.distanciaKm} </td>
 					<td> ${i.costoXhora} </td>
-					<td> ${i.embalaje} </td>
-					<td> ${i.armadoMuebles} </td>
+					<td> ${i.embalaje ? "Si" : "No"} </td>
+					<td> ${i.armadoMuebles ? "Si" : "No"} </td>
 				</tr>
 			</c:forEach>					
 	</table>

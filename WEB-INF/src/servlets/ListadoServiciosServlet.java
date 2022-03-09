@@ -42,7 +42,7 @@ public class ListadoServiciosServlet extends HttpServlet {
 
 			IFachada fachada = (IFachada) Naming.lookup(ruta);
 			servicios = fachada.listadoServicios();
-			if (servicios != null && servicios.isEmpty()) {
+			if (servicios == null || servicios.isEmpty()) {
 				msgError = "No hay datos de servicios";
 			} else {
 				error = false;

@@ -62,7 +62,10 @@ public class ControladorListadoServicios extends HttpServlet {
 				
 	
 				for (int i = 0; i < servicios.size(); i++) {
-					Object[] row = {servicios.get(i).getCodigo(), servicios.get(i).isArmadoMuebles(),servicios.get(i).isEmbalaje(), servicios.get(i).getCostoXhora(), servicios.get(i).getDistanciaKm()};
+					String embalaje = servicios.get(i).isEmbalaje() ? "Si" : "No";
+					String armado = servicios.get(i).isArmadoMuebles() ? "Si" : "No";
+					
+					Object[] row = {servicios.get(i).getCodigo(), armado, embalaje, servicios.get(i).getCostoXhora(), servicios.get(i).getDistanciaKm()};
 					DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
 					modelo.addRow(row);
 				}			

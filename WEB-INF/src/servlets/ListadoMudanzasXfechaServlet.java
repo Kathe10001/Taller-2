@@ -58,7 +58,7 @@ public class ListadoMudanzasXfechaServlet extends HttpServlet {
 			
 			mudanzas = fachada.listadoMudanzasXfecha(fecha);
 	
-			if (mudanzas.isEmpty()) {
+			if (mudanzas == null || mudanzas.isEmpty()) {
 				msgError = "No hay datos de mudanzas para la fecha: " + new SimpleDateFormat("dd-MM-yyyy").format(fecha);
 			} else {
 				error = false;

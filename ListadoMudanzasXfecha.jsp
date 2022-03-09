@@ -34,6 +34,7 @@
 			<td><b> Domicilio Destino </b></td>
 			<td><b> Duración Total </b></td>
 			<td><b> Código Servicio </b></td>
+			<td><b> Estado </b></td>
 		</tr>
 	
 		<c:forEach items="${mudanzas}" var="i" >
@@ -45,6 +46,7 @@
 				<td> ${i.domicilioDestino} </td>
 				<td> ${i.duracionTotal} </td>
 				<td> ${i.codigoServicio} </td>
+				<td> ${i.finalizada ? "Finalizada" : "No finalizada"} </td>
 			</tr>
 		</c:forEach>					
 	</table>

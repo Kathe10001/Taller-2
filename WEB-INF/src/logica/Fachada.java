@@ -95,7 +95,7 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 		ArrayList<VOCliente> clientes = null;
 		this.monitor.comienzoLectura();
 		clientes = this.clientes.listarClientes();
-		if(clientes == null) {
+		if(clientes == null || this.clientes.esVacia()) {
 			this.monitor.terminoLectura();
 			throw new ClienteException("No hay clientes");
 		}
@@ -209,11 +209,22 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 	@Override
 	public VOMudanzaDetallado detalleMudanza(int codigoMudanza) throws RemoteException, MudanzaException {
 		this.monitor.comienzoLectura();
-		Mudanza mudanza = this.mudanzas.get(codigoMudanza);
-		if(mudanza == null) {
+		
+		Mudanza mudanza = null; 
+		try {
+			
+			mudanza = this.mudanzas.get(codigoMudanza);
+			if(mudanza == null) {
+				this.monitor.terminoLectura();
+				throw new MudanzaException("No hay una mudanza con el código" + codigoMudanza);
+			}
+			
+		} catch (IndexOutOfBoundsException e) {
 			this.monitor.terminoLectura();
 			throw new MudanzaException("No hay una mudanza con el código" + codigoMudanza);
 		}
+		
+		  
 		this.monitor.terminoLectura();
 		return mudanza.toVO();
 	}
