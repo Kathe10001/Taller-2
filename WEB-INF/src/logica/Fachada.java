@@ -59,7 +59,7 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 			this.servicios.insert(nuevoServicio);
 		} else {
 			this.monitor.terminoEscritura();
-			throw new ServicioException("Ya existe un servicio con el código: " + codigoServicio);
+			throw new ServicioException("Ya existe un servicio con el codigo: " + codigoServicio);
 		}
 		this.monitor.terminoEscritura();
 	}
@@ -80,7 +80,7 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 				this.clientes.insert(nuevoCliente);
 			} else {
 				this.monitor.terminoEscritura();
-				throw new ClienteException("Ya existe un cliente con la cédula: " + cedula);
+				throw new ClienteException("Ya existe un cliente con la cedula: " + cedula);
 			}
 		}
 		this.monitor.terminoEscritura();
@@ -181,7 +181,7 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 		Mudanza mudanza = this.mudanzas.get(codigoMudanza);
 		if(mudanza == null) {
 			this.monitor.terminoEscritura();
-			throw new MudanzaException("No existe una mudanza para el código" + codigoMudanza);
+			throw new MudanzaException("No existe una mudanza para el codigo" + codigoMudanza);
 		} else {
 			if(mudanza.isFinalizacion()) {
 				this.monitor.terminoEscritura();
@@ -212,7 +212,7 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 		Mudanza mudanza = this.mudanzas.get(codigoMudanza);
 		if(mudanza == null) {
 			this.monitor.terminoLectura();
-			throw new MudanzaException("No hay una mudanza con el código" + codigoMudanza);
+			throw new MudanzaException("No hay una mudanza con el codigo" + codigoMudanza);
 		}
 		this.monitor.terminoLectura();
 		return mudanza.toVO();
