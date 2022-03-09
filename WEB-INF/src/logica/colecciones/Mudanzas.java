@@ -42,7 +42,7 @@ public class Mudanzas implements Serializable {
 	}
 
 	public Mudanza get(int codigo) {
-		return this.mudanzas.get(codigo);
+		return this.mudanzas.get(codigo - 1);
 	}
 
 	public Mudanza getUltimo() {

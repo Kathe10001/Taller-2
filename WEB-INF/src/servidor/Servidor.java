@@ -1,6 +1,5 @@
 package servidor;
 
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
@@ -15,9 +14,7 @@ public class Servidor {
 
 	}
 
-	public static void main (String [] args) {
-		try {
-			
+	public static void main (String [] args) throws RemoteException, MalformedURLException {
 			Propiedades propiedades = new Propiedades();			
 			int port = Integer.parseInt(propiedades.getPuertoServidor());
 			LocateRegistry.createRegistry(port);
@@ -26,14 +23,7 @@ public class Servidor {
 			System.out.println("Antes de publicar");
 			Naming.rebind(propiedades.getRutaFachada(), fachada);
 			System.out.println("Luego de publicar");
-		} catch (RemoteException e) {
-			e.printStackTrace(); }
-		catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 	}
 
 }

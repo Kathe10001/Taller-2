@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -77,9 +76,7 @@ public class VentanaFinalizacionMudanza extends JFrame {
 		btnFinalizar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				int codigoMudanza =  Integer.parseInt(tfCodigoMudanza.getText());
-				float duracion =  Float.parseFloat(tfDuracion.getText());
-				controlador.finalizacionMudanza(codigoMudanza, duracion);
+				controlador.finalizacionMudanza(tfCodigoMudanza.getText(), tfDuracion.getText());
 				ventana.dispose();
 			}
 		});
@@ -90,7 +87,6 @@ public class VentanaFinalizacionMudanza extends JFrame {
 		btnCancelar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Se ha cancelado la operacion");
 				ventana.dispose();
 			}
 		});

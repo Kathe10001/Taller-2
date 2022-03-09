@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.swing.JOptionPane;
 
 import grafica.VentanaAltaMudanza;
-import grafica.VentanaMenu;
 import logica.IFachada;
 import logica.excepciones.ClienteException;
 import logica.excepciones.MudanzaException;

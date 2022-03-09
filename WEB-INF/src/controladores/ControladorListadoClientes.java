@@ -13,7 +13,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import grafica.VentanaListadoClientes;
-import grafica.VentanaMenu;
 import logica.IFachada;
 import logica.excepciones.ClienteException;
 import persistencia.Propiedades;

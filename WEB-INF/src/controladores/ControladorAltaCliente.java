@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.swing.JOptionPane;
 
 import grafica.VentanaAltaCliente;
-import grafica.VentanaMenu;
 import logica.IFachada;
 import logica.excepciones.ClienteException;
 import persistencia.Propiedades;
@@ -49,10 +48,8 @@ public class ControladorAltaCliente extends HttpServlet {
 		} catch (RemoteException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (Exception e) {
-			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-		}
-		
+		} 
 		
 	}
 

@@ -4,16 +4,21 @@ import java.io.IOException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpServlet;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 import grafica.VentanaListadoMudanzasPorFecha;
-import grafica.VentanaMenu;
 import logica.IFachada;
 import logica.excepciones.MudanzaException;
 import persistencia.Propiedades;
+import valueObjects.VOMudanzaDetallado;
 
 public class ControladorListadoMudanzasPorFecha extends HttpServlet {
 	
@@ -41,10 +46,35 @@ public class ControladorListadoMudanzasPorFecha extends HttpServlet {
 		}
 	}
 	
-	public void listadoMudanzasPorFecha(String fechaStr) {	
+	public void listadoMudanzasPorFecha(String fechaStr) {				
+		
 		try {
-			Date fecha = new Date();
-			fachada.listadoMudanzasXfecha(fecha);
+			
+			Date fecha = new SimpleDateFormat("dd-MM-yyyy").parse(fechaStr);
+			
+			ArrayList<VOMudanzaDetallado> mudanzas = fachada.listadoMudanzasXfecha(fecha);
+			 
+			String[] columnas = {"Codigo", "Hora de inicio" ,"Estado"};
+			String[][] datos = null;
+			DefaultTableModel model= new DefaultTableModel(datos, columnas);
+			JTable tabla = new JTable(model);
+			tabla.setEnabled(false);
+			
+			JScrollPane scrollPane = new JScrollPane();
+			scrollPane.setBounds(25, 70, 400, 140);
+			ventana.getContentPane().add(scrollPane);
+			
+			if(mudanzas != null && !mudanzas.isEmpty()) {
+				
+	
+				for (int i = 0; i < mudanzas.size(); i++) {
+					Object[] row = {mudanzas.get(i).getNumContratacion(), mudanzas.get(i).getHoraInicio(), mudanzas.get(i).isFinalizacion()};
+					DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+					modelo.addRow(row);
+				}			
+			}
+			
+			scrollPane.setViewportView(tabla);
 			
 		} catch (RemoteException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -55,6 +85,7 @@ public class ControladorListadoMudanzasPorFecha extends HttpServlet {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
+	
 
 }
 

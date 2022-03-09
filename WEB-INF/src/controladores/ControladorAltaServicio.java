@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.swing.JOptionPane;
 
 import grafica.VentanaAltaServicio;
-import grafica.VentanaMenu;
 import logica.IFachada;
 import logica.excepciones.ServicioException;
 import persistencia.Propiedades;

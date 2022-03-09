@@ -47,7 +47,6 @@ public class VentanaAltaServicio extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(120, 100, 452, 312);
 		contentPane = new JPanel();
-		contentPane.setBackground(SystemColor.activeCaptionBorder);
 		contentPane.setBorder(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);

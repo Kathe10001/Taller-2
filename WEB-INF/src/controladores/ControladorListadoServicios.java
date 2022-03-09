@@ -13,12 +13,9 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import grafica.VentanaListadoServicios;
-import grafica.VentanaMenu;
 import logica.IFachada;
-import logica.excepciones.ClienteException;
 import logica.excepciones.ServicioException;
 import persistencia.Propiedades;
-import valueObjects.VOCliente;
 import valueObjects.VOServicio;
 
 public class ControladorListadoServicios extends HttpServlet {
@@ -51,7 +48,6 @@ public class ControladorListadoServicios extends HttpServlet {
 		try {
 			ArrayList<VOServicio> servicios = fachada.listadoServicios();
 			
-			System.out.print(3);
 			String[] columnas = {"Codigo", "Armdo muebles" ,"Embalaje", "Costo por hora", "Distancia Km"};
 			String[][] datos = null;
 			DefaultTableModel model= new DefaultTableModel(datos, columnas);

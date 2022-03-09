@@ -3,16 +3,13 @@ package grafica;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.rmi.RemoteException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import controladores.ControladorMontoRecaudadoRangoFechas;
-import logica.excepciones.MudanzaException;
 
 public class VentanaMontoRecaudadoRangoFechas extends JFrame {
 
@@ -51,25 +48,25 @@ public class VentanaMontoRecaudadoRangoFechas extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblFechaInicio = new JLabel("Fecha de inicio");
-		lblFechaInicio.setBounds(11, 81, 93, 16);
+		lblFechaInicio.setBounds(11, 81, 117, 16);
 		contentPane.add(lblFechaInicio);
 
 		txtFechaInicio = new JTextField();
 		txtFechaInicio.setColumns(10);
-		txtFechaInicio.setBounds(151, 76, 254, 26);
+		txtFechaInicio.setBounds(167, 76, 238, 26);
 		contentPane.add(txtFechaInicio);
 
-		JLabel lblIngreseLosDatos = new JLabel("Ingrese fecha de inicio y fecha de fin");
-		lblIngreseLosDatos.setBounds(10, 3, 416, 45);
+		JLabel lblIngreseLosDatos = new JLabel("Ingrese fecha de inicio y fecha de fin en formato dd-mm-yyyy");
+		lblIngreseLosDatos.setBounds(30, 6, 416, 45);
 		contentPane.add(lblIngreseLosDatos);
 
 		JLabel lblFechaFin = new JLabel("Fecha de finalizacion");
-		lblFechaFin.setBounds(11, 112, 130, 16);
+		lblFechaFin.setBounds(11, 118, 144, 16);
 		contentPane.add(lblFechaFin);
 
 		txtFechaFin = new JTextField();
 		txtFechaFin.setColumns(10);
-		txtFechaFin.setBounds(151, 113, 254, 26);
+		txtFechaFin.setBounds(167, 113, 238, 26);
 		contentPane.add(txtFechaFin);
 		
 		VentanaMontoRecaudadoRangoFechas ventana = this;
@@ -78,15 +75,7 @@ public class VentanaMontoRecaudadoRangoFechas extends JFrame {
 		btnAceptar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				try {
-					controlador.montoRecaudado(txtFechaInicio.getText(), txtFechaFin.getText());
-				} catch (RemoteException | MudanzaException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				////VER COMO PASAR EL MONTO QUE  CALCULA monto.Recaudado
-				JOptionPane.showMessageDialog(null, "El monto recaudado es $");
-				ventana.dispose();
+				controlador.montoRecaudado(txtFechaInicio.getText(), txtFechaFin.getText());
 			}
 		});
 		btnAceptar.setBounds(272, 161, 117, 29);
@@ -96,7 +85,6 @@ public class VentanaMontoRecaudadoRangoFechas extends JFrame {
 		btnCancelar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Se ha cancelado la operacion");
 				ventana.dispose();
 			}
 		});

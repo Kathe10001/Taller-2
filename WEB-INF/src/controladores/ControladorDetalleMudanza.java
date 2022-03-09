@@ -1,17 +1,14 @@
 package controladores;
 
-import java.awt.Container;
 import java.io.IOException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import javax.servlet.http.HttpServlet;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import grafica.VentanaDetalleMudanza;
-import grafica.VentanaMenu;
 import logica.IFachada;
 import logica.excepciones.MudanzaException;
 import persistencia.Propiedades;

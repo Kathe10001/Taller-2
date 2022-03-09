@@ -13,9 +13,7 @@ import javax.swing.JOptionPane;
 
 import grafica.VentanaMontoRecaudadoRangoFechas;
 import logica.IFachada;
-import logica.excepciones.ClienteException;
 import logica.excepciones.MudanzaException;
-import logica.excepciones.ServicioException;
 import persistencia.Propiedades;
 
 public class ControladorMontoRecaudadoRangoFechas extends HttpServlet {
@@ -44,11 +42,15 @@ public class ControladorMontoRecaudadoRangoFechas extends HttpServlet {
 		}
 	}
 	
-	public void montoRecaudado(String fechaInicioStr, String fechaFinStr) throws RemoteException, MudanzaException {
+	public void montoRecaudado(String fechaInicioStr, String fechaFinStr) {
 		try {
-		Date fechaInicio = new SimpleDateFormat("yyyy-MM-dd").parse(fechaInicioStr);
-		Date fechaFin = new SimpleDateFormat("yyyy-MM-dd").parse(fechaFinStr);
-		fachada.montoRecaudado(fechaInicio, fechaFin);
+			Date fechaInicio = new SimpleDateFormat("dd-MM-yyyy").parse(fechaInicioStr);
+			Date fechaFin = new SimpleDateFormat("dd-MM-yyyy").parse(fechaFinStr);
+			
+		
+		float monto = fachada.montoRecaudado(fechaInicio, fechaFin);
+		
+		JOptionPane.showMessageDialog(null, "El monto recaudado es: $" + monto);
 		} catch (MudanzaException e) {
 			JOptionPane.showMessageDialog(null, e.darMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (RemoteException e) {

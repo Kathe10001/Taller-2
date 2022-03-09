@@ -1,12 +1,11 @@
 package cliente;
 
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.Calendar;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import logica.IFachada;
@@ -15,25 +14,28 @@ import logica.excepciones.MudanzaException;
 import logica.excepciones.PersistenciaException;
 import logica.excepciones.ServicioException;
 import persistencia.Propiedades;
-import valueObjects.VOCliente;
-import valueObjects.VOMudanzaDetallado;
-import valueObjects.VOServicio;
 
 public class Cliente {
 
-	public static void main (String [] args) throws ClienteException, ServicioException, MudanzaException, PersistenciaException {
+	public static void main (String [] args) throws ClienteException, ServicioException, MudanzaException, PersistenciaException, ParseException {
 		try{
 	
 			Propiedades propiedades = new Propiedades();
 			IFachada fachada = (IFachada) Naming.lookup(propiedades.getRutaFachada());
-			//fachada.nuevoServicio(true, false, 2, 200, "Nuevo");
+			fachada.nuevoServicio(true, false, 2, 200, "Nuevo");
 			fachada.altaNuevoCliente("1", "A", "B", "dasd");
-			fachada.altaNuevoCliente("1", "A", "B", "dasd");
-			fachada.listadoClientes().forEach(c -> System.out.print(c.getCedula()));
-			/*Date desde = new Date();
-			Date fecha = new Date();
-			fachada.altaMudanza(1, fecha, "dasd", "asdsad", "1", "Nuevo");
-			fachada.guardarCambios();
+			
+			Date fecha1 = new SimpleDateFormat("dd-MM-yyyy").parse("01-01-2022");
+			Date fecha2 = new SimpleDateFormat("dd-MM-yyyy").parse("01-02-2022");
+			Date fecha3 = new SimpleDateFormat("dd-MM-yyyy").parse("03-03-2022");
+			
+			fachada.altaMudanza(1, fecha2, "dasd", "asdsad", "1", "Nuevo");
+			
+			//fachada.finalizacionMudanza(1, 2);
+			float costo = fachada.montoRecaudado(fecha1, fecha3);
+			System.out.println("costo" + costo);
+			//fachada.altaMudanza(1, fecha2, "dasd", "asdsad", "1", "Nuevo");
+			/*fachada.guardarCambios();
 			fachada.restaurarInformacion();
 			fachada.detalleMudanza(0);
 	
@@ -57,9 +59,6 @@ public class Cliente {
 		catch (NotBoundException e) {
 			e.printStackTrace();
 		} catch (RemoteException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 	}

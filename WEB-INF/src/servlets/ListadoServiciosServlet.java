@@ -15,7 +15,6 @@ import javax.servlet.http.HttpSession;
 
 import logica.IFachada;
 import logica.excepciones.ServicioException;
-import persistencia.Propiedades;
 import valueObjects.VOServicio;
 
 

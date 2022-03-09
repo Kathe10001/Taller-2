@@ -7,9 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import controladores.ControladorListadoServicios;
 
@@ -18,10 +16,6 @@ public class VentanaListadoServicios extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private ControladorListadoServicios controlador = new ControladorListadoServicios(this);
 	private JPanel contentPane;
-	private JTextField tfNombre;
-	private JTextField tfApellido;
-	private JTextField tfCedula;
-	private JTextField tfTelefono;
 
 	/**
 	 * Launch the application.
@@ -55,54 +49,17 @@ public class VentanaListadoServicios extends JFrame {
 		lblIngreseUnNuevo.setBounds(143, 19, 221, 26);
 		contentPane.add(lblIngreseUnNuevo);
 		
-		JLabel lblNombre = new JLabel("Nombre");
-		lblNombre.setBounds(40, 63, 61, 16);
-		contentPane.add(lblNombre);
-
-		tfNombre = new JTextField();
-		tfNombre.setBounds(102, 58, 254, 26);
-		contentPane.add(tfNombre);
-		tfNombre.setColumns(10);
-		
-		JLabel lblApellido = new JLabel("Apellido");
-		lblApellido.setBounds(40, 95, 61, 16);
-		contentPane.add(lblApellido);
-
-		tfApellido = new JTextField();
-		tfApellido.setColumns(10);
-		tfApellido.setBounds(102, 90, 254, 26);
-		contentPane.add(tfApellido);
-
-		JLabel lblCedula = new JLabel("Cédula");
-		lblCedula.setBounds(40, 131, 61, 16);
-		contentPane.add(lblCedula);
-
-		tfCedula = new JTextField();
-		tfCedula.setColumns(10);
-		tfCedula.setBounds(102, 126, 254, 26);
-		contentPane.add(tfCedula);
-
-		JLabel lblTelefono = new JLabel("Télefono");
-		lblTelefono.setBounds(40, 170, 61, 16);
-		contentPane.add(lblTelefono);
-
-		tfTelefono = new JTextField();
-		tfTelefono.setColumns(10);
-		tfTelefono.setBounds(102, 165, 254, 26);
-		contentPane.add(tfTelefono);
-		
 		VentanaListadoServicios ventana = this;
 		
-		JButton btnAceptar = new JButton("Aceptar");
-		btnAceptar.addActionListener(new ActionListener() {
+		JButton btnCargarDatos = new JButton("Cargar datos");
+		btnCargarDatos.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				controlador.listadoServicios();
-				ventana.dispose();
+				controlador.listadoServicios();		
 			}
 		});
-		btnAceptar.setBounds(278, 226, 117, 29);
-		contentPane.add(btnAceptar);
+		btnCargarDatos.setBounds(278, 226, 117, 29);
+		contentPane.add(btnCargarDatos);
 
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {

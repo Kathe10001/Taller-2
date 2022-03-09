@@ -9,7 +9,6 @@ import logica.excepciones.ClienteException;
 import logica.excepciones.MudanzaException;
 import logica.excepciones.PersistenciaException;
 import logica.excepciones.ServicioException;
-import negocio.Mudanza;
 import valueObjects.VOCliente;
 import valueObjects.VOMudanzaDetallado;
 import valueObjects.VOServicio;

@@ -1,25 +1,14 @@
 package grafica;
 
 import java.awt.EventQueue;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.rmi.RemoteException;
-import java.text.ParseException;
-import java.util.Date;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import controladores.ControladorAltaMudanza;
-import logica.excepciones.ClienteException;
-import logica.excepciones.MudanzaException;
-//import controladores.ControladorMenu;
-import logica.excepciones.PersistenciaException;
-import logica.excepciones.ServicioException;
 
 public class VentanaAltaMudanza extends JFrame {
 
@@ -62,7 +51,6 @@ public class VentanaAltaMudanza extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblIngreseLosDatos = new JLabel("Alta de mudanza");
-		lblIngreseLosDatos.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		lblIngreseLosDatos.setBounds(176, 14, 142, 19);
 		contentPane.add(lblIngreseLosDatos);
 

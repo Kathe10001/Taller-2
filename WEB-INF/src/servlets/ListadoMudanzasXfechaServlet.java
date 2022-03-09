@@ -18,7 +18,6 @@ import javax.servlet.http.HttpSession;
 
 import logica.IFachada;
 import logica.excepciones.MudanzaException;
-import persistencia.Propiedades;
 import valueObjects.VOMudanzaDetallado;
 
 

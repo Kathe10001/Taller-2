@@ -1,20 +1,14 @@
 package grafica;
 
 import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.rmi.RemoteException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
 import controladores.ControladorMenu;
-import logica.excepciones.PersistenciaException;
 
 public class VentanaMenu extends JFrame {
 
@@ -42,7 +36,6 @@ public class VentanaMenu extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(120, 100, 452, 536);
 		contentPane = new JPanel();
-		contentPane.setBackground(SystemColor.activeCaptionBorder);
 		contentPane.setBorder(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
