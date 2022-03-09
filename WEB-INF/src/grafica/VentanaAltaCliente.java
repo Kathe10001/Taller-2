@@ -103,7 +103,7 @@ public class VentanaAltaCliente extends JFrame {
 		btnAceptar.setBounds(278, 226, 117, 29);
 		contentPane.add(btnAceptar);
 
-		JButton btnCancelar = new JButton("Cancelar");
+		JButton btnCancelar = new JButton("Cerrar");
 		btnCancelar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
