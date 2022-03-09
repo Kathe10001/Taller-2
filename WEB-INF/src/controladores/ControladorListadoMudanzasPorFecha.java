@@ -69,8 +69,9 @@ public class ControladorListadoMudanzasPorFecha extends HttpServlet {
 			
 				for (int i = 0; i < mudanzas.size(); i++) {
 					String finalizada = mudanzas.get(i).isFinalizacion() ? "Finalizada" : "No finalizada";
+					String horaInicio = new SimpleDateFormat("HH:mm").format(mudanzas.get(i).getHoraInicio());
 					
-					Object[] row = {mudanzas.get(i).getNumContratacion(), mudanzas.get(i).getHoraInicio(), finalizada};
+					Object[] row = {mudanzas.get(i).getNumContratacion(), horaInicio, finalizada};
 					DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
 					modelo.addRow(row);
 				}			

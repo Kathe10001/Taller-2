@@ -40,13 +40,13 @@
 		<c:forEach items="${mudanzas}" var="i" >
 			<tr>
 				<td> ${i.numContratacion} </td>
-				<td><fmt:formatDate pattern = "hh:mm" value = "${i.horaInicio}" /></td>
+				<td><fmt:formatDate pattern = "HH:mm" value = "${i.horaInicio}" /></td>
 				<td><fmt:formatDate pattern = "yyyy-MM-dd" value = "${i.fechaMudanza}" /></td>
 				<td> ${i.domicilioOrigen} </td>
 				<td> ${i.domicilioDestino} </td>
 				<td> ${i.duracionTotal} </td>
 				<td> ${i.codigoServicio} </td>
-				<td> ${i.finalizada ? "Finalizada" : "No finalizada"} </td>
+				<td> ${i.finalizacion ? "Finalizada" : "No finalizada"} </td>
 			</tr>
 		</c:forEach>					
 	</table>

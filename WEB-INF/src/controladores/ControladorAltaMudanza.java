@@ -49,7 +49,7 @@ public class ControladorAltaMudanza extends HttpServlet {
 		
 		try {
 			
-			Date horaInicio = new SimpleDateFormat("hh:mm").parse(horaInicioStr);
+			Date horaInicio = new SimpleDateFormat("HH:mm").parse(horaInicioStr);
 			Date fechaMudanza = new SimpleDateFormat("dd-MM-yyyy").parse(fechaMudanzaStr);
 			
 			fachada.altaMudanza(horaInicio, fechaMudanza, domicilioOrigen, domicilioDestino, cedula, codigoServicio);

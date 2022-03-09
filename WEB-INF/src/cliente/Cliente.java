@@ -29,13 +29,13 @@ public class Cliente {
 			Date fecha2 = new SimpleDateFormat("dd-MM-yyyy").parse("01-02-2022");
 			Date fecha3 = new SimpleDateFormat("dd-MM-yyyy").parse("03-03-2022");
 			
-			Date hora1 = new SimpleDateFormat("hh:mm").parse("20:30");
-			Date hora2 = new SimpleDateFormat("hh:mm").parse("22:30");
-			Date hora3 = new SimpleDateFormat("hh:mm").parse("22:30");
+			Date hora1 = new SimpleDateFormat("HH:mm").parse("20:30");
+			Date hora2 = new SimpleDateFormat("HH:mm").parse("22:30");
+			Date hora3 = new SimpleDateFormat("HH:mm").parse("22:30");
 			
 			fachada.altaMudanza(hora1, fecha2, "dasd", "asdsad", "1", "Nuevo");
 			fachada.altaMudanza(hora2, fecha2, "dasd", "asdsad", "1", "Nuevo");
-			fachada.altaMudanza(hora3, fecha2, "dasd", "asdsad", "1", "Nuevo");
+			//fachada.altaMudanza(hora3, fecha2, "dasd", "asdsad", "1", "Nuevo");
 			
 			//fachada.finalizacionMudanza(1, 2);
 			//float costo = fachada.montoRecaudado(fecha1, fecha3);
