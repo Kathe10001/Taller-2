@@ -58,7 +58,7 @@ public class VentanaAltaMudanza extends JFrame {
 		lblFechaMudanza.setBounds(11, 50, 216, 16);
 		contentPane.add(lblFechaMudanza);
 		
-		JLabel lblHoraInicio = new JLabel("Hora de inicio");
+		JLabel lblHoraInicio = new JLabel("Hora de inicio 24hs mmss");
 		lblHoraInicio.setBounds(11, 81, 93, 16);
 		contentPane.add(lblHoraInicio);
 
@@ -95,7 +95,7 @@ public class VentanaAltaMudanza extends JFrame {
 		tfCodigoServicio.setBounds(175, 172, 206, 26);
 		contentPane.add(tfCodigoServicio);
 
-		JLabel lblCodigoServicio = new JLabel("Código del dervicio");
+		JLabel lblCodigoServicio = new JLabel("Codigo del dervicio");
 		lblCodigoServicio.setBounds(11, 177, 132, 16);
 		contentPane.add(lblCodigoServicio);
 
@@ -104,7 +104,7 @@ public class VentanaAltaMudanza extends JFrame {
 		tfCedulaCliente.setBounds(175, 204, 206, 26);
 		contentPane.add(tfCedulaCliente);
 
-		JLabel lblCedulaCliente = new JLabel("Cédula del cliente");
+		JLabel lblCedulaCliente = new JLabel("Cedula del cliente");
 		lblCedulaCliente.setBounds(11, 209, 132, 16);
 		contentPane.add(lblCedulaCliente);
 		
