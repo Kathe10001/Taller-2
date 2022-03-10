@@ -119,6 +119,13 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 
 		this.monitor.comienzoEscritura();
 	
+		Date hoy = new Date();
+		if(this.anterior(fechaMudanza, hoy)) {
+			this.monitor.terminoEscritura();
+			throw new MudanzaException("La fecha de la mudanza no puede ser anterior a la fecha de hoy");
+		}
+	
+				
 		if(!this.clientes.member(cedula)) {
 			this.monitor.terminoEscritura();
 			throw new ClienteException("El cliente no existe");
@@ -245,13 +252,13 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 		this.monitor.comienzoLectura();
 		float total = 0f;
 		
-		if (!this.anterior(fechaInicio, fechaFin)) {
+		if (!this.anteriorIgual(fechaInicio, fechaFin)) {
 			this.monitor.terminoLectura();
 			throw new MudanzaException("La fecha de inicio debe ser anterior a la de fin");
 		} else {
 		
 			total = (float) this.mudanzas.getMudanzas().stream()
-			.filter(mudanza -> this.posterior(mudanza.getFechaMudanza(), fechaInicio) && this.anterior(mudanza.getFechaMudanza(), fechaFin) && mudanza.isFinalizacion())
+			.filter(mudanza -> this.posteriorIgual(mudanza.getFechaMudanza(), fechaInicio) && this.anteriorIgual(mudanza.getFechaMudanza(), fechaFin) && mudanza.isFinalizacion())
 			.mapToDouble(mudanza -> {	
 				Servicio servicio = this.servicios.find(mudanza.getServicio().getCodigo());
 				return mudanza.getDuracionTotal() * servicio.getCostoXhora();
@@ -358,13 +365,28 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 		.collect(Collectors.toList());
 	}
 	
+	private boolean anteriorIgual(Date fechaAComparar, Date fecha) {
+		return (this.anterior(fechaAComparar, fecha) || this.igual(fechaAComparar, fecha));
+		
+	}
+	
+	private boolean posteriorIgual(Date fechaAComparar, Date fecha) {
+		return (this.posterior(fechaAComparar, fecha) || this.igual(fechaAComparar, fecha));
+	}
+	
 	private boolean anterior(Date fechaAComparar, Date fecha) {
-		return ((fechaAComparar.compareTo(fecha) == -1) || (fechaAComparar.compareTo(fecha) == 0));
+		return (fechaAComparar.compareTo(fecha) == -1);
 		
 	}
 	
 	private boolean posterior(Date fechaAComparar, Date fecha) {
-		return ((fechaAComparar.compareTo(fecha) == 1) || (fechaAComparar.compareTo(fecha) == 0));
+		return (fechaAComparar.compareTo(fecha) == 1);
 	}
+	
+	private boolean igual(Date fechaAComparar, Date fecha) {
+		return  (fechaAComparar.compareTo(fecha) == 0);
+	}
+	
+	
 
 }

@@ -25,15 +25,15 @@ public class Cliente {
 			fachada.nuevoServicio(true, false, 2, 200, "Nuevo");
 			fachada.altaNuevoCliente("1", "A", "B", "dasd");
 			
-			Date fecha1 = new SimpleDateFormat("dd-MM-yyyy").parse("01-01-2022");
-			Date fecha2 = new SimpleDateFormat("dd-MM-yyyy").parse("01-02-2022");
+			Date fecha1 = new SimpleDateFormat("dd-MM-yyyy").parse("05-04-2022");
+			Date fecha2 = new SimpleDateFormat("dd-MM-yyyy").parse("06-04-2022");
 			Date fecha3 = new SimpleDateFormat("dd-MM-yyyy").parse("03-03-2022");
 			
-			Date hora1 = new SimpleDateFormat("HH:mm").parse("20:30");
-			Date hora2 = new SimpleDateFormat("HH:mm").parse("22:30");
+			Date hora1 = new SimpleDateFormat("HH:mm").parse("13:30");
+			Date hora2 = new SimpleDateFormat("HH:mm").parse("14:30");
 			Date hora3 = new SimpleDateFormat("HH:mm").parse("22:30");
 			
-			fachada.altaMudanza(hora1, fecha2, "dasd", "asdsad", "1", "Nuevo");
+			fachada.altaMudanza(hora1, fecha1, "dasd", "asdsad", "1", "Nuevo");
 			fachada.altaMudanza(hora2, fecha2, "dasd", "asdsad", "1", "Nuevo");
 			//fachada.altaMudanza(hora3, fecha2, "dasd", "asdsad", "1", "Nuevo");
 			
