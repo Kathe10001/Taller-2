@@ -5,6 +5,7 @@ import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -74,26 +75,36 @@ public class VentanaAltaServicio extends JFrame {
 		JLabel lblCodigoServicio = new JLabel("Codigo del servicio");
 		lblCodigoServicio.setBounds(11, 184, 135, 16);
 		contentPane.add(lblCodigoServicio);
-
+		  
+		ButtonGroup bgArmado = new ButtonGroup();    
+		
 		JRadioButton rdArmadoSi = new JRadioButton(" SI");
 		rdArmadoSi.setBackground(SystemColor.activeCaptionBorder);
 		rdArmadoSi.setBounds(176, 47, 65, 23);
+		rdArmadoSi.setSelected(true);
+		bgArmado.add(rdArmadoSi);
 		contentPane.add(rdArmadoSi);
 
 		JRadioButton rdArmadoNo = new JRadioButton(" NO");
 		rdArmadoNo.setBackground(SystemColor.activeCaptionBorder);
 		rdArmadoNo.setBounds(259, 46, 64, 23);
+		bgArmado.add(rdArmadoNo);
 		contentPane.add(rdArmadoNo);
 
-		JRadioButton rdEmbalajeNo = new JRadioButton(" NO");
-		rdEmbalajeNo.setBackground(SystemColor.activeCaptionBorder);
-		rdEmbalajeNo.setBounds(259, 81, 64, 23);
-		contentPane.add(rdEmbalajeNo);
-
+		ButtonGroup bgEmbalaje = new ButtonGroup();
+		
 		JRadioButton rdEmbalajeSi = new JRadioButton(" SI");
 		rdEmbalajeSi.setBackground(SystemColor.activeCaptionBorder);
 		rdEmbalajeSi.setBounds(177, 81, 55, 23);
+		rdEmbalajeSi.setSelected(true);
+		bgEmbalaje.add(rdEmbalajeSi);
 		contentPane.add(rdEmbalajeSi);
+		
+		JRadioButton rdEmbalajeNo = new JRadioButton(" NO");
+		rdEmbalajeNo.setBackground(SystemColor.activeCaptionBorder);
+		rdEmbalajeNo.setBounds(259, 81, 64, 23);
+		bgEmbalaje.add(rdEmbalajeNo);
+		contentPane.add(rdEmbalajeNo);
 
 		tfCostoHora = new JTextField();
 		tfCostoHora.setBounds(162, 116, 105, 20);
