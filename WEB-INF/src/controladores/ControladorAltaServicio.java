@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 
 import grafica.VentanaAltaServicio;
 import logica.IFachada;
+import logica.excepciones.ClienteException;
 import logica.excepciones.ServicioException;
 import persistencia.Propiedades;
 
@@ -43,10 +44,18 @@ public class ControladorAltaServicio extends HttpServlet {
 		
 		 
 		try {
-			float costoXhora = Float.parseFloat(costoXhoraStr);  
-			float distanciaKm = Float.parseFloat(distanciaKmStr); 
-			fachada.nuevoServicio(armadoMuebles, embalaje, costoXhora, distanciaKm, codigoServicio);
-			JOptionPane.showMessageDialog(null, "Se ha guardado correctamente");
+			
+			if("".equals(costoXhoraStr) || "".equals(distanciaKmStr) || "".equals(codigoServicio)) {
+				JOptionPane.showMessageDialog(null, "Debe completar todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
+			} else {
+				
+				float costoXhora = Float.parseFloat(costoXhoraStr);  
+				float distanciaKm = Float.parseFloat(distanciaKmStr); 
+				fachada.nuevoServicio(armadoMuebles, embalaje, costoXhora, distanciaKm, codigoServicio);
+				JOptionPane.showMessageDialog(null, "Se ha guardado correctamente");
+				ventana.dispose();
+			}
+			
 			
 		} catch (RemoteException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

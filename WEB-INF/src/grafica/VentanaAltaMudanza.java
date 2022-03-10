@@ -115,7 +115,6 @@ public class VentanaAltaMudanza extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				controlador.altaMudanza(tfHoraInicio.getText(), tfFechaMudanza.getText(), tfDomicilioInicio.getText(), tfDomicilioDestino.getText(), tfCedulaCliente.getText(), tfCodigoServicio.getText());
-				ventana.dispose();
 			}
 		});
 		btnAceptar.setBounds(274, 255, 117, 29);

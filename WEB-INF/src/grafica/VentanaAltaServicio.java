@@ -117,7 +117,6 @@ public class VentanaAltaServicio extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent event) {			
 				controlador.nuevoServicio(rdArmadoSi.isSelected(), rdEmbalajeSi.isSelected(), tfCostoHora.getText(), tfDistanciaKm.getText(), tfCodigoServicio.getText());
-				ventana.dispose();
 			}
 		});
 		btnGuardar.setBounds(275, 228, 117, 29);

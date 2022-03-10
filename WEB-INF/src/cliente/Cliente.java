@@ -24,7 +24,7 @@ public class Cliente {
 			IFachada fachada = (IFachada) Naming.lookup(propiedades.getRutaFachada());
 			fachada.nuevoServicio(true, false, 2, 200, "Nuevo");
 			fachada.altaNuevoCliente("", "", "", "");
-		
+			
 			
 			
 			/*Date fecha1 = new SimpleDateFormat("dd-MM-yyyy").parse("05-04-2022");

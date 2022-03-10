@@ -97,7 +97,6 @@ public class VentanaAltaCliente extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				controlador.altaCliente(tfCedula.getText(), tfNombre.getText(), tfApellido.getText(), tfTelefono.getText());
-				ventana.dispose();
 			}
 		});
 		btnAceptar.setBounds(278, 226, 117, 29);

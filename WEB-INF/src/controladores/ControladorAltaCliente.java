@@ -43,6 +43,7 @@ public class ControladorAltaCliente extends HttpServlet {
 		try {
 			fachada.altaNuevoCliente(cedula, nombre, apellido, telefono);
 			JOptionPane.showMessageDialog(null, "Se ha dado de alta correctamente");
+			ventana.dispose();
 		} catch (ClienteException e) {
 			JOptionPane.showMessageDialog(null, e.darMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (RemoteException e) {

@@ -49,12 +49,18 @@ public class ControladorAltaMudanza extends HttpServlet {
 		
 		try {
 			
-			Date horaInicio = new SimpleDateFormat("HH:mm").parse(horaInicioStr);
-			Date fechaMudanza = new SimpleDateFormat("dd-MM-yyyy").parse(fechaMudanzaStr);
+			if("".equals(horaInicioStr) || "".equals(fechaMudanzaStr) || "".equals(domicilioOrigen) || "".equals(domicilioDestino) || "".equals(cedula)) {
+				JOptionPane.showMessageDialog(null, "Debe completar todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
+			} else {
 			
-			fachada.altaMudanza(horaInicio, fechaMudanza, domicilioOrigen, domicilioDestino, cedula, codigoServicio);
-			JOptionPane.showMessageDialog(null, "Se ha dado de alta correctamente");
-		
+				Date horaInicio = new SimpleDateFormat("HH:mm").parse(horaInicioStr);
+				Date fechaMudanza = new SimpleDateFormat("dd-MM-yyyy").parse(fechaMudanzaStr);
+				
+				fachada.altaMudanza(horaInicio, fechaMudanza, domicilioOrigen, domicilioDestino, cedula, codigoServicio);
+				JOptionPane.showMessageDialog(null, "Se ha dado de alta correctamente");
+				ventana.dispose();
+			}
+			
 		} catch (ClienteException e) {
 			JOptionPane.showMessageDialog(null, e.darMensaje(), "Error", JOptionPane.ERROR_MESSAGE);
 		} catch (ServicioException e) {

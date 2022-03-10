@@ -74,7 +74,7 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 		
 		if("".equals(cedula) || "".equals(nombre) || "".equals(apellido) || "".equals(telefono)) {
 			this.monitor.terminoEscritura();
-			throw new ClienteException("Complete todos los campos");
+			throw new ClienteException("Debe completar todos los campos");
 		}
 		
 		Cliente nuevoCliente = new Cliente(cedula,nombre,apellido,telefono);
