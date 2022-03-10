@@ -69,8 +69,14 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 	*/
 	@Override
 	public void altaNuevoCliente(String cedula, String nombre, String apellido, String telefono) throws ClienteException, RemoteException {
-
+		
 		this.monitor.comienzoEscritura();
+		
+		if("".equals(cedula) || "".equals(nombre) || "".equals(apellido) || "".equals(telefono)) {
+			this.monitor.terminoEscritura();
+			throw new ClienteException("Complete todos los campos");
+		}
+		
 		Cliente nuevoCliente = new Cliente(cedula,nombre,apellido,telefono);
 		if(this.clientes.esVacia()){
 			this.clientes.insert(nuevoCliente);
