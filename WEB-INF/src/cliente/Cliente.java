@@ -22,24 +22,24 @@ public class Cliente {
 	
 			Propiedades propiedades = new Propiedades();
 			IFachada fachada = (IFachada) Naming.lookup(propiedades.getRutaFachada());
-			fachada.nuevoServicio(true, false, 2, 200, "Nuevo");
-			fachada.altaNuevoCliente("", "", "", "");
+			fachada.nuevoServicio(true, false, 2, 200, "1");
+			fachada.altaNuevoCliente("1", "1", "1", "1");
 			
 			
 			
-			/*Date fecha1 = new SimpleDateFormat("dd-MM-yyyy").parse("05-04-2022");
-			Date fecha2 = new SimpleDateFormat("dd-MM-yyyy").parse("06-04-2022");
+			Date fecha1 = new SimpleDateFormat("dd-MM-yyyy").parse("05-04-2022");
+			Date fecha2 = new SimpleDateFormat("dd-MM-yyyy").parse("05-04-2022");
 			Date fecha3 = new SimpleDateFormat("dd-MM-yyyy").parse("03-03-2022");
 			
-			Date hora1 = new SimpleDateFormat("HH:mm").parse("13:30");
+			Date hora1 = new SimpleDateFormat("HH:mm").parse("09:30");
 			Date hora2 = new SimpleDateFormat("HH:mm").parse("14:30");
 			Date hora3 = new SimpleDateFormat("HH:mm").parse("22:30");
 			
-			fachada.altaMudanza(hora1, fecha1, "dasd", "asdsad", "1", "Nuevo");
-			fachada.altaMudanza(hora2, fecha2, "dasd", "asdsad", "1", "Nuevo");*/
+			fachada.altaMudanza(hora1, fecha1, "dasd", "asdsad", "1", "1");
+			fachada.altaMudanza(hora2, fecha1, "dasd", "asdsad", "1", "1");
 			//fachada.altaMudanza(hora3, fecha2, "dasd", "asdsad", "1", "Nuevo");
 			
-			//fachada.finalizacionMudanza(1, 2);
+			fachada.finalizacionMudanza(4, 2);
 			//float costo = fachada.montoRecaudado(fecha1, fecha3);
 			//System.out.println("costo" + costo);
 			//fachada.altaMudanza(1, fecha2, "dasd", "asdsad", "1", "Nuevo");

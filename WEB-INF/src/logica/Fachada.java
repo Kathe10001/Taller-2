@@ -151,7 +151,9 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 			Mudanza mudanza = new Mudanza(1, horaInicio, fechaMudanza, domicilioOrigen, domicilioDestino, cliente, servicio);
 			this.mudanzas.insert(mudanza);
 		} else {
-			if(this.posterior(fechaMudanza, ultimaMudanza.getFechaMudanza())) {
+			
+			//En el codigo original se llamaba a this.posterior
+			if(this.posteriorIgual(fechaMudanza, ultimaMudanza.getFechaMudanza())) {
 				
 				Mudanza mudanza = new Mudanza(ultimaMudanza.getNumContratacion() + 1, horaInicio, fechaMudanza, domicilioOrigen, domicilioDestino, cliente, servicio);
 				
@@ -198,25 +200,35 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 		this.monitor.comienzoEscritura();
 		float costoFinal = 0f;
 
-		Mudanza mudanza = this.mudanzas.get(codigoMudanza);
-		if(mudanza == null) {
-			this.monitor.terminoEscritura();
-			throw new MudanzaException("No existe una mudanza para el codigo" + codigoMudanza);
-		} else {
-			if(mudanza.isFinalizacion()) {
+		Mudanza mudanza = null; 
+		try {
+			
+			mudanza = this.mudanzas.get(codigoMudanza);
+			if(mudanza == null) {
 				this.monitor.terminoEscritura();
-				throw new MudanzaException("La mudanza ya se encuentra finalizada");
-			}
-			mudanza.setDuracionTotal(duracion);
-			mudanza.setFinalizacion(true);
-			Servicio servicio = mudanza.getServicio();
-			if(servicio == null) {
-				this.monitor.terminoEscritura();
-				throw new ServicioException("No existe una servicio para la mudanza" + mudanza.getNumContratacion());
+				throw new MudanzaException("No existe una mudanza para el codigo" + codigoMudanza);
 			} else {
-				costoFinal = mudanza.getDuracionTotal() * servicio.getCostoXhora();
+				if(mudanza.isFinalizacion()) {
+					this.monitor.terminoEscritura();
+					throw new MudanzaException("La mudanza ya se encuentra finalizada");
+				}
+				mudanza.setDuracionTotal(duracion);
+				mudanza.setFinalizacion(true);
+				Servicio servicio = mudanza.getServicio();
+				if(servicio == null) {
+					this.monitor.terminoEscritura();
+					throw new ServicioException("No existe una servicio para la mudanza" + mudanza.getNumContratacion());
+				} else {
+					costoFinal = mudanza.getDuracionTotal() * servicio.getCostoXhora();
+				}
 			}
+			
+		} catch (IndexOutOfBoundsException e) {
+			this.monitor.terminoLectura();
+			throw new MudanzaException("No hay una mudanza con el codigo " + codigoMudanza);
 		}
+		
+		
 		this.monitor.terminoEscritura();
 		return costoFinal;
 	}
@@ -236,12 +248,12 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 			mudanza = this.mudanzas.get(codigoMudanza);
 			if(mudanza == null) {
 				this.monitor.terminoLectura();
-				throw new MudanzaException("No hay una mudanza con el código" + codigoMudanza);
+				throw new MudanzaException("No hay una mudanza con el código " + codigoMudanza);
 			}
 			
 		} catch (IndexOutOfBoundsException e) {
 			this.monitor.terminoLectura();
-			throw new MudanzaException("No hay una mudanza con el codigo" + codigoMudanza);
+			throw new MudanzaException("No hay una mudanza con el codigo " + codigoMudanza);
 		}
 		
 		  
@@ -372,12 +384,12 @@ public class Fachada extends UnicastRemoteObject implements IFachada {
 	}
 	
 	private boolean anteriorIgual(Date fechaAComparar, Date fecha) {
-		return (this.anterior(fechaAComparar, fecha) || this.igual(fechaAComparar, fecha));
+		return (this.anterior(fechaAComparar, fecha) || (this.igual(fechaAComparar, fecha)));
 		
 	}
 	
 	private boolean posteriorIgual(Date fechaAComparar, Date fecha) {
-		return (this.posterior(fechaAComparar, fecha) || this.igual(fechaAComparar, fecha));
+		return (this.posterior(fechaAComparar, fecha) || (this.igual(fechaAComparar, fecha)));
 	}
 	
 	private boolean anterior(Date fechaAComparar, Date fecha) {
